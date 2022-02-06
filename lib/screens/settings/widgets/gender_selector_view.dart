@@ -3,13 +3,15 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 import '../Gender.dart';
 
-typedef void GenderChangedCallback(Gender gender);
+typedef GenderChangedCallback = void Function(Gender gender);
 
 class GenderSelectorView extends StatefulWidget {
   final GenderChangedCallback changed;
   final Gender value;
 
-  GenderSelectorView({Key key, @required this.value, @required this.changed});
+  const GenderSelectorView(
+      {Key key, @required this.value, @required this.changed})
+      : super(key: key);
 
   @override
   State<StatefulWidget> createState() {
@@ -33,21 +35,21 @@ class _GenderSelectorViewState extends State<GenderSelectorView> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.all(8.0),
+      padding: const EdgeInsets.all(8.0),
       child: Column(
         children: <Widget>[
           Text(
             'Gender'.toUpperCase(),
-            style: TextStyle(fontWeight: FontWeight.w600, fontSize: 17.0),
+            style: const TextStyle(fontWeight: FontWeight.w600, fontSize: 17.0),
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               Padding(
-                padding: EdgeInsets.symmetric(horizontal: 16.0),
-                child: FlatButton.icon(
-                  highlightColor: Colors.transparent,
-                  splashColor: Colors.transparent,
+                padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                child: ElevatedButton.icon(
+                  //highlightColor: Colors.transparent,
+                  //splashColor: Colors.transparent,
                   icon: SvgPicture.asset(
                     'assets/icons/male.svg',
                     height: 20.0,
@@ -59,14 +61,14 @@ class _GenderSelectorViewState extends State<GenderSelectorView> {
                   onPressed: () {
                     _setGender(Gender.male);
                   },
-                  label: Text('Male'),
+                  label: const Text('Male'),
                 ),
               ),
               Padding(
-                padding: EdgeInsets.symmetric(horizontal: 16.0),
-                child: FlatButton.icon(
-                  highlightColor: Colors.transparent,
-                  splashColor: Colors.transparent,
+                padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                child: ElevatedButton.icon(
+                  //highlightColor: Colors.transparent,
+                  //splashColor: Colors.transparent,
                   icon: SvgPicture.asset(
                     'assets/icons/female.svg',
                     height: 20.0,
@@ -78,7 +80,7 @@ class _GenderSelectorViewState extends State<GenderSelectorView> {
                   onPressed: () {
                     _setGender(Gender.female);
                   },
-                  label: Text('Female'),
+                  label: const Text('Female'),
                 ),
               ),
             ],

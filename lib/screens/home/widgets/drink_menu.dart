@@ -43,7 +43,7 @@ class DrinkMenu extends StatelessWidget {
                   }),
             ]),
             child: IconButton(
-              icon: Icon(
+              icon: const Icon(
                 Icons.cancel,
               ),
               onPressed: () {},

@@ -39,7 +39,7 @@ class _SettingsPageState extends State<SettingsPage> {
                   gradient: LinearGradient(
                       begin: Alignment.topCenter,
                       end: Alignment.bottomCenter,
-                      stops: [0.3, 0.7],
+                      stops: const [0.3, 0.7],
                       colors: [Colors.white.withOpacity(0.0), Colors.white]),
                 ),
               ),
@@ -54,15 +54,15 @@ class _SettingsPageState extends State<SettingsPage> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: <Widget>[
                   Padding(
-                    padding: EdgeInsets.only(top: 16.0),
+                    padding: const EdgeInsets.only(top: 16.0),
                     child: ShadowText(
                       'SETTINGS',
                       shadowColor: Colors.black.withOpacity(0.15),
                       offsetX: 3.0,
                       offsetY: 3.0,
                       blur: 3.0,
-                      style: TextStyle(
-                          color: const Color(0xBEffffff),
+                      style: const TextStyle(
+                          color: Color(0xBEffffff),
                           fontSize: 24.0,
                           fontWeight: FontWeight.bold),
                       textAlign: TextAlign.center,
@@ -91,7 +91,7 @@ class _SettingsPageState extends State<SettingsPage> {
                               ),
                             ),
                             Padding(
-                              padding: EdgeInsets.only(top: 16.0),
+                              padding: const EdgeInsets.only(top: 16.0),
                               child: ContainerWrapper(
                                   child: AgeSelectorView(
                                 changed: (a) {
@@ -101,7 +101,7 @@ class _SettingsPageState extends State<SettingsPage> {
                               )),
                             ),
                             Padding(
-                              padding: EdgeInsets.only(top: 16.0),
+                              padding: const EdgeInsets.only(top: 16.0),
                               child: ContainerWrapper(
                                   child: DailyGoalView(
                                 age: state.settings.age,

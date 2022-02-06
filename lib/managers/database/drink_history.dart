@@ -21,6 +21,7 @@ class DrinkHistoryEntry extends DatabaseModel {
   int amount;
   int date;
 
+  @override
   Map<String, dynamic> toMap() {
     Map<String, dynamic> map = {'amount': amount, 'date': date};
     if (id != null) {

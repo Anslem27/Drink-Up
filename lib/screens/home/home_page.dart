@@ -23,6 +23,8 @@ import '../today/today_page.dart';
 // }
 
 class HomePage extends StatefulWidget {
+  const HomePage({Key key}) : super(key: key);
+
   @override
   State<StatefulWidget> createState() {
     return _HomePageState();
@@ -46,6 +48,7 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
     );
   }
 
+  @override
   void initState() {
     super.initState();
 
@@ -105,13 +108,13 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
   Widget _getBody(int index) {
     switch (index) {
       case 0:
-        return TodayPage();
+        return const TodayPage();
       case 1:
-        return HistoryPage();
+        return const HistoryPage();
       case 2:
-        return NotificationsSettingsPage();
+        return const NotificationsSettingsPage();
       case 3:
-        return SettingsPage();
+        return const SettingsPage();
       default:
         return null;
     }
@@ -172,23 +175,24 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
         return CupertinoTabView(
           builder: (BuildContext context) {
             return CupertinoPageScaffold(
-                backgroundColor: const Color(0xFFf7f7f7),
-                child: Stack(
-                  children: <Widget>[
-                    Container(
-                      decoration: BoxDecoration(
-                          image: DecorationImage(
-                              alignment: AlignmentDirectional.topStart,
-                              image: AssetImage(
-                                  'assets/background/top-background.png'),
-                              fit: BoxFit.fitWidth)),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.only(top: 40),
-                      child: _getBody(index),
-                    ),
-                  ],
-                ));
+              backgroundColor: const Color(0xFFf7f7f7),
+              child: Stack(
+                children: <Widget>[
+                  Container(
+                    decoration: const BoxDecoration(
+                        image: DecorationImage(
+                            alignment: AlignmentDirectional.topStart,
+                            image: AssetImage(
+                                'assets/background/top-background.png'),
+                            fit: BoxFit.fitWidth)),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 40),
+                    child: _getBody(index),
+                  ),
+                ],
+              ),
+            );
           },
         );
       },

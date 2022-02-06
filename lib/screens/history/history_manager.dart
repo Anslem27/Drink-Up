@@ -26,7 +26,7 @@ class HistoryManager {
               isToday(DateTime.fromMillisecondsSinceEpoch(entry.date)))
           .toList();
     } else if (index == 1) {
-      Duration week = Duration(days: 7);
+      Duration week = const Duration(days: 7);
       currentEntries = entries
           .where((entry) =>
               today
@@ -35,7 +35,7 @@ class HistoryManager {
               1)
           .toList();
     } else if (index == 2) {
-      Duration month = Duration(days: 30);
+      Duration month = const Duration(days: 30);
       currentEntries = entries
           .where((entry) =>
               today
@@ -44,7 +44,7 @@ class HistoryManager {
               1)
           .toList();
     } else if (index == 3) {
-      Duration year = Duration(days: 365);
+      Duration year = const Duration(days: 365);
       currentEntries = entries
           .where((entry) =>
               today

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
-
 import '../../../actions/glass_actions.dart';
 import '../../../actions/history_actions.dart';
 import '../../../managers/database/drink_history.dart';
@@ -33,23 +32,26 @@ class _HistoryListsState extends State<HistoryLists> {
             List<DrinkHistoryEntry> currentEntries =
                 HistoryManager.manager.currentEntries(entries, i);
 
-            if (currentEntries.length == 0) {
+            if (currentEntries.isEmpty) {
               // Empty list
-              return Center(
-                  child: Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 8.0),
-                      child: ContainerWrapper(
-                          widthScale: 1.0,
-                          child: Padding(
-                            padding: EdgeInsets.all(16.0),
-                            child: Text(
-                              'You have not drunk anything yet! To add a drink go to the Today page and use the menu with drinks.',
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                  color: const Color(0xFF363535),
-                                  fontWeight: FontWeight.w300),
-                            ),
-                          ))));
+              return const Center(
+                child: Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 8.0),
+                  child: ContainerWrapper(
+                    widthScale: 1.0,
+                    child: Padding(
+                      padding: EdgeInsets.all(16.0),
+                      child: Text(
+                        'You have not drunk anything yet! To add a drink go to the Today page and use the menu with drinks.',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                            color: Color(0xFF363535),
+                            fontWeight: FontWeight.w300),
+                      ),
+                    ),
+                  ),
+                ),
+              );
             }
 
             return Center(
@@ -70,7 +72,7 @@ class _HistoryListsState extends State<HistoryLists> {
                     builder: (context, callback) {
                       return Dismissible(
                         child: Padding(
-                          padding: EdgeInsets.only(
+                          padding: const EdgeInsets.only(
                               left: 8.0, right: 8.0, bottom: 8.0),
                           child: ContainerWrapper(
                               widthScale: 1.0,
@@ -84,12 +86,15 @@ class _HistoryListsState extends State<HistoryLists> {
                             : UniqueKey(),
                         background: Container(
                           color: Colors.red.withAlpha(30),
-                          child: Align(
-                              alignment: Alignment.center,
-                              child: ShadowText('Swipe to remove',
-                                  style: TextStyle(
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.bold))),
+                          child: const Align(
+                            alignment: Alignment.center,
+                            child: ShadowText(
+                              'Swipe to remove',
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                          ),
                         ),
                         onDismissed: (direction) {
                           currentEntries.removeAt(index);

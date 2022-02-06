@@ -47,7 +47,7 @@ class RadialMenuController extends ChangeNotifier {
    void expand() {
      if (state == RadialMenuState.open) {
        _state = RadialMenuState.expanding;
-       _progress.duration = Duration(milliseconds: 150);
+       _progress.duration = const Duration(milliseconds: 150);
        _progress.forward(from: 0.0);
        notifyListeners();
      }
@@ -56,7 +56,7 @@ class RadialMenuController extends ChangeNotifier {
    void collapse() {
      if (state == RadialMenuState.expanded) {
        _state = RadialMenuState.collapsing;
-       _progress.duration = Duration(milliseconds: 150);
+       _progress.duration = const Duration(milliseconds: 150);
        _progress.forward(from: 0.0);
        notifyListeners();
      }

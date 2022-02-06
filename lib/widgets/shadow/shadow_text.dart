@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
 
 class ShadowText extends StatelessWidget {
-  ShadowText(this.data,
-      {this.style,
+  const ShadowText(this.data,
+      {Key key,
+      this.style,
       this.textAlign = TextAlign.start,
       this.shadowColor = Colors.black,
       this.offsetX = 2.0,
       this.offsetY = 2.0,
       this.blur = 2.0})
-      : assert(data != null);
+      : assert(data != null),
+        super(key: key);
 
   final String data;
   final TextStyle style;
@@ -24,14 +26,14 @@ class ShadowText extends StatelessWidget {
       data,
       textAlign: textAlign,
       style: style.copyWith(
-        // shadows: <Shadow>[
-        //   Shadow(
-        //     offset: Offset(offsetX, offsetY),
-        //     blurRadius: blur,
-        //     color: shadowColor,
-        //   ),
-        // ],
-      ),
+          // shadows: <Shadow>[
+          //   Shadow(
+          //     offset: Offset(offsetX, offsetY),
+          //     blurRadius: blur,
+          //     color: shadowColor,
+          //   ),
+          // ],
+          ),
     );
   }
 }

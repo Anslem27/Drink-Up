@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_if_null_operators
+
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -6,7 +8,8 @@ import '../../model/settings/AppSettings.dart';
 import '../../screens/settings/Gender.dart';
 
 class AppSettingsManager {
-  static Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
+  static final Future<SharedPreferences> _prefs =
+      SharedPreferences.getInstance();
 
   static Future<AppSettings> getSettings() async {
     final SharedPreferences prefs = await _prefs;
@@ -68,14 +71,14 @@ class AppSettingsManager {
 }
 
 class _AppSettingsKeys {
-  static final gender = "gender";
-  static final age = "age";
-  static final dailyGoal = "dailyGoal";
+  static const gender = "gender";
+  static const age = "age";
+  static const dailyGoal = "dailyGoal";
 
-  static final notificationsEnabled = "notificationsEnabled";
-  static final notificationsFromH = "notificationsFromH";
-  static final notificationsFromM = "notificationsFromM";
-  static final notificationsToH = "notificationsToH";
-  static final notificationsToM = "notificationsToM";
-  static final notificationsInterval = "notificationsInterval";
+  static const notificationsEnabled = "notificationsEnabled";
+  static const notificationsFromH = "notificationsFromH";
+  static const notificationsFromM = "notificationsFromM";
+  static const notificationsToH = "notificationsToH";
+  static const notificationsToM = "notificationsToM";
+  static const notificationsInterval = "notificationsInterval";
 }

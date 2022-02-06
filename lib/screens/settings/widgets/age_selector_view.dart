@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 
-typedef void AgeChangedCallback(int age);
+typedef AgeChangedCallback = void Function(int age);
 
 class AgeSelectorView extends StatefulWidget {
   final AgeChangedCallback changed;
   final int value;
 
-  AgeSelectorView({Key key, @required this.value, @required this.changed});
+  const AgeSelectorView({Key key, @required this.value, @required this.changed})
+      : super(key: key);
 
   @override
   State<StatefulWidget> createState() {
@@ -22,7 +23,7 @@ class _AgeSeletorViewSatte extends State<AgeSelectorView> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.all(8.0),
+      padding: const EdgeInsets.all(8.0),
       child: Column(
         children: <Widget>[
           Row(
@@ -30,19 +31,20 @@ class _AgeSeletorViewSatte extends State<AgeSelectorView> {
             children: <Widget>[
               Text(
                 'Age'.toUpperCase(),
-                style: TextStyle(fontWeight: FontWeight.w600, fontSize: 17.0),
+                style: const TextStyle(
+                    fontWeight: FontWeight.w600, fontSize: 17.0),
               ),
               Padding(
-                padding: EdgeInsets.only(left: 4.0),
+                padding: const EdgeInsets.only(left: 4.0),
                 child: Text(
                   '($_value)',
-                  style: TextStyle(fontWeight: FontWeight.w600),
+                  style: const TextStyle(fontWeight: FontWeight.w600),
                 ),
               ),
             ],
           ),
           Padding(
-            padding: EdgeInsets.only(top: 8.0),
+            padding: const EdgeInsets.only(top: 8.0),
             child: Slider(
               onChanged: (double value) {
                 setState(() {

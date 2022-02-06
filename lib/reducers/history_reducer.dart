@@ -19,6 +19,7 @@ List<DrinkHistoryEntry> _setLoadedDrinkHistory(
 
 List<DrinkHistoryEntry> _addDrinkToHistory(
     List<DrinkHistoryEntry> entries, AddDrinkToHistoryAction action) {
+  // ignore: prefer_conditional_assignment
   if (action.entry.id == null) {
     action.entry.id = entries.length + 1;
   }

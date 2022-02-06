@@ -77,8 +77,9 @@ Middleware<AppState> _createLoadDrinksHistory() {
     DatabaseManager.defaultManager
         .fetchAllEntriesOf(DrinkHistoryEntry)
         .then((maps) {
-      List<DrinkHistoryEntry> entries = List();
+      List<DrinkHistoryEntry> entries = [];
       var table = DrinkHistoryTable();
+      // ignore: avoid_function_literals_in_foreach_calls
       maps.forEach((map) {
         DrinkHistoryEntry entry = table.entryFromMap(map);
         entries.add(entry);

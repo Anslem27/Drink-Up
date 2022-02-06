@@ -10,7 +10,7 @@ class DatabaseManager {
   static final defaultManager = DatabaseManager();
   static Database _database;
 
-  Map<Type, DatabaseTable> _tables = {
+  final Map<Type, DatabaseTable> _tables = {
     DrinkHistoryEntry: DrinkHistoryTable(),
   };
 
@@ -29,7 +29,7 @@ class DatabaseManager {
 
     var database = await openDatabase(path, version: 1,
         onCreate: (Database db, int version) async {
-      print('Creating tables');
+      //print('Creating tables');
 
       for (var key in _tables.keys) {
         final table = _tables[key];

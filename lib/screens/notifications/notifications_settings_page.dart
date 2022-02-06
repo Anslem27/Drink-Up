@@ -13,6 +13,8 @@ typedef OnSaveCallback = Function(
     {bool enabled, TimeOfDay from, TimeOfDay to, int interval});
 
 class NotificationsSettingsPage extends StatefulWidget {
+  const NotificationsSettingsPage({Key key}) : super(key: key);
+
   @override
   State<StatefulWidget> createState() {
     return _NotificationsSettingsPageState();
@@ -54,7 +56,7 @@ class _NotificationsSettingsPageState extends State<NotificationsSettingsPage> {
                   gradient: LinearGradient(
                       begin: Alignment.topCenter,
                       end: Alignment.bottomCenter,
-                      stops: [0.3, 0.7],
+                      stops: const [0.3, 0.7],
                       colors: [Colors.white.withOpacity(0.0), Colors.white]),
                 ),
               ),
@@ -67,15 +69,15 @@ class _NotificationsSettingsPageState extends State<NotificationsSettingsPage> {
                 child: Column(
                   children: <Widget>[
                     Padding(
-                      padding: EdgeInsets.symmetric(vertical: 16.0),
+                      padding: const EdgeInsets.symmetric(vertical: 16.0),
                       child: ShadowText(
                         'NOTIFICATIONS',
                         shadowColor: Colors.black.withOpacity(0.15),
                         offsetX: 3.0,
                         offsetY: 3.0,
                         blur: 3.0,
-                        style: TextStyle(
-                            color: const Color(0xBEffffff),
+                        style: const TextStyle(
+                            color: Color(0xBEffffff),
                             fontSize: 24.0,
                             fontWeight: FontWeight.bold),
                         textAlign: TextAlign.center,
@@ -83,7 +85,7 @@ class _NotificationsSettingsPageState extends State<NotificationsSettingsPage> {
                     ),
                     Expanded(
                       child: Padding(
-                        padding: EdgeInsets.only(
+                        padding: const EdgeInsets.only(
                             left: 16.0, right: 16.0, bottom: 16.0),
                         child: ContainerWrapper(
                           widthScale: 1.0,
@@ -104,11 +106,11 @@ class _NotificationsSettingsPageState extends State<NotificationsSettingsPage> {
                                 mainAxisSize: MainAxisSize.min,
                                 children: <Widget>[
                                   Padding(
-                                    padding: EdgeInsets.symmetric(
+                                    padding: const EdgeInsets.symmetric(
                                         vertical: 8.0, horizontal: 16.0),
                                     child: Row(
                                       children: <Widget>[
-                                        Expanded(
+                                        const Expanded(
                                           child: Text('Notifications'),
                                         ),
                                         Switch(
@@ -122,7 +124,7 @@ class _NotificationsSettingsPageState extends State<NotificationsSettingsPage> {
                                     ),
                                   ),
                                   Padding(
-                                      padding: EdgeInsets.all(16.0),
+                                      padding: const EdgeInsets.all(16.0),
                                       child: GestureDetector(
                                         onTap: () async {
                                           var picked = await showTimePicker(
@@ -138,21 +140,21 @@ class _NotificationsSettingsPageState extends State<NotificationsSettingsPage> {
                                         },
                                         child: Row(
                                           children: <Widget>[
-                                            Expanded(
+                                            const Expanded(
                                               child: Text('From'),
                                             ),
                                             Text(
                                               state.settings
                                                   .notificationsFromTime
                                                   .format(context),
-                                              style: TextStyle(
+                                              style: const TextStyle(
                                                   fontWeight: FontWeight.w600),
                                             ),
                                           ],
                                         ),
                                       )),
                                   Padding(
-                                    padding: EdgeInsets.all(16.0),
+                                    padding: const EdgeInsets.all(16.0),
                                     child: GestureDetector(
                                       onTap: () async {
                                         var picked = await showTimePicker(
@@ -168,13 +170,13 @@ class _NotificationsSettingsPageState extends State<NotificationsSettingsPage> {
                                       },
                                       child: Row(
                                         children: <Widget>[
-                                          Expanded(
+                                          const Expanded(
                                             child: Text('To'),
                                           ),
                                           Text(
                                             state.settings.notificationsToTime
                                                 .format(context),
-                                            style: TextStyle(
+                                            style: const TextStyle(
                                                 fontWeight: FontWeight.w600),
                                           ),
                                         ],
@@ -182,7 +184,7 @@ class _NotificationsSettingsPageState extends State<NotificationsSettingsPage> {
                                     ),
                                   ),
                                   Padding(
-                                    padding: EdgeInsets.all(16.0),
+                                    padding: const EdgeInsets.all(16.0),
                                     child: GestureDetector(
                                       onTap: () async {
                                         var picked = await showMinutesPicker(
@@ -198,13 +200,13 @@ class _NotificationsSettingsPageState extends State<NotificationsSettingsPage> {
                                       },
                                       child: Row(
                                         children: <Widget>[
-                                          Expanded(
+                                          const Expanded(
                                             child: Text('Interval'),
                                           ),
                                           Text(
                                             _formatMinutes(state.settings
                                                 .notificationsInterval),
-                                            style: TextStyle(
+                                            style: const TextStyle(
                                                 fontWeight: FontWeight.w600),
                                           ),
                                         ],
@@ -234,11 +236,13 @@ Future<int> showMinutesPicker(
 
   return await showDialog<int>(
     context: context,
-    builder: (BuildContext context) => MinutesPickerDialog(),
+    builder: (BuildContext context) => const MinutesPickerDialog(),
   );
 }
 
 class MinutesPickerDialog extends StatefulWidget {
+  const MinutesPickerDialog({Key key}) : super(key: key);
+
   @override
   State<StatefulWidget> createState() {
     return _MinutesPickerDialogState();
@@ -272,15 +276,14 @@ class _MinutesPickerDialogState extends State<MinutesPickerDialog> {
         .toList();
 
     final Widget actions = ButtonBarTheme(
-      data: ButtonBarThemeData(),
+      data: const ButtonBarThemeData(),
       child: ButtonBar(
         children: <Widget>[
-          new FlatButton(
-              child: new Text(localizations.cancelButtonLabel),
+          ElevatedButton(
+              child: Text(localizations.cancelButtonLabel),
               onPressed: _handleCancel),
-          new FlatButton(
-              child: new Text(localizations.okButtonLabel),
-              onPressed: _handleOk),
+          ElevatedButton(
+              child: Text(localizations.okButtonLabel), onPressed: _handleOk),
         ],
       ),
     );
@@ -303,7 +306,7 @@ class _MinutesPickerDialogState extends State<MinutesPickerDialog> {
       ),
     );
 
-    final Dialog dialog = new Dialog(
+    final Dialog dialog = Dialog(
         child: SizedBox(
             width: _kTimePickerWidthPortrait,
             height: _kTimePickerHeightPortrait,

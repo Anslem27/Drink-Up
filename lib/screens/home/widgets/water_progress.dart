@@ -26,7 +26,7 @@ class _WaterProgressState extends State<WaterProgress>
     super.initState();
 
     animationController =
-        AnimationController(vsync: this, duration: Duration(seconds: 2));
+        AnimationController(vsync: this, duration: const Duration(seconds: 2));
 
     animationController.repeat();
   }
@@ -54,7 +54,7 @@ class _WaterProgressState extends State<WaterProgress>
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
             Padding(
-              padding: EdgeInsets.symmetric(vertical: 24.0),
+              padding: const EdgeInsets.symmetric(vertical: 24.0),
               child: Stack(
                 alignment: Alignment.center,
                 children: <Widget>[
@@ -109,15 +109,15 @@ class _WaterProgressState extends State<WaterProgress>
                 Expanded(
                   child: Column(
                     children: <Widget>[
-                      Text(
+                      const Text(
                         'Remaining',
                         style: TextStyle(
-                            color: const Color(0xFF363535),
+                            color: Color(0xFF363535),
                             fontWeight: FontWeight.w300),
                       ),
                       Text(
                         '${(target - current < 0 ? 0 : target - current)} ml',
-                        style: TextStyle(
+                        style: const TextStyle(
                             fontSize: 20.0, fontWeight: FontWeight.w600),
                       )
                     ],
@@ -126,15 +126,15 @@ class _WaterProgressState extends State<WaterProgress>
                 Expanded(
                     child: Column(
                   children: <Widget>[
-                    Text(
+                    const Text(
                       'Target',
                       style: TextStyle(
-                          color: const Color(0xFF363535),
+                          color: Color(0xFF363535),
                           fontWeight: FontWeight.w300),
                     ),
                     Text(
                       '$target ml',
-                      style: TextStyle(
+                      style: const TextStyle(
                           fontSize: 20.0, fontWeight: FontWeight.w600),
                     )
                   ],
@@ -158,7 +158,7 @@ class WaveClipper extends CustomClipper<Path> {
   Path getClip(Size size) {
     final double wavesHeight = size.height * 0.1;
 
-    var path = new Path();
+    var path = Path();
 
     if (progress == 1.0) {
       return path;
@@ -193,6 +193,7 @@ class WaveClipper extends CustomClipper<Path> {
   }
 
   @override
+  // ignore: avoid_renaming_method_parameters
   bool shouldReclip(WaveClipper old) =>
       progress != old.progress || animation != old.animation;
 }

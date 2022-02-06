@@ -18,36 +18,38 @@ class TodayPage extends StatelessWidget {
     return Stack(
       children: <Widget>[
         SafeArea(
-            child: Center(
-                child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          mainAxisSize: MainAxisSize.max,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: <Widget>[
-            Padding(
-              padding: EdgeInsets.only(top: 16.0),
-              child: ShadowText(
-                'TODAY',
-                shadowColor: Colors.black.withOpacity(0.15),
-                offsetX: 3.0,
-                offsetY: 3.0,
-                blur: 3.0,
-                style: TextStyle(
-                    color: const Color(0xBEffffff),
-                    fontSize: 24.0,
-                    fontWeight: FontWeight.bold),
-                textAlign: TextAlign.center,
-              ),
+          child: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              mainAxisSize: MainAxisSize.max,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: <Widget>[
+                Padding(
+                  padding: const EdgeInsets.only(top: 16.0),
+                  child: ShadowText(
+                    'TODAY',
+                    shadowColor: Colors.black.withOpacity(0.15),
+                    offsetX: 3.0,
+                    offsetY: 3.0,
+                    blur: 3.0,
+                    style: const TextStyle(
+                        color: Color(0xBEffffff),
+                        fontSize: 24.0,
+                        fontWeight: FontWeight.bold),
+                    textAlign: TextAlign.center,
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 24.0),
+                  child: _TodayHistory(),
+                ),
+                const Expanded(
+                  child: WaterProgress(),
+                ),
+              ],
             ),
-            Padding(
-              padding: EdgeInsets.symmetric(vertical: 24.0),
-              child: _TodayHistory(),
-            ),
-            Expanded(
-              child: WaterProgress(),
-            ),
-          ],
-        ))),
+          ),
+        ),
         Positioned(
             bottom: 0.0,
             height: 160.0,
@@ -59,7 +61,7 @@ class TodayPage extends StatelessWidget {
                   gradient: LinearGradient(
                       begin: Alignment.topCenter,
                       end: Alignment.bottomCenter,
-                      stops: [0.3, 0.7],
+                      stops: const [0.3, 0.7],
                       colors: [Colors.white.withOpacity(0.0), Colors.white]),
                 ),
               ),
@@ -68,7 +70,7 @@ class TodayPage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisSize: MainAxisSize.max,
           mainAxisAlignment: MainAxisAlignment.end,
-          children: <Widget>[
+          children: const [
             Padding(
               padding: EdgeInsets.only(bottom: 48.0),
               child: Center(child: DrinkMenu()),
@@ -124,7 +126,7 @@ class _TodayHistory extends StatelessWidget {
           offsetY: 3.0,
           blur: 3.0,
           textAlign: TextAlign.center,
-          style: TextStyle(
+          style: const TextStyle(
               color: Colors.white,
               fontSize: 16.0,
               fontWeight: FontWeight.normal),

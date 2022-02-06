@@ -12,6 +12,8 @@ import 'widgets/history_lists.dart';
 typedef OnDrinkEntryRemovedCallback = Function(DrinkHistoryEntry entry);
 
 class HistoryPage extends StatefulWidget {
+  const HistoryPage({Key key}) : super(key: key);
+
   @override
   State<StatefulWidget> createState() {
     return _HistoryPageState();
@@ -30,7 +32,7 @@ class _HistoryPageState extends State<HistoryPage>
   void initState() {
     super.initState();
     _tabController =
-        new TabController(vsync: this, length: 4, initialIndex: _currentIndex);
+        TabController(vsync: this, length: 4, initialIndex: _currentIndex);
   }
 
   @override
@@ -57,7 +59,7 @@ class _HistoryPageState extends State<HistoryPage>
               .isToday(DateTime.fromMillisecondsSinceEpoch(entry.date)))
           .toList();
     } else if (index == 1) {
-      Duration week = Duration(days: 7);
+      Duration week = const Duration(days: 7);
       currentEntries = entries
           .where((entry) =>
               today
@@ -66,7 +68,7 @@ class _HistoryPageState extends State<HistoryPage>
               1)
           .toList();
     } else if (index == 2) {
-      Duration month = Duration(days: 30);
+      Duration month = const Duration(days: 30);
       currentEntries = entries
           .where((entry) =>
               today
@@ -75,7 +77,7 @@ class _HistoryPageState extends State<HistoryPage>
               1)
           .toList();
     } else if (index == 3) {
-      Duration year = Duration(days: 365);
+      Duration year = const Duration(days: 365);
       currentEntries = entries
           .where((entry) =>
               today
@@ -149,11 +151,14 @@ class _HistoryPageState extends State<HistoryPage>
   Widget _tabBarButton(String title, int index) {
     return Expanded(
       child: Padding(
-        padding: EdgeInsets.all(8.0),
-        child: FlatButton(
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.0)),
-          color: _currentIndex == index ? _selectedColor : _color,
+        padding: const EdgeInsets.all(8.0),
+        child: ElevatedButton(
+          style: ElevatedButton.styleFrom(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(16.0),
+            ),
+            primary: _currentIndex == index ? _selectedColor : _color,
+          ),
           onPressed: () {
             _onItemTapped(index);
           },
@@ -188,7 +193,7 @@ class _HistoryPageState extends State<HistoryPage>
                       gradient: LinearGradient(
                           begin: Alignment.topCenter,
                           end: Alignment.bottomCenter,
-                          stops: [
+                          stops: const [
                             0.3,
                             0.7
                           ],
@@ -207,7 +212,7 @@ class _HistoryPageState extends State<HistoryPage>
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: <Widget>[
                     Container(
-                      decoration: BoxDecoration(
+                      decoration: const BoxDecoration(
                         color: Colors.transparent,
                       ),
                       child: Row(
@@ -227,7 +232,7 @@ class _HistoryPageState extends State<HistoryPage>
                       ),
                     ),
                     Padding(
-                      padding: EdgeInsets.all(16.0),
+                      padding: const EdgeInsets.all(16.0),
                       child: ContainerWrapper(
                         widthScale: 1.0,
                         child: Row(
@@ -260,8 +265,8 @@ class HistoryStatsText extends StatelessWidget {
     List<Widget> widgets = [
       Text(Utils.formatNumberWithShortcuts(value, unit != null ? 2 : 0),
           textAlign: TextAlign.left,
-          style: TextStyle(
-              color: const Color(0xFF7f8ca1),
+          style: const TextStyle(
+              color: Color(0xFF7f8ca1),
               fontSize: 18.0,
               fontWeight: FontWeight.w400))
     ];
@@ -269,8 +274,8 @@ class HistoryStatsText extends StatelessWidget {
     if (unit != null) {
       widgets.add(Text(unit,
           textAlign: TextAlign.left,
-          style: TextStyle(
-              color: const Color(0xFF7f8ca1),
+          style: const TextStyle(
+              color: Color(0xFF7f8ca1),
               fontSize: 14.0,
               fontWeight: FontWeight.w300)));
     }
@@ -291,7 +296,7 @@ class HistoryStatsText extends StatelessWidget {
                 color: titleColor, fontWeight: FontWeight.w600, fontSize: 15.0),
           ),
           Padding(
-            padding: EdgeInsets.all(4.0),
+            padding: const EdgeInsets.all(4.0),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               mainAxisSize: MainAxisSize.min,
@@ -308,14 +313,15 @@ class DrinkHitoryListItem extends StatelessWidget {
   final int amount;
   final DateTime date;
 
-  DrinkHitoryListItem(this.amount, this.date);
+  const DrinkHitoryListItem(this.amount, this.date, {Key key})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     String readableDate = DateFormat('EEE, M/d/y').format(date);
     String readableTime = DateFormat('HH:mm').format(date);
     return Padding(
-      padding: EdgeInsets.all(8.0),
+      padding: const EdgeInsets.all(8.0),
       child: Row(
         children: <Widget>[
           Expanded(
@@ -325,12 +331,13 @@ class DrinkHitoryListItem extends StatelessWidget {
                 Text(
                   readableDate,
                   textAlign: TextAlign.right,
-                  style: TextStyle(fontSize: 15.0, fontWeight: FontWeight.w600),
+                  style: const TextStyle(
+                      fontSize: 15.0, fontWeight: FontWeight.w600),
                 ),
                 Text(readableTime,
                     textAlign: TextAlign.right,
-                    style:
-                        TextStyle(fontSize: 13.0, fontWeight: FontWeight.w400)),
+                    style: const TextStyle(
+                        fontSize: 13.0, fontWeight: FontWeight.w400)),
               ],
             ),
           ),
@@ -338,8 +345,8 @@ class DrinkHitoryListItem extends StatelessWidget {
               child: Text(
             '$amount ml',
             textAlign: TextAlign.right,
-            style: TextStyle(
-                color: const Color(0xFF6fa1ea),
+            style: const TextStyle(
+                color: Color(0xFF6fa1ea),
                 fontSize: 20.0,
                 fontWeight: FontWeight.w600),
           )),

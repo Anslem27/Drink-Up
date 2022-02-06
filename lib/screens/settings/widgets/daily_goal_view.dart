@@ -24,15 +24,15 @@ Sportowcy +500 ml
   int suggestedAmount() {
     int myAge = age != null ? age : 800;
 
-    if (myAge < 1)
+    if (myAge < 1) {
       return 800;
-    else if (myAge < 3)
+    } else if (myAge < 3) {
       return 1300;
-    else if (myAge < 6)
+    } else if (myAge < 6) {
       return 1700;
-    else if (myAge < 9)
+    } else if (myAge < 9) {
       return 1900;
-    else if (myAge < 12) {
+    } else if (myAge < 12) {
       int female = 2100;
       int male = 2400;
       if (gender == null) {
@@ -80,26 +80,27 @@ class _DailyGoalViewState extends State<DailyGoalView> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-        padding: EdgeInsets.all(8.0),
-        child: Column(children: <Widget>[
+      padding: const EdgeInsets.all(8.0),
+      child: Column(
+        children: <Widget>[
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              Text(
+              const Text(
                 'DAILY GOAL',
                 style: TextStyle(fontWeight: FontWeight.w600, fontSize: 17.0),
               ),
               Padding(
-                padding: EdgeInsets.only(left: 4.0),
+                padding: const EdgeInsets.only(left: 4.0),
                 child: Text(
                   '($_value)',
-                  style: TextStyle(fontWeight: FontWeight.w600),
+                  style: const TextStyle(fontWeight: FontWeight.w600),
                 ),
               ),
             ],
           ),
           Padding(
-            padding: EdgeInsets.only(top: 8.0),
+            padding: const EdgeInsets.only(top: 8.0),
             child: Slider(
               onChanged: (double value) {
                 setState(() {
@@ -116,18 +117,20 @@ class _DailyGoalViewState extends State<DailyGoalView> {
             ),
           ),
           Padding(
-            padding: EdgeInsets.symmetric(horizontal: 8.0),
+            padding: const EdgeInsets.symmetric(horizontal: 8.0),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: <Widget>[
-                Text('Suggested: '),
+                const Text('Suggested: '),
                 Text(
                   widget.suggestedAmount().toString(),
-                  style: TextStyle(fontWeight: FontWeight.w700),
+                  style: const TextStyle(fontWeight: FontWeight.w700),
                 ),
               ],
             ),
           )
-        ]));
+        ],
+      ),
+    );
   }
 }

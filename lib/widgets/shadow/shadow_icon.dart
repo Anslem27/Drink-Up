@@ -2,12 +2,14 @@
 import 'package:flutter/material.dart';
 
 class ShadowIcon extends StatelessWidget {
-  ShadowIcon(this.data,
-      {this.shadowColor = Colors.black,
+  const ShadowIcon(this.data,
+      {Key key,
+      this.shadowColor = Colors.black,
       this.offsetX = 2.0,
       this.offsetY = 2.0,
       this.blur = 2.0})
-      : assert(data != null);
+      : assert(data != null),
+        super(key: key);
 
   final IconData data;
   final Color shadowColor;

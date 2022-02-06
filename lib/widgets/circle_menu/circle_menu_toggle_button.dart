@@ -97,7 +97,7 @@ class _CircleMenuToggleButtonState extends State<CircleMenuToggleButton>
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       child: Stack(
         children: <Widget>[
           // AnimatedBuilder(

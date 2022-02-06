@@ -37,7 +37,8 @@ class RadialMenu extends StatefulWidget {
   final Offset anchor;
   final double radius;
 
-  RadialMenu({this.anchor, this.menu, this.radius = 64.0});
+  const RadialMenu({Key key, this.anchor, this.menu, this.radius = 64.0})
+      : super(key: key);
 
   @override
   _RadialMenuState createState() => _RadialMenuState();
@@ -107,7 +108,7 @@ class _RadialMenuState extends State<RadialMenu>
   }
 
   List<Widget> buildIcons() {
-    final double startAngle = -pi / 2;
+    const double startAngle = -pi / 2;
     int index = 0;
     int itemsCount = widget.menu.items.length;
 
@@ -173,12 +174,14 @@ class IconBubble extends StatelessWidget {
   final Color textColor;
   final VoidCallback onPressed;
 
-  IconBubble(
-      {this.text,
+  const IconBubble(
+      {Key key,
+      this.text,
       this.diameter,
       this.bubbleColor,
       this.textColor,
-      this.onPressed});
+      this.onPressed})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -208,7 +211,9 @@ class PolarPosition extends StatelessWidget {
   final Widget child;
   final Coord coord;
 
-  PolarPosition({this.origin = const Offset(0.0, 0.0), this.child, this.coord});
+  const PolarPosition(
+      {Key key, this.origin = const Offset(0.0, 0.0), this.child, this.coord})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {

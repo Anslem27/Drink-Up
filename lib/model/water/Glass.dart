@@ -1,3 +1,5 @@
+// ignore_for_file: unnecessary_this
+
 import 'Drink.dart';
 
 class Glass {
