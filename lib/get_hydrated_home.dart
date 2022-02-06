@@ -10,12 +10,12 @@ import 'model/app_state.dart';
 import 'reducers/app_state_reducer.dart';
 import 'screens/home/home_page.dart';
 
-class WatermaniacApp extends StatelessWidget {
+class GetHydrated extends StatelessWidget {
   final store = Store(appReducer,
       initialState: AppState.defaultState(),
       middleware: createStoreMiddleware());
 
-  WatermaniacApp({Key key}) : super(key: key);
+  GetHydrated({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

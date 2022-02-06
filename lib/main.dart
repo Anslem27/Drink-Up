@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
-import 'watermaniac_app.dart';
+import 'get_hydrated_home.dart';
 
+
+
+//?Starting Point of Application.
 void main () {
-  runApp(WatermaniacApp());
+  runApp(GetHydrated());
 }
