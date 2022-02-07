@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
+import '../../../Models/app_state.dart';
+import '../../../Models/water/Drink.dart';
 import '../../../actions/glass_actions.dart';
 import '../../../actions/history_actions.dart';
 import '../../../managers/database/drink_history.dart';
-import '../../../model/app_state.dart';
-import '../../../model/water/Drink.dart';
 import '../../../widgets/Reusable Widgets/shadow_text.dart';
 import '../../../widgets/container_wrapper/container_wrapper.dart';
 import '../history_manager.dart';

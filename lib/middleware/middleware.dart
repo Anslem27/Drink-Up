@@ -1,12 +1,12 @@
 import 'package:redux/redux.dart';
 
+import '../Models/app_state.dart';
 import '../actions/history_actions.dart';
 import '../actions/settings_actions.dart';
 import '../managers/database/database_manager.dart';
 import '../managers/database/drink_history.dart';
 import '../managers/notifications/notifications_manager.dart';
 import '../managers/settings/app_settings_manager.dart';
-import '../model/app_state.dart';
 
 List<Middleware<AppState>> createStoreMiddleware() {
   final saveSettings = _createSaveSettings();

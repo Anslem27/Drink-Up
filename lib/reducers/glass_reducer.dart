@@ -1,7 +1,7 @@
 import 'package:redux/redux.dart';
 
+import '../Models/water/Glass.dart';
 import '../actions/glass_actions.dart';
-import '../model/water/Glass.dart';
 
 final glassReducers = combineReducers<Glass>([
   TypedReducer<Glass, AddDrinkAction>(_addDrink),

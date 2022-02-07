@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
+import '../../Models/app_state.dart';
 import '../../actions/settings_actions.dart';
-import '../../model/app_state.dart';
 import '../../widgets/Reusable Widgets/shadow_text.dart';
 import '../../widgets/container_wrapper/container_wrapper.dart';
 import 'Gender.dart';

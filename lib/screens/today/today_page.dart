@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:intl/intl.dart';
-import '../../model/app_state.dart';
+import '../../Models/app_state.dart';
 import '../../util/utils.dart';
 import '../../widgets/Reusable Widgets/shadow_text.dart';
 import '../home/widgets/drink_menu.dart';

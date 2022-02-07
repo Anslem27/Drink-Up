@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 
+import '../../../Models/app_state.dart';
+import '../../../Models/water/Drink.dart';
 import '../../../actions/history_actions.dart';
 import '../../../managers/database/drink_history.dart';
-import '../../../model/app_state.dart';
-import '../../../model/water/Drink.dart';
 import '../../../widgets/circle_menu/circle_menu.dart';
 
 typedef OnDrinkAddedCallback = Function(Drink drink);

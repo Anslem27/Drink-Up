@@ -1,7 +1,7 @@
 import 'package:hydrate_me/reducers/settings_reducer.dart';
 
+import '../Models/app_state.dart';
 import '../managers/database/drink_history.dart';
-import '../model/app_state.dart';
 import 'glass_reducer.dart';
 import 'history_reducer.dart';
 

@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 
-import '../../model/database/database_model.dart';
+import '../../Models/database/database_model.dart';
 import 'drink_history.dart';
 
 class DatabaseManager {

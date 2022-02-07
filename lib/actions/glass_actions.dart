@@ -1,4 +1,4 @@
-import '../model/water/Drink.dart';
+import '../Models/water/Drink.dart';
 
 class AddDrinkAction {
   final Drink drink;

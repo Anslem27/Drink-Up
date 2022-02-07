@@ -1,4 +1,4 @@
-import '../../model/database/database_model.dart';
+import '../../Models/database/database_model.dart';
 
 class DrinkHistoryTable extends DatabaseTable {
   DrinkHistoryTable()
