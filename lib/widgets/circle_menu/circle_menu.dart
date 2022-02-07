@@ -1,5 +1,4 @@
 import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'circle_menu_toggle_button.dart';
 import 'layout_overlays.dart';

@@ -25,29 +25,30 @@ class DrinkMenu extends StatelessWidget {
       },
       builder: (context, callback) {
         return AnchoredRadialMenu(
-            menu: Menu(items: [
-              RadialMenuItem(
-                  text: '200',
-                  onPressed: () {
-                    callback(Drink.small());
-                  }),
-              RadialMenuItem(
-                  text: '250',
-                  onPressed: () {
-                    callback(Drink.medium());
-                  }),
-              RadialMenuItem(
-                  text: '300',
-                  onPressed: () {
-                    callback(Drink.big());
-                  }),
-            ]),
-            child: IconButton(
-              icon: const Icon(
-                Icons.cancel,
-              ),
-              onPressed: () {},
-            ));
+          menu: Menu(items: [
+            RadialMenuItem(
+                text: '200',
+                onPressed: () {
+                  callback(Drink.small());
+                }),
+            RadialMenuItem(
+                text: '250',
+                onPressed: () {
+                  callback(Drink.medium());
+                }),
+            RadialMenuItem(
+                text: '300',
+                onPressed: () {
+                  callback(Drink.big());
+                }),
+          ]),
+          child: IconButton(
+            icon: const Icon(
+              Icons.cancel,
+            ),
+            onPressed: () {},
+          ),
+        );
       },
     );
   }

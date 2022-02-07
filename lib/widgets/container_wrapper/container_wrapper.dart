@@ -16,9 +16,12 @@ class ContainerWrapper extends StatelessWidget {
         color: Colors.transparent,
         child: Container(
           decoration: const BoxDecoration(
-              color: Color(0xe6ffffff),
-              boxShadow: [BoxShadow(color: Color(0x28000000), blurRadius: 5.0)],
-              borderRadius: BorderRadius.all(Radius.circular(16.0))),
+            color: Color(0xe6ffffff),
+            boxShadow: [BoxShadow(color: Color(0x28000000), blurRadius: 5.0)],
+            borderRadius: BorderRadius.all(
+              Radius.circular(16.0),
+            ),
+          ),
           child: child,
         ),
       ),

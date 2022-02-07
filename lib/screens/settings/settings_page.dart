@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
-
 import '../../actions/settings_actions.dart';
 import '../../model/app_state.dart';
+import '../../widgets/Reusable Widgets/shadow_text.dart';
 import '../../widgets/container_wrapper/container_wrapper.dart';
-import '../../widgets/shadow/shadow_text.dart';
 import 'Gender.dart';
 import 'widgets/age_selector_view.dart';
 import 'widgets/daily_goal_view.dart';
@@ -29,21 +28,23 @@ class _SettingsPageState extends State<SettingsPage> {
     return Stack(
       children: <Widget>[
         Positioned(
-            bottom: 0.0,
+          bottom: 0.0,
+          height: 160.0,
+          child: SizedBox(
+            width: size.width,
             height: 160.0,
-            child: SizedBox(
-              width: size.width,
-              height: 160.0,
-              child: Container(
-                decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                      begin: Alignment.topCenter,
-                      end: Alignment.bottomCenter,
-                      stops: const [0.3, 0.7],
-                      colors: [Colors.white.withOpacity(0.0), Colors.white]),
+            child: Container(
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                  stops: const [0.3, 0.7],
+                  colors: [Colors.white.withOpacity(0.0), Colors.white],
                 ),
               ),
-            )),
+            ),
+          ),
+        ),
         StoreConnector<AppState, AppState>(
           converter: (store) => store.state,
           builder: (context, state) {

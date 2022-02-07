@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 
 import '../Gender.dart';
 
-typedef void DailyGoalChangedCallback(int dailyGoal);
+typedef DailyGoalChangedCallback = void Function(int dailyGoal);
+//typedef void DailyGoalChangedCallback(int dailyGoal);
+
 
 class DailyGoalView extends StatefulWidget {
   final int age;
@@ -10,12 +12,13 @@ class DailyGoalView extends StatefulWidget {
   final int dailyGoal;
   final DailyGoalChangedCallback changed;
 
-  DailyGoalView(
+  const DailyGoalView(
       {Key key,
       @required this.age,
       @required this.gender,
       @required this.dailyGoal,
-      @required this.changed});
+      @required this.changed})
+      : super(key: key);
 
 /*
 TODO: Add option for peple actively doing Sports

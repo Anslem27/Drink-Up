@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:intl/intl.dart';
-
 import '../../model/app_state.dart';
 import '../../util/utils.dart';
-import '../../widgets/shadow/shadow_text.dart';
+import '../../widgets/Reusable Widgets/shadow_text.dart';
 import '../home/widgets/drink_menu.dart';
 import '../home/widgets/water_progress.dart';
 
@@ -51,21 +50,23 @@ class TodayPage extends StatelessWidget {
           ),
         ),
         Positioned(
-            bottom: 0.0,
+          bottom: 0.0,
+          height: 160.0,
+          child: SizedBox(
+            width: size.width,
             height: 160.0,
-            child: SizedBox(
-              width: size.width,
-              height: 160.0,
-              child: Container(
-                decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                      begin: Alignment.topCenter,
-                      end: Alignment.bottomCenter,
-                      stops: const [0.3, 0.7],
-                      colors: [Colors.white.withOpacity(0.0), Colors.white]),
+            child: Container(
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                  stops: const [0.3, 0.7],
+                  colors: [Colors.white.withOpacity(0.0), Colors.white],
                 ),
               ),
-            )),
+            ),
+          ),
+        ),
         Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisSize: MainAxisSize.max,
@@ -73,7 +74,9 @@ class TodayPage extends StatelessWidget {
           children: const [
             Padding(
               padding: EdgeInsets.only(bottom: 48.0),
-              child: Center(child: DrinkMenu()),
+              child: Center(
+                child: DrinkMenu(),
+              ),
             )
           ],
         ),

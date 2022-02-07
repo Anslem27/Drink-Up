@@ -31,7 +31,7 @@ class AnchoredOverlay extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       // This LayoutBuilder gives us the opportunity to measure the above
       // Container to calculate the "anchor" point at its center.
       child: LayoutBuilder(
@@ -141,7 +141,12 @@ class _OverlayBuilderState extends State<OverlayBuilder> {
   }
 
   void addToOverlay(OverlayEntry entry) async {
-    Overlay.of(context).insert(entry);
+    if (mounted) {
+      setState(() {
+        Overlay.of(context).insert(entry);
+      });
+    }
+    //Overlay.of(context).insert(entry);
   }
 
   void hideOverlay() {

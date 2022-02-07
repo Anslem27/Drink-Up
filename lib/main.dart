@@ -1,41 +1,33 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_redux/flutter_redux.dart';
+import 'package:get/get.dart';
 import 'package:redux/redux.dart';
 import 'actions/history_actions.dart';
 import 'actions/settings_actions.dart';
 import 'middleware/middleware.dart';
 import 'model/app_state.dart';
 import 'reducers/app_state_reducer.dart';
-import 'screens/home/home_page.dart';
-
+import 'navigation_state.dart';
+import 'styles/app_theme.dart';
 
 void main() {
-  runApp(GetHydrated());
+  runApp(MyApp());
 }
 
-
-
-
-//?Starting Point of Application.
-
-class GetHydrated extends StatelessWidget {
+class MyApp extends StatelessWidget {
   final store = Store(appReducer,
       initialState: AppState.defaultState(),
       middleware: createStoreMiddleware());
 
-  GetHydrated({Key key}) : super(key: key);
+  MyApp({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light);
-    return MaterialApp(
-      theme: ThemeData(
-        brightness: Brightness.light,
-        primaryColor: const Color(0xFF4C9BFB),
-        accentColor: const Color(0xFFF66BBE),
-        // f5bad3 (pinkish), c7d0df (grayish), fcfbfe (whiteish)
-      ),
+    return GetMaterialApp(
+      debugShowCheckedModeBanner: false,
+      theme: HydratorAppTheme.lightTheme,
       home: StoreProvider(
         store: store,
         child: StoreBuilder<AppState>(

@@ -5,8 +5,8 @@ import '../../../actions/history_actions.dart';
 import '../../../managers/database/drink_history.dart';
 import '../../../model/app_state.dart';
 import '../../../model/water/Drink.dart';
+import '../../../widgets/Reusable Widgets/shadow_text.dart';
 import '../../../widgets/container_wrapper/container_wrapper.dart';
-import '../../../widgets/shadow/shadow_text.dart';
 import '../history_manager.dart';
 import '../history_page.dart';
 
@@ -75,11 +75,12 @@ class _HistoryListsState extends State<HistoryLists> {
                           padding: const EdgeInsets.only(
                               left: 8.0, right: 8.0, bottom: 8.0),
                           child: ContainerWrapper(
-                              widthScale: 1.0,
-                              child: DrinkHitoryListItem(
-                                  entry.amount,
-                                  DateTime.fromMillisecondsSinceEpoch(
-                                      entry.date))),
+                            widthScale: 1.0,
+                            child: DrinkHitoryListItem(
+                              entry.amount,
+                              DateTime.fromMillisecondsSinceEpoch(entry.date),
+                            ),
+                          ),
                         ),
                         key: entry.id != null
                             ? Key(entry.id.toString())
