@@ -91,19 +91,20 @@ class _HistoryPageState extends State<HistoryPage>
     return currentEntries;
   }
 
-  List<Widget> _buildStats(List<DrinkHistoryEntry> entries) {
+  List<Widget> _buildStats(entries) {
     List<DrinkHistoryEntry> currentEntries =
         _currentEntries(entries, _currentIndex);
     double summary = currentEntries.fold(0.0, (t, e) => t + e.amount);
 
     List<Widget> statWidgets = [
       Expanded(
-          child: HistoryStatsText(
-        "SUMMARY",
-        summary,
-        const Color(0xFF6fa1ea),
-        unit: 'ml',
-      )),
+        child: HistoryStatsText(
+          "SUMMARY",
+          summary,
+          const Color(0xFF6fa1ea),
+          unit: 'ml',
+        ),
+      ),
     ];
 
     if (_currentIndex == 0) {
@@ -141,8 +142,12 @@ class _HistoryPageState extends State<HistoryPage>
 
     statWidgets.add(
       Expanded(
-          child: HistoryStatsText("TOTAL\nCUPS",
-              currentEntries.length.toDouble(), const Color(0xFFf5bad3))),
+        child: HistoryStatsText(
+          "TOTAL\nCUPS",
+          currentEntries.length.toDouble(),
+          const Color(0xFFf5bad3),
+        ),
+      ),
     );
 
     return statWidgets;
@@ -177,73 +182,65 @@ class _HistoryPageState extends State<HistoryPage>
 
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
-
     return StoreConnector<AppState, List<DrinkHistoryEntry>>(
       converter: (store) => store.state.drinksHistory,
       builder: (context, entries) {
-        return Stack(
-          children: <Widget>[
-            Positioned(
-              bottom: 0.0,
-              height: 160.0,
-              child: SizedBox(
-                width: size.width,
-                height: 160.0,
-                child: Container(
-                  decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                      begin: Alignment.topCenter,
-                      end: Alignment.bottomCenter,
-                      stops: const [0.3, 0.7],
-                      colors: [Colors.white.withOpacity(0.0), Colors.white],
+        return Scaffold(
+          body: SafeArea(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: <Widget>[
+                Row(
+                  children: [
+                    //TODO Replace icon with Image.
+                    IconButton(
+                      onPressed: () {},
+                      tooltip: "History",
+                      icon: const Icon(Icons.history_rounded),
+                      splashRadius: 25,
+                    ),
+                    const SizedBox(width: 2),
+                    Text(
+                      "History",
+                      style: TextStyle(
+                          fontSize: 20, color: Theme.of(context).focusColor),
+                    ),
+                  ],
+                ),
+                Container(
+                  decoration: const BoxDecoration(
+                    color: Colors.transparent,
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    mainAxisSize: MainAxisSize.max,
+                    children: <Widget>[
+                      _tabBarButton('Today', 0),
+                      _tabBarButton('7 days', 1),
+                      _tabBarButton('30 days', 2),
+                      _tabBarButton('365 days', 3),
+                    ],
+                  ),
+                ),
+                Expanded(
+                  child: HistoryLists(
+                    tabController: _tabController,
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: ContainerWrapper(
+                    widthScale: 1.0,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      mainAxisSize: MainAxisSize.min,
+                      children: _buildStats(entries),
                     ),
                   ),
                 ),
-              ),
+              ],
             ),
-            SafeArea(
-              bottom: false,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                mainAxisSize: MainAxisSize.max,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: <Widget>[
-                  Container(
-                    decoration: const BoxDecoration(
-                      color: Colors.transparent,
-                    ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      mainAxisSize: MainAxisSize.max,
-                      children: <Widget>[
-                        _tabBarButton('Today', 0),
-                        _tabBarButton('7 days', 1),
-                        _tabBarButton('30 days', 2),
-                        _tabBarButton('365 days', 3),
-                      ],
-                    ),
-                  ),
-                  Expanded(
-                    child: HistoryLists(
-                      tabController: _tabController,
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(16.0),
-                    child: ContainerWrapper(
-                      widthScale: 1.0,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        mainAxisSize: MainAxisSize.min,
-                        children: _buildStats(entries),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ],
+          ),
         );
       },
     );

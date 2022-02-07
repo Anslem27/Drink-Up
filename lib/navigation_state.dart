@@ -22,7 +22,7 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
     testDevices: <String>[],
   );
  */
- /*  BannerAd _bannerAd;
+  /*  BannerAd _bannerAd;
 
   BannerAd createBannerAd() {
     return BannerAd(
@@ -80,6 +80,7 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
 
   @override
   Widget build(BuildContext context) {
+    final iconThemeColor = Theme.of(context).hoverColor;
     return SafeArea(
       top: false,
       child: Scaffold(
@@ -101,7 +102,7 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
         ),
         bottomNavigationBar: NavigationBarTheme(
           data: NavigationBarThemeData(
-            //indicatorColor: Theme.of(context).primaryColor,
+            indicatorColor: Theme.of(context).primaryColor,
             labelTextStyle: MaterialStateProperty.all(
               const TextStyle(
                 fontSize: 14,
@@ -117,19 +118,19 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
               });
             },
             height: 55,
-            destinations: const [
+            destinations: [
               NavigationDestination(
                   selectedIcon: Icon(
                     Icons.home_rounded,
                     semanticLabel: 'Home',
                     size: 33,
-                    //color: iconThemeColor,
+                    color: iconThemeColor,
                   ),
                   icon: Icon(
                     Icons.home_outlined,
                     semanticLabel: 'Home',
                     size: 33,
-                    //color: iconThemeColor,
+                    color: iconThemeColor,
                   ),
                   label: "Home"),
               NavigationDestination(
@@ -137,13 +138,13 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
                     Icons.history_rounded,
                     semanticLabel: 'History',
                     size: 29,
-                    //color: iconThemeColor,
+                    color: iconThemeColor,
                   ),
                   icon: Icon(
                     Icons.history,
                     semanticLabel: 'History',
                     size: 29,
-                    //color: iconThemeColor,
+                    color: iconThemeColor,
                   ),
                   label: "History"),
               NavigationDestination(
@@ -151,13 +152,13 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
                     Icons.notifications,
                     size: 30,
                     semanticLabel: 'Notifications',
-                    //color: iconThemeColor,
+                    color: iconThemeColor,
                   ),
                   icon: Icon(
                     Icons.notifications_outlined,
                     size: 30,
                     semanticLabel: 'Notifications',
-                    //color: iconThemeColor,
+                    color: iconThemeColor,
                   ),
                   label: "Notifications"),
               NavigationDestination(
@@ -165,13 +166,13 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
                     Icons.account_circle_sharp,
                     size: 30,
                     semanticLabel: 'Profile',
-                    //color: iconThemeColor,
+                    color: iconThemeColor,
                   ),
                   icon: Icon(
                     Icons.account_circle_outlined,
                     size: 30,
                     semanticLabel: 'Profile',
-                    //color: iconThemeColor,
+                    color: iconThemeColor,
                   ),
                   label: "Profile"),
             ],

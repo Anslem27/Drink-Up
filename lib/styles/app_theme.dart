@@ -6,6 +6,7 @@ class HydratorAppTheme {
   //!private contructor
   HydratorAppTheme._();
   static final ThemeData lightTheme = ThemeData(
+    brightness: Brightness.light,
     focusColor: Colors.black,
     hoverColor: Colors.black,
     disabledColor: Colors.white,
