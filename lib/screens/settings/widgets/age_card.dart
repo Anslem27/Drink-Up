@@ -2,23 +2,23 @@ import 'package:flutter/material.dart';
 
 typedef AgeChangedCallback = void Function(int age);
 
-class AgeSelectorView extends StatefulWidget {
+class AgeSelectorCard extends StatefulWidget {
   final AgeChangedCallback changed;
   final int value;
 
-  const AgeSelectorView({Key key, @required this.value, @required this.changed})
+  const AgeSelectorCard({Key key, @required this.value, @required this.changed})
       : super(key: key);
 
   @override
   State<StatefulWidget> createState() {
-    return _AgeSeletorViewSatte(value != null ? value : 0);
+    return _AgeSelectorCardState(value != null ? value : 0);
   }
 }
 
-class _AgeSeletorViewSatte extends State<AgeSelectorView> {
+class _AgeSelectorCardState extends State<AgeSelectorCard> {
   int _value = 0;
 
-  _AgeSeletorViewSatte(this._value);
+  _AgeSelectorCardState(this._value);
 
   @override
   Widget build(BuildContext context) {

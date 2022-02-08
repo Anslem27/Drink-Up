@@ -5,9 +5,9 @@ import '../../actions/settings_actions.dart';
 import '../../widgets/Reusable Widgets/shadow_text.dart';
 import '../../widgets/container_wrapper/container_wrapper.dart';
 import 'Gender.dart';
-import 'widgets/age_selector_view.dart';
-import 'widgets/daily_goal_view.dart';
-import 'widgets/gender_selector_view.dart';
+import 'widgets/age_card.dart';
+import 'widgets/daily_goal_card.dart';
+import 'widgets/gender_card.dart';
 
 typedef OnSaveCallback = Function({Gender gender, int age, int dailyGoal});
 
@@ -84,7 +84,7 @@ class _SettingsPageState extends State<SettingsPage> {
                           padding: const EdgeInsets.all(16.0),
                           children: <Widget>[
                             ContainerWrapper(
-                              child: GenderSelectorView(
+                              child: GenderSelectorCard(
                                 changed: (g) {
                                   callback(gender: g);
                                 },
@@ -94,7 +94,7 @@ class _SettingsPageState extends State<SettingsPage> {
                             Padding(
                               padding: const EdgeInsets.only(top: 16.0),
                               child: ContainerWrapper(
-                                  child: AgeSelectorView(
+                                  child: AgeSelectorCard(
                                 changed: (a) {
                                   callback(age: a);
                                 },
@@ -104,7 +104,7 @@ class _SettingsPageState extends State<SettingsPage> {
                             Padding(
                               padding: const EdgeInsets.only(top: 16.0),
                               child: ContainerWrapper(
-                                  child: DailyGoalView(
+                                  child: DailyGoalCard(
                                 age: state.settings.age,
                                 gender: state.settings.gender,
                                 changed: (dG) {
