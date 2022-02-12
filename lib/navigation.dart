@@ -1,6 +1,6 @@
 //import 'package:firebase_admob/firebase_admob.dart';
 import 'package:flutter/material.dart';
-import 'util/utils.dart';
+import 'util/utilities.dart';
 import 'screens/history/history_page.dart';
 import 'screens/notifications/notifications_settings_page.dart';
 import 'screens/settings/settings_page.dart';

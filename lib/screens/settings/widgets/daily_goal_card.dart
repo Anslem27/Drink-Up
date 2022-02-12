@@ -96,7 +96,10 @@ class _DailyGoalCardState extends State<DailyGoalCard> {
                   alignment: Alignment.topLeft,
                   child: Text(
                     "Daily Goal",
-                    style: GoogleFonts.nunitoSans(fontSize: 18),
+                    style: GoogleFonts.nunitoSans(
+                      fontSize: 18,
+                      fontWeight: FontWeight.w500,
+                    ),
                   ),
                 ),
               ),
@@ -138,7 +141,7 @@ class _DailyGoalCardState extends State<DailyGoalCard> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: <Widget>[
-                      const Text('Suggested: '),
+                      const Text('Recommended: '),
                       Text(
                         "${widget.suggestedAmount().toString()} ml",
                         style: const TextStyle(fontWeight: FontWeight.w700),

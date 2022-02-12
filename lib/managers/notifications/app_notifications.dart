@@ -31,6 +31,7 @@ class NotificationsManager {
 
   void init() {
     var initializationSettingsAndroid =
+        //? TODO  App launcher Image from either mipmap or 
         const AndroidInitializationSettings('ic_stat_drop');
     var initializationSettingsIOS = const IOSInitializationSettings();
     var initializationSettings = InitializationSettings(
@@ -85,15 +86,6 @@ class NotificationsManager {
   }
 
   void _scheduleAtTime(int id, Time time) async {
-    // String groupKey = 'com.android.example.WORK_EMAIL';
-    // importance: Importance.Max,
-    //     priority: Priority.High,
-    //     groupKey: groupKey);
-/* 
-var androidPlatformChannelSpecifics = const AndroidNotificationDetails(
-        'watermaniac.channelID',
-        'watermaniac.channelName',
-        'Watermaniac Reminder'); */
     var androidPlatformChannelSpecifics = const AndroidNotificationDetails(
       'watermaniac.channelID',
       'watermaniac.channelName',

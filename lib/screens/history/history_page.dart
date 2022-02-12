@@ -4,7 +4,7 @@ import 'package:flutter_redux/flutter_redux.dart';
 
 import '../../managers/database/drink_history.dart';
 import '../../Models/app_state.dart';
-import '../../util/utils.dart';
+import '../../util/utilities.dart';
 import '../../widgets/container_wrapper/container_wrapper.dart';
 import 'history_manager.dart';
 import 'widgets/history_lists.dart';

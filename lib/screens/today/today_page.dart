@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:intl/intl.dart';
 import '../../Models/app_state.dart';
-import '../../util/utils.dart';
+import '../../util/utilities.dart';
 import '../../widgets/Reusable Widgets/shadow_text.dart';
 import '../home/widgets/drink_menu.dart';
 import '../home/widgets/water_progress.dart';
@@ -97,7 +97,7 @@ class _TodayHistory extends StatelessWidget {
                 Utils.isToday(DateTime.fromMillisecondsSinceEpoch(entry.date)))
             .toList();
 
-        if (todayEntries.length > 0) {
+        if (todayEntries.isNotEmpty) {
           todayEntries.sort((a, b) => b.date.compareTo(a.date));
           var i = 0;
           historyText = '';

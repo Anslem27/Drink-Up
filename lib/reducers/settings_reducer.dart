@@ -1,6 +1,6 @@
 import 'package:redux/redux.dart';
 
-import '../Models/settings/AppSettings.dart';
+import '../Models/settings/activity_settings.dart';
 import '../actions/settings_actions.dart';
 
 final settingsReducers = combineReducers<AppSettings>([
