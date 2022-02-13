@@ -92,6 +92,7 @@ class _HistoryListsState extends State<HistoryLists> {
                     },
                     builder: (context, callback) {
                       return Dismissible(
+                        //TODO Maybe retun a listtile, with an icon plus corresponding historical data.
                         child: Container(
                           height: MediaQuery.of(context).size.height / 7,
                           decoration: BoxDecoration(
@@ -118,8 +119,9 @@ class _HistoryListsState extends State<HistoryLists> {
                             child: ShadowText(
                               'Swipe to remove',
                               style: TextStyle(
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.bold,),
+                                color: Colors.black,
+                                fontWeight: FontWeight.bold,
+                              ),
                             ),
                           ),
                         ),
