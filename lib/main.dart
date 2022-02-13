@@ -8,9 +8,11 @@ import 'actions/history_actions.dart';
 import 'actions/settings_actions.dart';
 import 'middleware/middleware.dart';
 import 'reducers/app_state_reducer.dart';
-import 'navigation_state.dart';
+import 'navigation.dart';
 import 'styles/app_theme.dart';
 
+
+// APP NAME: Drink Up
 void main() {
   runApp(MyApp());
 }
@@ -27,7 +29,7 @@ class MyApp extends StatelessWidget {
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light);
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      theme: HydratorAppTheme.lightTheme,
+      theme: AppTheme.lightTheme,
       home: StoreProvider(
         store: store,
         child: StoreBuilder<AppState>(

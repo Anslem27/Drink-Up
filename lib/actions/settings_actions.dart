@@ -1,4 +1,4 @@
-import '../Models/settings/AppSettings.dart';
+import '../Models/settings/activity_settings.dart';
 
 class LoadAppSettingsAction {}
 

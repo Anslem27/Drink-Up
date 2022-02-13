@@ -1,6 +1,6 @@
-//import 'package:firebase_admob/firebase_admob.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'util/utils.dart';
+import 'util/utilities.dart';
 import 'screens/history/history_page.dart';
 import 'screens/notifications/notifications_settings_page.dart';
 import 'screens/settings/settings_page.dart';
@@ -16,39 +16,12 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
-  /* static const MobileAdTargetingInfo _targetingInfo = MobileAdTargetingInfo(
-    keywords: <String>['water', 'health', 'drinking', 'fit'],
-    childDirected: false,
-    testDevices: <String>[],
-  );
- */
-  /*  BannerAd _bannerAd;
-
-  BannerAd createBannerAd() {
-    return BannerAd(
-      adUnitId: BannerAd.testAdUnitId,
-      size: AdSize.banner,
-      targetingInfo: _targetingInfo,
-    );
-  } */
-
   @override
   void initState() {
     super.initState();
 
     WidgetsBinding.instance.addObserver(this);
-    /* FirebaseAdMob.instance.initialize(appId: FirebaseAdMob.testAppId);
-    _bannerAd = createBannerAd()
-      ..load()
-      ..show(anchorOffset: 25, anchorType: AnchorType.top); */
   }
-
-  /* @override
-  void dispose() {
-    WidgetsBinding.instance.removeObserver(this);
-    _bannerAd?.dispose();
-    super.dispose();
-  } */
 
   DateTime lastUpdated;
   @override
@@ -120,61 +93,65 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
             height: 55,
             destinations: [
               NavigationDestination(
-                  selectedIcon: Icon(
-                    Icons.home_rounded,
-                    semanticLabel: 'Home',
-                    size: 33,
-                    color: iconThemeColor,
-                  ),
-                  icon: Icon(
-                    Icons.home_outlined,
-                    semanticLabel: 'Home',
-                    size: 33,
-                    color: iconThemeColor,
-                  ),
-                  label: "Home"),
+                selectedIcon: Icon(
+                  CupertinoIcons.home,
+                  semanticLabel: 'Home',
+                  size: 33,
+                  color: iconThemeColor,
+                ),
+                icon: Icon(
+                  Icons.home_outlined,
+                  semanticLabel: 'Home',
+                  size: 33,
+                  color: iconThemeColor,
+                ),
+                label: "Home",
+              ),
               NavigationDestination(
-                  selectedIcon: Icon(
-                    Icons.history_rounded,
-                    semanticLabel: 'History',
-                    size: 29,
-                    color: iconThemeColor,
-                  ),
-                  icon: Icon(
-                    Icons.history,
-                    semanticLabel: 'History',
-                    size: 29,
-                    color: iconThemeColor,
-                  ),
-                  label: "History"),
+                selectedIcon: Icon(
+                  Icons.history_rounded,
+                  semanticLabel: 'History',
+                  size: 29,
+                  color: iconThemeColor,
+                ),
+                icon: Icon(
+                  Icons.history,
+                  semanticLabel: 'History',
+                  size: 29,
+                  color: iconThemeColor,
+                ),
+                label: "History",
+              ),
               NavigationDestination(
-                  selectedIcon: Icon(
-                    Icons.notifications,
-                    size: 30,
-                    semanticLabel: 'Notifications',
-                    color: iconThemeColor,
-                  ),
-                  icon: Icon(
-                    Icons.notifications_outlined,
-                    size: 30,
-                    semanticLabel: 'Notifications',
-                    color: iconThemeColor,
-                  ),
-                  label: "Notifications"),
+                selectedIcon: Icon(
+                  Icons.notifications,
+                  size: 30,
+                  semanticLabel: 'Notifications',
+                  color: iconThemeColor,
+                ),
+                icon: Icon(
+                  Icons.notifications_outlined,
+                  size: 30,
+                  semanticLabel: 'Notifications',
+                  color: iconThemeColor,
+                ),
+                label: "Notifications",
+              ),
               NavigationDestination(
-                  selectedIcon: Icon(
-                    Icons.account_circle_sharp,
-                    size: 30,
-                    semanticLabel: 'Profile',
-                    color: iconThemeColor,
-                  ),
-                  icon: Icon(
-                    Icons.account_circle_outlined,
-                    size: 30,
-                    semanticLabel: 'Profile',
-                    color: iconThemeColor,
-                  ),
-                  label: "Profile"),
+                selectedIcon: Icon(
+                  Icons.account_circle_sharp,
+                  size: 30,
+                  semanticLabel: 'Profile',
+                  color: iconThemeColor,
+                ),
+                icon: Icon(
+                  Icons.account_circle_outlined,
+                  size: 30,
+                  semanticLabel: 'Profile',
+                  color: iconThemeColor,
+                ),
+                label: "Profile",
+              ),
             ],
           ),
         ),

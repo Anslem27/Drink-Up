@@ -46,7 +46,7 @@ class _WaterProgressState extends State<WaterProgress>
         var percentage = target > 0 ? current / target * 100 : 100.0;
         var progress = (percentage > 100.0 ? 100.0 : percentage) / 100.0;
         progress = 1.0 - progress;
-
+//TODO Handle homepage upgrade.
         return ContainerWrapper(
             child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -60,7 +60,9 @@ class _WaterProgressState extends State<WaterProgress>
                   Center(
                     child: AnimatedBuilder(
                       animation: CurvedAnimation(
-                          parent: animationController, curve: Curves.easeInOut),
+                        parent: animationController,
+                        curve: Curves.easeInOut,
+                      ),
                       builder: (context, child) => ClipPath(
                         child: Image.asset('assets/images/drop-blue.png'),
                         clipper: WaveClipper(

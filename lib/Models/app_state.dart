@@ -1,5 +1,5 @@
 import '../managers/database/drink_history.dart';
-import 'settings/AppSettings.dart';
+import 'settings/activity_settings.dart';
 import 'water/Glass.dart';
 
 class AppState {

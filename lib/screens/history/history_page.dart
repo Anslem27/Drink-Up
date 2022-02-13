@@ -1,13 +1,13 @@
+import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 
 import '../../managers/database/drink_history.dart';
 import '../../Models/app_state.dart';
-import '../../util/utils.dart';
-import '../../widgets/container_wrapper/container_wrapper.dart';
+import '../../util/utilities.dart';
 import 'history_manager.dart';
-import 'widgets/history_lists.dart';
+import 'widgets/history_widgets.dart';
 
 typedef OnDrinkEntryRemovedCallback = Function(DrinkHistoryEntry entry);
 
@@ -25,8 +25,9 @@ class _HistoryPageState extends State<HistoryPage>
   TabController _tabController;
   int _currentIndex = 0;
 
-  final Color _color = Colors.transparent;
-  final Color _selectedColor = Colors.white;
+  //? WaterLike blue colors
+  final Color color = Colors.blue[200];
+  final Color selectedColor = Colors.blueAccent;
 
   @override
   void initState() {
@@ -98,10 +99,10 @@ class _HistoryPageState extends State<HistoryPage>
 
     List<Widget> statWidgets = [
       Expanded(
-        child: HistoryStatsText(
-          "SUMMARY",
+        child: HistorySummaryText(
+          "TOTAL\n(Per time frame)",
           summary,
-          const Color(0xFF6fa1ea),
+          Colors.white,
           unit: 'ml',
         ),
       ),
@@ -110,13 +111,12 @@ class _HistoryPageState extends State<HistoryPage>
     if (_currentIndex == 0) {
       statWidgets.add(
         Expanded(
-            child: HistoryStatsText(
-                "AVERAGE\nDRINK",
-                currentEntries.isNotEmpty
-                    ? summary / currentEntries.length
-                    : 0.0,
-                const Color(0xFFc7d0df),
-                unit: 'ml')),
+          child: HistorySummaryText(
+              "AVERAGE INTAKE",
+              currentEntries.isNotEmpty ? summary / currentEntries.length : 0.0,
+              Colors.black,
+              unit: 'ml'),
+        ),
       );
     } else {
       var avg = 0.0;
@@ -134,18 +134,18 @@ class _HistoryPageState extends State<HistoryPage>
       }
       statWidgets.add(
         Expanded(
-            child: HistoryStatsText(
-                "AVERAGE\nA DAY", avg, const Color(0xFFc7d0df),
-                unit: 'ml')),
+          child: HistorySummaryText("AVERAGE\nA DAY", avg, Colors.black,
+              unit: 'ml'),
+        ),
       );
     }
 
     statWidgets.add(
       Expanded(
-        child: HistoryStatsText(
+        child: HistorySummaryText(
           "TOTAL\nCUPS",
           currentEntries.length.toDouble(),
-          const Color(0xFFf5bad3),
+          Colors.white,
         ),
       ),
     );
@@ -153,16 +153,16 @@ class _HistoryPageState extends State<HistoryPage>
     return statWidgets;
   }
 
-  Widget _tabBarButton(String title, int index) {
+  Widget tabButton(String title, int index) {
     return Expanded(
       child: Padding(
-        padding: const EdgeInsets.all(8.0),
+        padding: const EdgeInsets.all(10.0),
         child: ElevatedButton(
           style: ElevatedButton.styleFrom(
             shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(16.0),
+              borderRadius: BorderRadius.circular(20.0),
             ),
-            primary: _currentIndex == index ? _selectedColor : _color,
+            primary: _currentIndex == index ? selectedColor : color,
           ),
           onPressed: () {
             _onItemTapped(index);
@@ -170,10 +170,11 @@ class _HistoryPageState extends State<HistoryPage>
           child: Text(
             title,
             textAlign: TextAlign.center,
-            style: TextStyle(
-                color: _currentIndex == index
-                    ? const Color(0xFF6fa1ea)
-                    : _selectedColor),
+            style: GoogleFonts.raleway(
+              color: _currentIndex == index
+                  ? Colors.white
+                  : const Color.fromARGB(255, 110, 100, 246),
+            ),
           ),
         ),
       ),
@@ -188,24 +189,32 @@ class _HistoryPageState extends State<HistoryPage>
         return Scaffold(
           body: SafeArea(
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.start,
               children: <Widget>[
-                Row(
-                  children: [
-                    //TODO Replace icon with Image.
-                    IconButton(
-                      onPressed: () {},
-                      tooltip: "History",
-                      icon: const Icon(Icons.history_rounded),
-                      splashRadius: 25,
-                    ),
-                    const SizedBox(width: 2),
-                    Text(
-                      "History",
-                      style: TextStyle(
-                          fontSize: 20, color: Theme.of(context).focusColor),
-                    ),
-                  ],
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 8, right: 8, left: 8),
+                  child: Row(
+                    children: [
+                      IconButton(
+                        onPressed: () {},
+                        tooltip: "History",
+                        icon: const Icon(
+                          Icons.history_rounded,
+                          size: 30,
+                        ),
+                        splashRadius: 25,
+                      ),
+                      const SizedBox(width: 2),
+                      Text(
+                        "History",
+                        style: GoogleFonts.raleway(
+                          fontSize: 30,
+                          color: Theme.of(context).focusColor,
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
                 Container(
                   decoration: const BoxDecoration(
@@ -215,10 +224,10 @@ class _HistoryPageState extends State<HistoryPage>
                     mainAxisAlignment: MainAxisAlignment.center,
                     mainAxisSize: MainAxisSize.max,
                     children: <Widget>[
-                      _tabBarButton('Today', 0),
-                      _tabBarButton('7 days', 1),
-                      _tabBarButton('30 days', 2),
-                      _tabBarButton('365 days', 3),
+                      tabButton('Today', 0),
+                      tabButton('Last week', 1),
+                      tabButton('Last month', 2),
+                      tabButton('Past year', 3),
                     ],
                   ),
                 ),
@@ -227,17 +236,17 @@ class _HistoryPageState extends State<HistoryPage>
                     tabController: _tabController,
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: ContainerWrapper(
-                    widthScale: 1.0,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      mainAxisSize: MainAxisSize.min,
-                      children: _buildStats(entries),
-                    ),
+                SizedBox(height: MediaQuery.of(context).size.height / 55),
+                Text(
+                  "Summary",
+                  style: GoogleFonts.nunitoSans(
+                    color: Theme.of(context).focusColor,
+                    fontSize: 28,
+                    fontWeight: FontWeight.w500,
                   ),
                 ),
+                SizedBox(height: MediaQuery.of(context).size.height / 50),
+                bottomCard(context, entries),
               ],
             ),
           ),
@@ -245,15 +254,34 @@ class _HistoryPageState extends State<HistoryPage>
       },
     );
   }
+
+  Container bottomCard(BuildContext context, List<DrinkHistoryEntry> entries) {
+    return Container(
+      margin: const EdgeInsets.only(left: 10, right: 10),
+      height: MediaQuery.of(context).size.height / 7,
+      decoration: BoxDecoration(
+        color: Colors.blue[400],
+        borderRadius: BorderRadius.circular(13),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.only(top: 5.0),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisSize: MainAxisSize.min,
+          children: _buildStats(entries),
+        ),
+      ),
+    );
+  }
 }
 
-class HistoryStatsText extends StatelessWidget {
+class HistorySummaryText extends StatelessWidget {
   final String title;
   final double value;
   final String unit;
   final Color titleColor;
 
-  const HistoryStatsText(this.title, this.value, this.titleColor,
+  const HistorySummaryText(this.title, this.value, this.titleColor,
       {Key key, this.unit})
       : super(key: key);
 
@@ -263,9 +291,8 @@ class HistoryStatsText extends StatelessWidget {
         Utils.formatNumberWithShortcuts(value, unit != null ? 2 : 0),
         textAlign: TextAlign.left,
         style: const TextStyle(
-            color: Color(0xFF7f8ca1),
-            fontSize: 18.0,
-            fontWeight: FontWeight.w400),
+          fontSize: 19.0,
+        ),
       ),
     ];
 
@@ -275,9 +302,8 @@ class HistoryStatsText extends StatelessWidget {
           unit,
           textAlign: TextAlign.left,
           style: const TextStyle(
-              color: Color(0xFF7f8ca1),
-              fontSize: 14.0,
-              fontWeight: FontWeight.w300),
+            fontSize: 14.0,
+          ),
         ),
       );
     }
@@ -320,42 +346,60 @@ class DrinkHitoryListItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    String readableDate = DateFormat('EEE, M/d/y').format(date);
+    String readableDate = DateFormat('   EEEEEE\n d-M-y').format(date);
     String readableTime = DateFormat('HH:mm').format(date);
     return Padding(
       padding: const EdgeInsets.all(8.0),
-      child: Row(
-        children: <Widget>[
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                Text(
-                  readableDate,
-                  textAlign: TextAlign.right,
-                  style: const TextStyle(
-                      fontSize: 15.0, fontWeight: FontWeight.w600),
+      child: Container(
+        height: MediaQuery.of(context).size.height / 10,
+        margin: const EdgeInsets.only(left: 12, right: 12),
+        decoration: BoxDecoration(
+          color: Colors.blue[100],
+          borderRadius: BorderRadius.circular(10),
+        ),
+        child: Stack(
+          children: <Widget>[
+            Align(
+              alignment: Alignment.topLeft,
+              child: Padding(
+                padding: const EdgeInsets.only(left: 7.5, top: 9),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: <Widget>[
+                    Text(
+                      readableDate,
+                      style: const TextStyle(
+                        fontSize: 19.5,
+                      ),
+                    ),
+                    const SizedBox(height: 10),
+                    Text(
+                      "At $readableTime",
+                      style: const TextStyle(
+                        fontSize: 18.0,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                  ],
                 ),
-                Text(
-                  readableTime,
-                  textAlign: TextAlign.right,
+              ),
+            ),
+            Align(
+              alignment: Alignment.centerRight,
+              child: Padding(
+                padding: const EdgeInsets.only(right: 30.0),
+                child: Text(
+                  '$amount ml',
                   style: const TextStyle(
-                      fontSize: 13.0, fontWeight: FontWeight.w400),
+                    color: Colors.blueAccent,
+                    fontSize: 20.0,
+                    fontWeight: FontWeight.w500,
+                  ),
                 ),
-              ],
+              ),
             ),
-          ),
-          Expanded(
-            child: Text(
-              '$amount ml',
-              textAlign: TextAlign.right,
-              style: const TextStyle(
-                  color: Color(0xFF6fa1ea),
-                  fontSize: 20.0,
-                  fontWeight: FontWeight.w600),
-            ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

@@ -5,7 +5,7 @@ import '../actions/history_actions.dart';
 import '../actions/settings_actions.dart';
 import '../managers/database/database_manager.dart';
 import '../managers/database/drink_history.dart';
-import '../managers/notifications/notifications_manager.dart';
+import '../managers/notifications/app_notifications.dart';
 import '../managers/settings/app_settings_manager.dart';
 
 List<Middleware<AppState>> createStoreMiddleware() {

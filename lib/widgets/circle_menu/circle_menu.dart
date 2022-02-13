@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_typing_uninitialized_variables
+
 import 'dart:math';
 import 'package:flutter/material.dart';
 import 'circle_menu_toggle_button.dart';

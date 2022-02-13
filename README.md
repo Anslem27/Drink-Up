@@ -28,4 +28,4 @@ Get your flutter environment up and running.
 - [Preferably use VsCode](https://code.visualstudio.com/)
 - [Better comments -> Elaborated Comments](https://marketplace.visualstudio.com/items?itemName=aaron-bond.better-comments)
 
-### [This app is made possible by different open source projects.]()
+### [This app is made possible by the watermanic projects.]()

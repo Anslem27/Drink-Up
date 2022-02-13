@@ -21,15 +21,15 @@ class NotificationsSettingsPage extends StatefulWidget {
 
 String _formatMinutes(int minutes) {
   if (minutes < 60) {
-    return '$minutes' + 'm';
+    return '$minutes min';
   } else {
     var hours = minutes ~/ 60;
     var minutesLeft = minutes - hours * 60;
 
-    var finalPhrase = '$hours' + 'h';
+    var finalPhrase = '$hours hr';
 
     if (minutesLeft > 0) {
-      finalPhrase += ' $minutesLeft' + 'm';
+      finalPhrase += ' $minutesLeft min';
     }
 
     return finalPhrase;
@@ -44,21 +44,23 @@ class _NotificationsSettingsPageState extends State<NotificationsSettingsPage> {
     return Stack(
       children: <Widget>[
         Positioned(
-            bottom: 0.0,
+          bottom: 0.0,
+          height: 160.0,
+          child: SizedBox(
+            width: size.width,
             height: 160.0,
-            child: SizedBox(
-              width: size.width,
-              height: 160.0,
-              child: Container(
-                decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                      begin: Alignment.topCenter,
-                      end: Alignment.bottomCenter,
-                      stops: const [0.3, 0.7],
-                      colors: [Colors.white.withOpacity(0.0), Colors.white]),
+            child: Container(
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                  stops: const [0.3, 0.7],
+                  colors: [Colors.white.withOpacity(0.0), Colors.white],
                 ),
               ),
-            )),
+            ),
+          ),
+        ),
         StoreConnector<AppState, AppState>(
           converter: (store) => store.state,
           builder: (context, state) {

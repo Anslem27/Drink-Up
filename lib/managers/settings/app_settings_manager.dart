@@ -4,7 +4,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../../Models/settings/AppSettings.dart';
+import '../../Models/settings/activity_settings.dart';
 import '../../screens/settings/Gender.dart';
 
 class AppSettingsManager {
