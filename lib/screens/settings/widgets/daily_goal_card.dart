@@ -109,7 +109,10 @@ class _DailyGoalCardState extends State<DailyGoalCard> {
                   alignment: Alignment.topRight,
                   child: Text(
                     '$_value ml',
-                    style: const TextStyle(fontSize: 18),
+                    style: const TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.w500,
+                    ),
                   ),
                 ),
               ),

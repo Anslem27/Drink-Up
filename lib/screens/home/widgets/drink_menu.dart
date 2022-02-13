@@ -8,7 +8,7 @@ import '../../../managers/database/drink_history.dart';
 import '../../../widgets/circle_menu/circle_menu.dart';
 
 typedef OnDrinkAddedCallback = Function(Drink drink);
-
+//TODO use a dialog input manner.
 class DrinkMenu extends StatelessWidget {
   const DrinkMenu({Key key}) : super(key: key);
 

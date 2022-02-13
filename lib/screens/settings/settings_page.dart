@@ -91,7 +91,7 @@ class _SettingsPageState extends State<SettingsPage> {
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           Text(
-                            "Random Watery Facts",
+                            "Watery Facts",
                             style: GoogleFonts.raleway(
                               fontSize: 22,
                               fontWeight: FontWeight.w600,
@@ -176,7 +176,7 @@ class _SettingsPageState extends State<SettingsPage> {
       child: Row(
         children: [
           Text(
-            "My Activity",
+            "My Profile",
             style: GoogleFonts.raleway(fontSize: 28),
           ),
           const Spacer(),
