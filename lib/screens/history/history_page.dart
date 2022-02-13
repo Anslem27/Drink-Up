@@ -6,7 +6,6 @@ import 'package:flutter_redux/flutter_redux.dart';
 import '../../managers/database/drink_history.dart';
 import '../../Models/app_state.dart';
 import '../../util/utilities.dart';
-import '../../widgets/container_wrapper/container_wrapper.dart';
 import 'history_manager.dart';
 import 'widgets/history_widgets.dart';
 
@@ -113,7 +112,7 @@ class _HistoryPageState extends State<HistoryPage>
       statWidgets.add(
         Expanded(
           child: HistorySummaryText(
-              "AVERAGE Intake(ml)",
+              "AVERAGE INTAKE",
               currentEntries.isNotEmpty ? summary / currentEntries.length : 0.0,
               Colors.black,
               unit: 'ml'),
@@ -190,11 +189,11 @@ class _HistoryPageState extends State<HistoryPage>
         return Scaffold(
           body: SafeArea(
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.start,
               children: <Widget>[
                 Padding(
-                  padding: const EdgeInsets.only(
-                      top: 10, bottom: 8, right: 8, left: 8),
+                  padding: const EdgeInsets.only(bottom: 8, right: 8, left: 8),
                   child: Row(
                     children: [
                       IconButton(
@@ -237,27 +236,41 @@ class _HistoryPageState extends State<HistoryPage>
                     tabController: _tabController,
                   ),
                 ),
-                Container(
-                  margin: const EdgeInsets.only(left: 10, right: 10),
-                  height: MediaQuery.of(context).size.height / 8,
-                  decoration: BoxDecoration(
-                    color: Colors.blue[400],
-                    borderRadius: BorderRadius.circular(13),
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.only(top: 5.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      mainAxisSize: MainAxisSize.min,
-                      children: _buildStats(entries),
-                    ),
+                SizedBox(height: MediaQuery.of(context).size.height / 55),
+                Text(
+                  "Summary",
+                  style: GoogleFonts.nunitoSans(
+                    color: Theme.of(context).focusColor,
+                    fontSize: 28,
+                    fontWeight: FontWeight.w500,
                   ),
                 ),
+                SizedBox(height: MediaQuery.of(context).size.height / 50),
+                bottomCard(context, entries),
               ],
             ),
           ),
         );
       },
+    );
+  }
+
+  Container bottomCard(BuildContext context, List<DrinkHistoryEntry> entries) {
+    return Container(
+      margin: const EdgeInsets.only(left: 10, right: 10),
+      height: MediaQuery.of(context).size.height / 7,
+      decoration: BoxDecoration(
+        color: Colors.blue[400],
+        borderRadius: BorderRadius.circular(13),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.only(top: 5.0),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisSize: MainAxisSize.min,
+          children: _buildStats(entries),
+        ),
+      ),
     );
   }
 }
@@ -364,6 +377,7 @@ class DrinkHitoryListItem extends StatelessWidget {
                       "At $readableTime",
                       style: const TextStyle(
                         fontSize: 18.0,
+                        fontWeight: FontWeight.w500,
                       ),
                     ),
                   ],
@@ -379,6 +393,7 @@ class DrinkHitoryListItem extends StatelessWidget {
                   style: const TextStyle(
                     color: Colors.blueAccent,
                     fontSize: 20.0,
+                    fontWeight: FontWeight.w500,
                   ),
                 ),
               ),
