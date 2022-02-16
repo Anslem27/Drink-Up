@@ -4,7 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import '../../Models/app_state.dart';
 import '../../util/utilities.dart';
-import '../home/widgets/drink_menu.dart';
+import '../home/widgets/drink_bottomsheet.dart';
 import '../home/widgets/water_progress.dart';
 
 class TodayPage extends StatelessWidget {
@@ -79,7 +79,7 @@ class TodaysHistory extends StatelessWidget {
     return StoreConnector<AppState, AppState>(
       converter: (store) => store.state,
       builder: (context, state) {
-        var historyText = '\nYou have not drunk anything today yet!\n';
+        var historyText = "\nYou hav'nt drunk anything today!\n";
         var todayEntries = state.drinksHistory
             .where((entry) => Utils.isToday(
                   DateTime.fromMillisecondsSinceEpoch(entry.date),

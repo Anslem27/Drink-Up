@@ -3,7 +3,6 @@ import 'package:flutter_redux/flutter_redux.dart';
 import 'dart:math';
 import 'package:vector_math/vector_math.dart' as Vector;
 import '../../../Models/app_state.dart';
-import '../../../widgets/Reusable Widgets/shadow_text.dart';
 
 class WaterProgress extends StatefulWidget {
   const WaterProgress({Key key}) : super(key: key);
@@ -41,6 +40,7 @@ class _WaterProgressState extends State<WaterProgress>
       converter: (store) => store.state,
       builder: (context, state) {
         var current = state.glass.currentWaterAmount;
+        //TODO Create bool to display done text when user has finished there target goal.
         var target = state.glass.waterAmountTarget;
         var percentage = target > 0 ? current / target * 100 : 100.0;
         var progress = (percentage > 100.0 ? 100.0 : percentage) / 100.0;
@@ -83,23 +83,15 @@ class _WaterProgressState extends State<WaterProgress>
                     Center(
                       child: Column(
                         children: <Widget>[
-                          ShadowText(
+                          Text(
                             '${(target > 0 ? current / target * 100 : 100).toStringAsFixed(0)}%',
-                            shadowColor: Colors.black.withOpacity(0.5),
-                            offsetX: 3.0,
-                            offsetY: 3.0,
-                            blur: 3.0,
                             style: TextStyle(
                                 color: Colors.white.withAlpha(200),
                                 fontSize: 40.0,
                                 fontWeight: FontWeight.bold),
                           ),
-                          ShadowText(
+                          Text(
                             '$current ml',
-                            shadowColor: Colors.black.withOpacity(0.3),
-                            offsetX: 3.0,
-                            offsetY: 3.0,
-                            blur: 3.0,
                             style: TextStyle(
                                 color: Colors.white.withAlpha(150),
                                 fontSize: 18.0,

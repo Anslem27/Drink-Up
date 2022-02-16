@@ -3,10 +3,9 @@ import 'package:flutter_redux/flutter_redux.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../../../Models/app_state.dart';
 import '../../../Models/water/Drink.dart';
-import '../../../actions/glass_actions.dart';
+import '../../../actions/intake_actions.dart';
 import '../../../actions/history_actions.dart';
 import '../../../managers/database/drink_history.dart';
-import '../../../widgets/Reusable Widgets/shadow_text.dart';
 import '../history_manager.dart';
 import '../history_page.dart';
 
@@ -115,12 +114,16 @@ class _HistoryListsState extends State<HistoryLists> {
                             borderRadius: BorderRadius.circular(10),
                           ),
                           child: const Align(
-                            alignment: Alignment.center,
-                            child: ShadowText(
-                              'Swipe to remove',
-                              style: TextStyle(
-                                color: Colors.black,
-                                fontWeight: FontWeight.bold,
+                            alignment: Alignment.centerLeft,
+                            child: Padding(
+                              padding: EdgeInsets.only(left: 8.0),
+                              child: Text(
+                                'Swipe to remove.....',
+                                style: TextStyle(
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: 20,
+                                ),
                               ),
                             ),
                           ),
