@@ -4,7 +4,7 @@ abstract class Drink {
 
   Drink(this.name, this.amount);
 
-  // TODO:Create Additional varaibles where neccesary
+  // TODO:Create Additional variables where neccesary
   factory Drink.small() => Water(200);
   factory Drink.medium() => Water(300);
   factory Drink.big() => Water(500);

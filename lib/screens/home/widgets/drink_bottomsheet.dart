@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
-import 'package:get/get_rx/src/rx_typedefs/rx_typedefs.dart';
 import 'package:sliding_sheet/sliding_sheet.dart';
 import '../../../Models/app_state.dart';
 import '../../../Models/water/Drink.dart';
@@ -34,8 +33,8 @@ class DrinkBottomSheet extends StatelessWidget {
                 initialSnap: 0.5,
                 snappings: [0.5, 0.7],
               ),
-              builder: (_, callback) {
-                return bottomSheet(context, callback);
+              builder: (_, SheetState state) {
+                return drinkBottomSheet(context, callback);
               },
             ),
           ),
@@ -49,7 +48,8 @@ class DrinkBottomSheet extends StatelessWidget {
     );
   }
 
-  Widget bottomSheet(BuildContext context, SheetState callback) {
+  Material drinkBottomSheet(
+      BuildContext context, OnDrinkAddedCallback callback) {
     return Material(
       child: Padding(
         padding: const EdgeInsets.all(15.0),
@@ -74,7 +74,7 @@ class DrinkBottomSheet extends StatelessWidget {
               ),
             ),
             SizedBox(height: MediaQuery.of(context).size.height / 55),
-            waterRow(context, callback),
+            waterSheet(context, callback),
             SizedBox(height: MediaQuery.of(context).size.height / 40),
             const Text(
               "Juices",
@@ -84,20 +84,104 @@ class DrinkBottomSheet extends StatelessWidget {
               ),
             ),
             SizedBox(height: MediaQuery.of(context).size.height / 40),
-            juicesRow(context, callback),
+            juiceSheet(context, callback),
           ],
         ),
       ),
     );
   }
 
-//? Water Intake categories.....
-//200
-//300
-//500
+  Padding juiceSheet(BuildContext context, OnDrinkAddedCallback callback) {
+    return Padding(
+      padding: const EdgeInsets.all(10),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Column(
+                children: [
+                  //? Small Juice Intake
+                  const Text(
+                    "200ml",
+                    style: TextStyle(
+                      fontSize: 17,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                  const SizedBox(height: 8),
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.of(context).pop;
+                      callback(Drink.small());
+                    },
+                    child: Image.asset(
+                      "assets/icons/juice-box.png",
+                      height: 55,
+                      width: 55,
+                    ),
+                  ),
+                ],
+              ),
+              //? Medium Juice intake
+              Column(
+                children: [
+                  const Text(
+                    "300ml",
+                    style: TextStyle(
+                      fontWeight: FontWeight.w500,
+                      fontSize: 17,
+                    ),
+                  ),
+                  const SizedBox(height: 8),
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.of(context).pop;
+                      callback(Drink.medium());
+                    },
+                    child: Image.asset(
+                      "assets/bottle/medium-juice.png",
+                      height: 55,
+                      width: 55,
+                    ),
+                  ),
+                ],
+              ),
+              //? High Juice intake
+              Column(
+                children: [
+                  const Text(
+                    "500ml",
+                    style: TextStyle(
+                      fontWeight: FontWeight.w500,
+                      fontSize: 17,
+                    ),
+                  ),
+                  const SizedBox(height: 8),
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.of(context).pop;
+                      callback(Drink.big());
+                    },
+                    child: Image.asset(
+                      "assets/bottle/big-juice.png",
+                      height: 60,
+                      width: 60,
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
 
-//! TODO Add more options ie  [cola,soda(even no sugar),uncategorized]
-  waterRow(context, setstate) {
+  Padding waterSheet(BuildContext context, OnDrinkAddedCallback callback) {
     return Padding(
       padding: const EdgeInsets.all(10),
       child: Column(
@@ -122,7 +206,7 @@ class DrinkBottomSheet extends StatelessWidget {
                   GestureDetector(
                     onTap: () {
                       Navigator.of(context).pop;
-                      //callback(Drink.small());
+                      callback(Drink.small());
                     },
                     child: Image.asset(
                       "assets/bottle/glass-of-water.png",
@@ -144,7 +228,10 @@ class DrinkBottomSheet extends StatelessWidget {
                   ),
                   const SizedBox(height: 8),
                   GestureDetector(
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.of(context).pop;
+                      callback(Drink.medium());
+                    },
                     child: Image.asset(
                       "assets/bottle/mineral-water.png",
                       height: 55,
@@ -153,7 +240,7 @@ class DrinkBottomSheet extends StatelessWidget {
                   ),
                 ],
               ),
-              //? High Water intake
+              //? High Water intake.
               Column(
                 children: [
                   const Text(
@@ -165,7 +252,10 @@ class DrinkBottomSheet extends StatelessWidget {
                   ),
                   const SizedBox(height: 8),
                   GestureDetector(
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.of(context).pop;
+                      callback(Drink.big());
+                    },
                     child: Image.asset(
                       "assets/bottle/plastic-bottle-blue.png",
                       height: 60,
@@ -180,87 +270,12 @@ class DrinkBottomSheet extends StatelessWidget {
       ),
     );
   }
+//? Water Intake categories.....
+//200
+//300
+//500
 
-  juicesRow(context, callback) {
-    return Padding(
-      padding: const EdgeInsets.all(10),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Column(
-                children: [
-                  //? Small Juice Intake
-                  const Text(
-                    "200ml",
-                    style: TextStyle(
-                      fontSize: 17,
-                      fontWeight: FontWeight.w500,
-                    ),
-                  ),
-                  const SizedBox(height: 8),
-                  GestureDetector(
-                    onTap: () {},
-                    child: Image.asset(
-                      "assets/icons/juice-box.png",
-                      height: 55,
-                      width: 55,
-                    ),
-                  ),
-                ],
-              ),
-              //? Medium Juice intake
-              Column(
-                children: [
-                  const Text(
-                    "300ml",
-                    style: TextStyle(
-                      fontWeight: FontWeight.w500,
-                      fontSize: 17,
-                    ),
-                  ),
-                  const SizedBox(height: 8),
-                  GestureDetector(
-                    onTap: () {},
-                    child: Image.asset(
-                      "assets/bottle/medium-juice.png",
-                      height: 55,
-                      width: 55,
-                    ),
-                  ),
-                ],
-              ),
-              //? High Juice intake
-              Column(
-                children: [
-                  const Text(
-                    "500ml",
-                    style: TextStyle(
-                      fontWeight: FontWeight.w500,
-                      fontSize: 17,
-                    ),
-                  ),
-                  const SizedBox(height: 8),
-                  GestureDetector(
-                    onTap: () {},
-                    child: Image.asset(
-                      "assets/bottle/big-juice.png",
-                      height: 60,
-                      width: 60,
-                    ),
-                  ),
-                ],
-              ),
-            ],
-          ),
-        ],
-      ),
-    );
-  }
+//! TODO Add more options ie  [cola,soda(even no sugar),uncategorized]
 }
 
 /* 
@@ -273,29 +288,3 @@ class BottomSheetItems {
   Function onTap;
   DashBoardItems({this.title, this.subtitle, this.event, this.img, this.onTap});
 } */
-
- /* AnchoredRadialMenu(
-          menu: Menu(items: [
-            RadialMenuItem(
-                text: '200',
-                onPressed: () {
-                  callback(Drink.small());
-                }),
-            RadialMenuItem(
-                text: '250',
-                onPressed: () {
-                  callback(Drink.medium());
-                }),
-            RadialMenuItem(
-                text: '300',
-                onPressed: () {
-                  callback(Drink.big());
-                }),
-          ]),
-          child: IconButton(
-            icon: const Icon(
-              Icons.cancel,
-            ),
-            onPressed: () {},
-          ),
-        );  */
