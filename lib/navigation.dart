@@ -59,14 +59,6 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
       child: Scaffold(
         body: Stack(
           children: <Widget>[
-            Container(
-              decoration: const BoxDecoration(
-                image: DecorationImage(
-                    alignment: AlignmentDirectional.topStart,
-                    image: AssetImage('assets/background/top-background.png'),
-                    fit: BoxFit.fitWidth),
-              ),
-            ),
             Padding(
               padding: const EdgeInsets.only(top: 40),
               child: appBody[currentindex],

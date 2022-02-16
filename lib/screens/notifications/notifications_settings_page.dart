@@ -2,11 +2,9 @@ import 'dart:async';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
+import 'package:google_fonts/google_fonts.dart';
 import '../../Models/app_state.dart';
 import '../../actions/settings_actions.dart';
-import '../../widgets/Reusable Widgets/shadow_text.dart';
-import '../../widgets/container_wrapper/container_wrapper.dart';
-
 typedef OnSaveCallback = Function(
     {bool enabled, TimeOfDay from, TimeOfDay to, int interval});
 
@@ -64,31 +62,31 @@ class _NotificationsSettingsPageState extends State<NotificationsSettingsPage> {
         StoreConnector<AppState, AppState>(
           converter: (store) => store.state,
           builder: (context, state) {
-            return SafeArea(
-                bottom: false,
-                child: Column(
-                  children: <Widget>[
-                    Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 16.0),
-                      child: ShadowText(
-                        'NOTIFICATIONS',
-                        shadowColor: Colors.black.withOpacity(0.15),
-                        offsetX: 3.0,
-                        offsetY: 3.0,
-                        blur: 3.0,
-                        style: const TextStyle(
-                            color: Color(0xBEffffff),
-                            fontSize: 24.0,
-                            fontWeight: FontWeight.bold),
-                        textAlign: TextAlign.center,
-                      ),
-                    ),
-                    Expanded(
-                      child: Padding(
+            return Scaffold(
+              body: SafeArea(
+                  bottom: false,
+                  child: Column(
+                    children: <Widget>[
+                      Padding(
                         padding: const EdgeInsets.only(
-                            left: 16.0, right: 16.0, bottom: 16.0),
-                        child: ContainerWrapper(
-                          widthScale: 1.0,
+                            top: 10, bottom: 8, right: 8, left: 8),
+                        child: Row(
+                          children: [
+                            const SizedBox(width: 2),
+                            Text(
+                              "Notifications",
+                              style: GoogleFonts.raleway(
+                                fontSize: 30,
+                                color: Theme.of(context).focusColor,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      Expanded(
+                        child: Padding(
+                          padding: const EdgeInsets.only(
+                              left: 16.0, right: 16.0, bottom: 16.0),
                           child: StoreConnector<AppState, OnSaveCallback>(
                             converter: (store) {
                               return ({enabled, from, to, interval}) {
@@ -102,28 +100,34 @@ class _NotificationsSettingsPageState extends State<NotificationsSettingsPage> {
                               };
                             },
                             builder: (context, callback) {
-                              return Column(
-                                mainAxisSize: MainAxisSize.min,
-                                children: <Widget>[
-                                  Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        vertical: 8.0, horizontal: 16.0),
-                                    child: Row(
-                                      children: <Widget>[
-                                        const Expanded(
-                                          child: Text('Notifications'),
-                                        ),
-                                        Switch(
-                                          value: state
-                                              .settings.notificationsEnabled,
-                                          onChanged: (value) {
-                                            callback(enabled: value);
-                                          },
-                                        ),
-                                      ],
+                              return Container(
+                                //height: MediaQuery.of(context).size.height / 20,
+                                decoration: BoxDecoration(
+                                  color: Colors.green[100],
+                                  borderRadius: BorderRadius.circular(13),
+                                ),
+                                child: Column(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: <Widget>[
+                                    Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                          vertical: 8.0, horizontal: 16.0),
+                                      child: Row(
+                                        children: <Widget>[
+                                          const Expanded(
+                                            child: Text('Notifications'),
+                                          ),
+                                          Switch(
+                                            value: state
+                                                .settings.notificationsEnabled,
+                                            onChanged: (value) {
+                                              callback(enabled: value);
+                                            },
+                                          ),
+                                        ],
+                                      ),
                                     ),
-                                  ),
-                                  Padding(
+                                    Padding(
                                       padding: const EdgeInsets.all(16.0),
                                       child: GestureDetector(
                                         onTap: () async {
@@ -148,80 +152,83 @@ class _NotificationsSettingsPageState extends State<NotificationsSettingsPage> {
                                                   .notificationsFromTime
                                                   .format(context),
                                               style: const TextStyle(
+                                                fontWeight: FontWeight.w600,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.all(16.0),
+                                      child: GestureDetector(
+                                        onTap: () async {
+                                          var picked = await showTimePicker(
+                                              context: context,
+                                              initialTime: state.settings
+                                                  .notificationsToTime);
+                                          if (picked != null &&
+                                              picked !=
+                                                  state.settings
+                                                      .notificationsToTime) {
+                                            callback(to: picked);
+                                          }
+                                        },
+                                        child: Row(
+                                          children: <Widget>[
+                                            const Expanded(
+                                              child: Text('To'),
+                                            ),
+                                            Text(
+                                              state.settings.notificationsToTime
+                                                  .format(context),
+                                              style: const TextStyle(
                                                   fontWeight: FontWeight.w600),
                                             ),
                                           ],
                                         ),
-                                      )),
-                                  Padding(
-                                    padding: const EdgeInsets.all(16.0),
-                                    child: GestureDetector(
-                                      onTap: () async {
-                                        var picked = await showTimePicker(
-                                            context: context,
-                                            initialTime: state
-                                                .settings.notificationsToTime);
-                                        if (picked != null &&
-                                            picked !=
-                                                state.settings
-                                                    .notificationsToTime) {
-                                          callback(to: picked);
-                                        }
-                                      },
-                                      child: Row(
-                                        children: <Widget>[
-                                          const Expanded(
-                                            child: Text('To'),
-                                          ),
-                                          Text(
-                                            state.settings.notificationsToTime
-                                                .format(context),
-                                            style: const TextStyle(
-                                                fontWeight: FontWeight.w600),
-                                          ),
-                                        ],
                                       ),
                                     ),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.all(16.0),
-                                    child: GestureDetector(
-                                      onTap: () async {
-                                        var picked = await showMinutesPicker(
-                                            context: context,
-                                            initialMinutes: state.settings
-                                                .notificationsInterval);
-                                        if (picked != null &&
-                                            picked !=
-                                                state.settings
-                                                    .notificationsInterval) {
-                                          callback(interval: picked);
-                                        }
-                                      },
-                                      child: Row(
-                                        children: <Widget>[
-                                          const Expanded(
-                                            child: Text('Interval'),
-                                          ),
-                                          Text(
-                                            _formatMinutes(state.settings
-                                                .notificationsInterval),
-                                            style: const TextStyle(
-                                                fontWeight: FontWeight.w600),
-                                          ),
-                                        ],
+                                    Padding(
+                                      padding: const EdgeInsets.all(16.0),
+                                      child: GestureDetector(
+                                        onTap: () async {
+                                          var picked = await showMinutesPicker(
+                                              context: context,
+                                              initialMinutes: state.settings
+                                                  .notificationsInterval);
+                                          if (picked != null &&
+                                              picked !=
+                                                  state.settings
+                                                      .notificationsInterval) {
+                                            callback(interval: picked);
+                                          }
+                                        },
+                                        child: Row(
+                                          children: <Widget>[
+                                            const Expanded(
+                                              child: Text('Interval'),
+                                            ),
+                                            Text(
+                                              _formatMinutes(state.settings
+                                                  .notificationsInterval),
+                                              style: const TextStyle(
+                                                  fontWeight: FontWeight.w600),
+                                            ),
+                                          ],
+                                        ),
                                       ),
                                     ),
-                                  ),
-                                ],
+                                  ],
+                                ),
                               );
                             },
                           ),
                         ),
                       ),
-                    ),
-                  ],
-                ));
+                    ],
+                  )),
+            );
           },
         )
       ],

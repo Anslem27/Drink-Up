@@ -113,18 +113,13 @@ class _SettingsPageState extends State<SettingsPage> {
                   Align(
                     alignment: Alignment.center,
                     child: Padding(
-                      padding: const EdgeInsets.only(
-                        top: 30,
-                        left: 4,
-                        right: 4,
-                        bottom: 4,
-                      ),
+                      padding: const EdgeInsets.all(20),
                       child: Text(
                         randomFact,
                         maxLines: 5,
                         style: GoogleFonts.raleway(
                           fontSize: 18,
-                          fontWeight: FontWeight.w500,
+                          //fontWeight: FontWeight.w500,
                         ),
                       ),
                     ),
