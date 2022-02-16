@@ -86,17 +86,18 @@ class _WaterProgressState extends State<WaterProgress>
                           Text(
                             '${(target > 0 ? current / target * 100 : 100).toStringAsFixed(0)}%',
                             style: TextStyle(
-                                color: Colors.white.withAlpha(200),
-                                fontSize: 40.0,
-                                fontWeight: FontWeight.bold),
+                              color: Colors.blue[800],
+                              fontSize: 40.0,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
                           Text(
                             '$current ml',
                             style: TextStyle(
-                                color: Colors.white.withAlpha(150),
+                                color: Colors.blue[800],
                                 fontSize: 18.0,
                                 fontWeight: FontWeight.bold),
-                          )
+                          ),
                         ],
                       ),
                     ),
@@ -152,6 +153,9 @@ class _WaterProgressState extends State<WaterProgress>
     );
   }
 }
+
+
+//? Custom Wave Clipper.
 
 class WaveClipper extends CustomClipper<Path> {
   final double progress;

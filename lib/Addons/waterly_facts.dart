@@ -32,8 +32,8 @@ List<String> wateryFacts = [
   "Drinking 5 glasses of water daily decreases the risk of colon cancer by 45%, plus it can slash the risk of breast cancer by 79% and one is 50% less likely to develop bladder cancer",
   "On average it takes about 2 cups of water to make up for the dehydration caused by a single alcoholic drink or a cup of coffee",
   "It takes about 1 gallon of water to process a quarter pound of hamburger",
-  "Lack of water, is the #1 trigger of daytime fatigue"
-      "Showering, bathing and using the toilet account for about two-thirds of the average family's water usage",
+  "Lack of water, is the #1 trigger of daytime fatigue",
+  "Showering, bathing and using the toilet account for about two-thirds of the average family's water usage",
 ];
 
 //! Generate Random Fact.

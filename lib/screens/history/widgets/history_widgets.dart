@@ -43,28 +43,38 @@ class _HistoryListsState extends State<HistoryLists> {
                         padding: const EdgeInsets.all(8),
                         //TODO make the images somewhat random dynamic.
                         child: Image.asset(
-                          "assets/illustrations/conifer-milkshake.png",
-                          height: 240,
+                          "assets/illustrations/coffee-down.png",
+                          height: 190,
                           width: 240,
                           fit: BoxFit.scaleDown,
                         ),
                       ),
-                      SizedBox(height: MediaQuery.of(context).size.height / 40),
                       Container(
                         margin: const EdgeInsets.only(left: 20, right: 20),
                         height: 80,
                         decoration: BoxDecoration(
-                          color: Colors.blue[100],
+                          color: const Color.fromARGB(255, 210, 229, 245),
                           borderRadius: BorderRadius.circular(
                             12,
                           ),
                         ),
                         child: Padding(
-                          padding: const EdgeInsets.all(16.0),
-                          child: Text(
-                            "You hav'nt had anything to drink today...",
-                            textAlign: TextAlign.center,
-                            style: GoogleFonts.nunitoSans(fontSize: 19),
+                          padding: const EdgeInsets.all(8.0),
+                          child: Column(
+                            children: [
+                              const Padding(
+                                padding: EdgeInsets.all(5.0),
+                                child: Icon(
+                                  Icons.info_outline_rounded,
+                                  color: Colors.red,
+                                ),
+                              ),
+                              Text(
+                                "You hav'nt had anything to drink...",
+                                textAlign: TextAlign.center,
+                                style: GoogleFonts.nunitoSans(fontSize: 18),
+                              ),
+                            ],
                           ),
                         ),
                       ),

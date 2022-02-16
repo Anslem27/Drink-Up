@@ -2,6 +2,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
+import 'package:sliding_sheet/sliding_sheet.dart';
 
 import '../../managers/database/drink_history.dart';
 import '../../Models/app_state.dart';
@@ -100,9 +101,9 @@ class _HistoryPageState extends State<HistoryPage>
     List<Widget> statWidgets = [
       Expanded(
         child: HistorySummaryText(
-          "TOTAL\n(Per time frame)",
+          "TOTAL",
           summary,
-          Colors.white,
+          Colors.black,
           unit: 'ml',
         ),
       ),
@@ -145,7 +146,7 @@ class _HistoryPageState extends State<HistoryPage>
         child: HistorySummaryText(
           "TOTAL\nCUPS",
           currentEntries.length.toDouble(),
-          Colors.white,
+          Colors.black,
         ),
       ),
     );
@@ -183,14 +184,14 @@ class _HistoryPageState extends State<HistoryPage>
 
   @override
   Widget build(BuildContext context) {
-    return StoreConnector<AppState, List<DrinkHistoryEntry>>(
-      converter: (store) => store.state.drinksHistory,
-      builder: (context, entries) {
-        return Scaffold(
-          body: SafeArea(
+    return Scaffold(
+      body: StoreConnector<AppState, List<DrinkHistoryEntry>>(
+        converter: (store) => store.state.drinksHistory,
+        builder: (context, entries) {
+          return SafeArea(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 Padding(
                   padding: const EdgeInsets.only(bottom: 8, right: 8, left: 8),
@@ -213,6 +214,40 @@ class _HistoryPageState extends State<HistoryPage>
                           color: Theme.of(context).focusColor,
                         ),
                       ),
+                      const Spacer(),
+                      Text(
+                        "Summary",
+                        style: GoogleFonts.raleway(
+                          fontSize: 19,
+                          color: Theme.of(context).focusColor,
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(right: 10.0),
+                        child: IconButton(
+                          onPressed: () => showSlidingBottomSheet(
+                            context,
+                            builder: (_) => SlidingSheetDialog(
+                              duration: const Duration(milliseconds: 500),
+                              cornerRadius: 16,
+                              snapSpec: const SnapSpec(
+                                initialSnap: 0.5,
+                                snappings: [0.5, 0.7],
+                              ),
+                              builder: (_, SheetState state) {
+                                return summaryBottomSheet(entries);
+                              },
+                            ),
+                          ),
+                          tooltip: "Summary",
+                          icon: const Icon(
+                            Icons.auto_awesome_mosaic_rounded,
+                            size: 30,
+                            semanticLabel: "Summary",
+                          ),
+                          splashRadius: 25,
+                        ),
+                      ),
                     ],
                   ),
                 ),
@@ -221,7 +256,7 @@ class _HistoryPageState extends State<HistoryPage>
                     color: Colors.transparent,
                   ),
                   child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     mainAxisSize: MainAxisSize.max,
                     children: <Widget>[
                       tabButton('Today', 0),
@@ -236,39 +271,50 @@ class _HistoryPageState extends State<HistoryPage>
                     tabController: _tabController,
                   ),
                 ),
-                SizedBox(height: MediaQuery.of(context).size.height / 55),
-                Text(
-                  "Summary",
-                  style: GoogleFonts.nunitoSans(
-                    color: Theme.of(context).focusColor,
-                    fontSize: 28,
-                    fontWeight: FontWeight.w500,
-                  ),
-                ),
-                SizedBox(height: MediaQuery.of(context).size.height / 50),
-                bottomCard(context, entries),
               ],
             ),
-          ),
-        );
-      },
+          );
+        },
+      ),
     );
   }
 
-  Container bottomCard(BuildContext context, List<DrinkHistoryEntry> entries) {
-    return Container(
-      margin: const EdgeInsets.only(left: 10, right: 10),
-      height: MediaQuery.of(context).size.height / 7,
-      decoration: BoxDecoration(
-        color: Colors.blue[400],
-        borderRadius: BorderRadius.circular(13),
-      ),
+  Widget summaryBottomSheet(List<DrinkHistoryEntry> entries) {
+    return Material(
       child: Padding(
-        padding: const EdgeInsets.only(top: 5.0),
-        child: Row(
+        padding: const EdgeInsets.all(15.0),
+        child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          mainAxisSize: MainAxisSize.min,
-          children: _buildStats(entries),
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Container(
+                height: 8,
+                width: MediaQuery.of(context).size.width / 8,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(30),
+                  color: Colors.blue[300],
+                ),
+              ),
+            ),
+            Text(
+              "Summary",
+              style: GoogleFonts.nunitoSans(
+                color: Theme.of(context).focusColor,
+                fontSize: 28,
+                fontWeight: FontWeight.w500,
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(15.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisSize: MainAxisSize.min,
+                children: _buildStats(entries),
+              ),
+            ),
+          ],
         ),
       ),
     );
@@ -346,13 +392,14 @@ class DrinkHitoryListItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    String readableDate = DateFormat('   EEEEEE\n d-M-y').format(date);
+    String readableDay = DateFormat('EEEEEE').format(date);
+    String itsdate = DateFormat('d-M-y').format(date);
     String readableTime = DateFormat('HH:mm').format(date);
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Container(
-        height: MediaQuery.of(context).size.height / 10,
-        margin: const EdgeInsets.only(left: 12, right: 12),
+        height: MediaQuery.of(context).size.height / 9,
+        margin: const EdgeInsets.only(left: 2, right: 2),
         decoration: BoxDecoration(
           color: Colors.blue[100],
           borderRadius: BorderRadius.circular(10),
@@ -363,22 +410,36 @@ class DrinkHitoryListItem extends StatelessWidget {
               alignment: Alignment.topLeft,
               child: Padding(
                 padding: const EdgeInsets.only(left: 7.5, top: 9),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: <Widget>[
-                    Text(
-                      readableDate,
-                      style: const TextStyle(
-                        fontSize: 19.5,
-                      ),
-                    ),
-                    const SizedBox(height: 10),
-                    Text(
-                      "At $readableTime",
-                      style: const TextStyle(
-                        fontSize: 18.0,
-                        fontWeight: FontWeight.w500,
-                      ),
+                child: Row(
+                  children: [
+                    const Icon(Icons.calendar_month_rounded, size: 39),
+                    const SizedBox(width: 3),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Text(
+                          readableDay,
+                          style: const TextStyle(
+                            fontSize: 19.5,
+                          ),
+                        ),
+                        const SizedBox(height: 3),
+                        Text(
+                          itsdate,
+                          style: const TextStyle(
+                            fontSize: 19.5,
+                          ),
+                        ),
+                        const SizedBox(height: 5),
+                        Text(
+                          "At $readableTime",
+                          style: const TextStyle(
+                            fontSize: 18.0,
+                            fontWeight: FontWeight.w300,
+                          ),
+                        ),
+                      ],
                     ),
                   ],
                 ),
@@ -388,13 +449,24 @@ class DrinkHitoryListItem extends StatelessWidget {
               alignment: Alignment.centerRight,
               child: Padding(
                 padding: const EdgeInsets.only(right: 30.0),
-                child: Text(
-                  '$amount ml',
-                  style: const TextStyle(
-                    color: Colors.blueAccent,
-                    fontSize: 20.0,
-                    fontWeight: FontWeight.w500,
-                  ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    Image.asset(
+                      "assets/icons/water.png",
+                      height: 45,
+                      width: 45,
+                    ),
+                    const SizedBox(width: 8),
+                    Text(
+                      '$amount ml',
+                      style: const TextStyle(
+                        color: Colors.blueAccent,
+                        fontSize: 22.0,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                  ],
                 ),
               ),
             ),
