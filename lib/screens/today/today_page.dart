@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import '../../Models/app_state.dart';
 import '../../util/utilities.dart';
-import '../../widgets/Reusable Widgets/shadow_text.dart';
-import '../home/widgets/drink_menu.dart';
+import '../home/widgets/drink_bottomsheet.dart';
 import '../home/widgets/water_progress.dart';
 
 class TodayPage extends StatelessWidget {
@@ -12,57 +12,43 @@ class TodayPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
-
     return Stack(
       children: <Widget>[
         SafeArea(
-          child: Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              mainAxisSize: MainAxisSize.max,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: <Widget>[
-                Padding(
-                  padding: const EdgeInsets.only(top: 16.0),
-                  child: ShadowText(
-                    'TODAY',
-                    shadowColor: Colors.black.withOpacity(0.15),
-                    offsetX: 3.0,
-                    offsetY: 3.0,
-                    blur: 3.0,
-                    style: const TextStyle(
-                        color: Color(0xBEffffff),
-                        fontSize: 24.0,
-                        fontWeight: FontWeight.bold),
-                    textAlign: TextAlign.center,
+          child: SingleChildScrollView(
+            child: Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                mainAxisSize: MainAxisSize.max,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: <Widget>[
+                  Padding(
+                    padding: const EdgeInsets.only(
+                      top: 8,
+                      left: 8,
+                    ),
+                    child: Row(
+                      children: [
+                        //TODO Add a suitable Image within the header.
+                        Text(
+                          "TODAY",
+                          style: GoogleFonts.raleway(
+                            fontSize: 30,
+                            color: Theme.of(context).focusColor,
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 24.0),
-                  child: _TodayHistory(),
-                ),
-                const Expanded(
-                  child: WaterProgress(),
-                ),
-              ],
-            ),
-          ),
-        ),
-        Positioned(
-          bottom: 0.0,
-          height: 160.0,
-          child: SizedBox(
-            width: size.width,
-            height: 160.0,
-            child: Container(
-              decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  begin: Alignment.topCenter,
-                  end: Alignment.bottomCenter,
-                  stops: const [0.3, 0.7],
-                  colors: [Colors.white.withOpacity(0.0), Colors.white],
-                ),
+                  //? TODO Add drink history somewhere else more vibrant.
+                  /* const Padding(
+                    padding: EdgeInsets.symmetric(vertical: 24.0),
+                    child: TodaysHistory(),
+                  ), */
+                  const SizedBox(
+                    child: WaterProgress(),
+                  ),
+                ],
               ),
             ),
           ),
@@ -75,7 +61,7 @@ class TodayPage extends StatelessWidget {
             Padding(
               padding: EdgeInsets.only(bottom: 48.0),
               child: Center(
-                child: DrinkMenu(),
+                child: DrinkBottomSheet(),
               ),
             )
           ],
@@ -85,25 +71,31 @@ class TodayPage extends StatelessWidget {
   }
 }
 
-class _TodayHistory extends StatelessWidget {
+class TodaysHistory extends StatelessWidget {
+  const TodaysHistory({Key key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return StoreConnector<AppState, AppState>(
       converter: (store) => store.state,
       builder: (context, state) {
-        var historyText = '\nYou have not drunk anything today yet!\n';
+        var historyText = "\nYou hav'nt drunk anything today!\n";
         var todayEntries = state.drinksHistory
-            .where((entry) =>
-                Utils.isToday(DateTime.fromMillisecondsSinceEpoch(entry.date)))
+            .where((entry) => Utils.isToday(
+                  DateTime.fromMillisecondsSinceEpoch(entry.date),
+                ))
             .toList();
 
         if (todayEntries.isNotEmpty) {
-          todayEntries.sort((a, b) => b.date.compareTo(a.date));
+          todayEntries.sort(
+            (a, b) => b.date.compareTo(a.date),
+          );
           var i = 0;
           historyText = '';
           for (var entry in todayEntries) {
-            historyText = DateFormat('HH:mm')
-                    .format(DateTime.fromMillisecondsSinceEpoch(entry.date)) +
+            historyText = DateFormat('HH:mm').format(
+                  DateTime.fromMillisecondsSinceEpoch(entry.date),
+                ) +
                 ' - ${entry.amount} ml' +
                 historyText;
             i++;
@@ -122,17 +114,13 @@ class _TodayHistory extends StatelessWidget {
           }
         }
 
-        return ShadowText(
+        return Text(
           historyText,
-          shadowColor: Colors.black.withOpacity(0.15),
-          offsetX: 3.0,
-          offsetY: 3.0,
-          blur: 3.0,
           textAlign: TextAlign.center,
           style: const TextStyle(
-              color: Colors.white,
-              fontSize: 16.0,
-              fontWeight: FontWeight.normal),
+            fontSize: 16.0,
+            fontWeight: FontWeight.normal,
+          ),
         );
       },
     );

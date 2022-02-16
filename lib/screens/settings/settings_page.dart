@@ -72,7 +72,7 @@ class _SettingsPageState extends State<SettingsPage> {
           child: Padding(
             padding: const EdgeInsets.all(5),
             child: Container(
-              height: MediaQuery.of(context).size.height / 5,
+              height: MediaQuery.of(context).size.height / 3.5,
               width: MediaQuery.of(context).size.width,
               margin: const EdgeInsets.only(left: 8, right: 8),
               decoration: BoxDecoration(
@@ -85,7 +85,11 @@ class _SettingsPageState extends State<SettingsPage> {
                     alignment: Alignment.topCenter,
                     child: Padding(
                       padding: const EdgeInsets.only(
-                          top: 10, bottom: 25, left: 20, right: 20),
+                        top: 10,
+                        bottom: 25,
+                        left: 20,
+                        right: 20,
+                      ),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.center,
@@ -113,18 +117,13 @@ class _SettingsPageState extends State<SettingsPage> {
                   Align(
                     alignment: Alignment.center,
                     child: Padding(
-                      padding: const EdgeInsets.only(
-                        top: 30,
-                        left: 4,
-                        right: 4,
-                        bottom: 4,
-                      ),
+                      padding: const EdgeInsets.all(20),
                       child: Text(
                         randomFact,
                         maxLines: 5,
                         style: GoogleFonts.raleway(
                           fontSize: 18,
-                          fontWeight: FontWeight.w500,
+                          //fontWeight: FontWeight.w500,
                         ),
                       ),
                     ),

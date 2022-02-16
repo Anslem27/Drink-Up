@@ -3,10 +3,9 @@ import 'package:flutter_redux/flutter_redux.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../../../Models/app_state.dart';
 import '../../../Models/water/Drink.dart';
-import '../../../actions/glass_actions.dart';
+import '../../../actions/intake_actions.dart';
 import '../../../actions/history_actions.dart';
 import '../../../managers/database/drink_history.dart';
-import '../../../widgets/Reusable Widgets/shadow_text.dart';
 import '../history_manager.dart';
 import '../history_page.dart';
 
@@ -44,28 +43,38 @@ class _HistoryListsState extends State<HistoryLists> {
                         padding: const EdgeInsets.all(8),
                         //TODO make the images somewhat random dynamic.
                         child: Image.asset(
-                          "assets/illustrations/conifer-milkshake.png",
-                          height: 240,
+                          "assets/illustrations/coffee-down.png",
+                          height: 190,
                           width: 240,
                           fit: BoxFit.scaleDown,
                         ),
                       ),
-                      SizedBox(height: MediaQuery.of(context).size.height / 40),
                       Container(
                         margin: const EdgeInsets.only(left: 20, right: 20),
                         height: 80,
                         decoration: BoxDecoration(
-                          color: Colors.blue[100],
+                          color: const Color.fromARGB(255, 210, 229, 245),
                           borderRadius: BorderRadius.circular(
                             12,
                           ),
                         ),
                         child: Padding(
-                          padding: const EdgeInsets.all(16.0),
-                          child: Text(
-                            "You hav'nt had anything to drink today...",
-                            textAlign: TextAlign.center,
-                            style: GoogleFonts.nunitoSans(fontSize: 19),
+                          padding: const EdgeInsets.all(8.0),
+                          child: Column(
+                            children: [
+                              const Padding(
+                                padding: EdgeInsets.all(5.0),
+                                child: Icon(
+                                  Icons.info_outline_rounded,
+                                  color: Colors.red,
+                                ),
+                              ),
+                              Text(
+                                "You hav'nt had anything to drink...",
+                                textAlign: TextAlign.center,
+                                style: GoogleFonts.nunitoSans(fontSize: 18),
+                              ),
+                            ],
                           ),
                         ),
                       ),
@@ -115,12 +124,16 @@ class _HistoryListsState extends State<HistoryLists> {
                             borderRadius: BorderRadius.circular(10),
                           ),
                           child: const Align(
-                            alignment: Alignment.center,
-                            child: ShadowText(
-                              'Swipe to remove',
-                              style: TextStyle(
-                                color: Colors.black,
-                                fontWeight: FontWeight.bold,
+                            alignment: Alignment.centerLeft,
+                            child: Padding(
+                              padding: EdgeInsets.only(left: 8.0),
+                              child: Text(
+                                'Swipe to remove.....',
+                                style: TextStyle(
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: 20,
+                                ),
                               ),
                             ),
                           ),

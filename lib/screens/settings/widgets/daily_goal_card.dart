@@ -20,7 +20,8 @@ class DailyGoalCard extends StatefulWidget {
       : super(key: key);
 
   int suggestedAmount() {
-    int myAge = age != null ? age : 800;
+    //int myAge = age != null ? age : 800;
+    int myAge = age ?? 800;
 
     if (myAge < 1) {
       return 800;

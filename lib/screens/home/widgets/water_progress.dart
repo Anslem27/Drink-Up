@@ -3,8 +3,6 @@ import 'package:flutter_redux/flutter_redux.dart';
 import 'dart:math';
 import 'package:vector_math/vector_math.dart' as Vector;
 import '../../../Models/app_state.dart';
-import '../../../widgets/Reusable Widgets/shadow_text.dart';
-import '../../../widgets/container_wrapper/container_wrapper.dart';
 
 class WaterProgress extends StatefulWidget {
   const WaterProgress({Key key}) : super(key: key);
@@ -42,111 +40,122 @@ class _WaterProgressState extends State<WaterProgress>
       converter: (store) => store.state,
       builder: (context, state) {
         var current = state.glass.currentWaterAmount;
+        //TODO Create bool to display done text when user has finished there target goal.
         var target = state.glass.waterAmountTarget;
         var percentage = target > 0 ? current / target * 100 : 100.0;
         var progress = (percentage > 100.0 ? 100.0 : percentage) / 100.0;
         progress = 1.0 - progress;
-//TODO Handle homepage upgrade.
-        return ContainerWrapper(
-            child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: <Widget>[
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 24.0),
-              child: Stack(
-                alignment: Alignment.center,
-                children: <Widget>[
-                  Center(child: Image.asset('assets/images/drop.png')),
-                  Center(
-                    child: AnimatedBuilder(
-                      animation: CurvedAnimation(
-                        parent: animationController,
-                        curve: Curves.easeInOut,
-                      ),
-                      builder: (context, child) => ClipPath(
-                        child: Image.asset('assets/images/drop-blue.png'),
-                        clipper: WaveClipper(
-                            progress,
-                            (progress > 0.0 && progress < 1.0)
-                                ? animationController.value
-                                : 0.0),
+        //TODO Handle homepage upgrade.
+        return SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: <Widget>[
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 24.0),
+                child: Stack(
+                  alignment: Alignment.center,
+                  children: <Widget>[
+                    Center(
+                      child: Image.asset(
+                        'assets/bottle/plastic-bottle.png',
+                        fit: BoxFit.scaleDown,
                       ),
                     ),
-                  ),
-                  Center(
+                    Center(
+                      child: AnimatedBuilder(
+                        animation: CurvedAnimation(
+                          parent: animationController,
+                          curve: Curves.easeInOut,
+                        ),
+                        builder: (context, child) => ClipPath(
+                          child: Image.asset(
+                            'assets/bottle/plastic-bottle-blue.png',
+                            fit: BoxFit.scaleDown,
+                          ),
+                          clipper: WaveClipper(
+                              progress,
+                              (progress > 0.0 && progress < 1.0)
+                                  ? animationController.value
+                                  : 0.0),
+                        ),
+                      ),
+                    ),
+                    Center(
+                      child: Column(
+                        children: <Widget>[
+                          Text(
+                            '${(target > 0 ? current / target * 100 : 100).toStringAsFixed(0)}%',
+                            style: TextStyle(
+                              color: Colors.blue[800],
+                              fontSize: 40.0,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          Text(
+                            '$current ml',
+                            style: TextStyle(
+                                color: Colors.blue[800],
+                                fontSize: 18.0,
+                                fontWeight: FontWeight.bold),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              Row(
+                children: <Widget>[
+                  Expanded(
                     child: Column(
                       children: <Widget>[
-                        ShadowText(
-                          '${(target > 0 ? current / target * 100 : 100).toStringAsFixed(0)}%',
-                          shadowColor: Colors.black.withOpacity(0.5),
-                          offsetX: 3.0,
-                          offsetY: 3.0,
-                          blur: 3.0,
+                        const Text(
+                          'Remaining',
                           style: TextStyle(
-                              color: Colors.white.withAlpha(200),
-                              fontSize: 40.0,
-                              fontWeight: FontWeight.bold),
+                            fontWeight: FontWeight.w500,
+                          ),
                         ),
-                        ShadowText(
-                          '$current ml',
-                          shadowColor: Colors.black.withOpacity(0.3),
-                          offsetX: 3.0,
-                          offsetY: 3.0,
-                          blur: 3.0,
-                          style: TextStyle(
-                              color: Colors.white.withAlpha(150),
-                              fontSize: 18.0,
-                              fontWeight: FontWeight.bold),
+                        Text(
+                          '${(target - current < 0 ? 0 : target - current)} ml',
+                          style: const TextStyle(
+                            fontSize: 20.0,
+                            fontWeight: FontWeight.w600,
+                          ),
                         )
                       ],
                     ),
                   ),
-                ],
-              ),
-            ),
-            Row(
-              children: <Widget>[
-                Expanded(
-                  child: Column(
+                  Expanded(
+                      child: Column(
                     children: <Widget>[
                       const Text(
-                        'Remaining',
+                        'Target',
                         style: TextStyle(
-                            color: Color(0xFF363535),
-                            fontWeight: FontWeight.w300),
+                          color: Color(0xFF363535),
+                          fontWeight: FontWeight.w500,
+                        ),
                       ),
                       Text(
-                        '${(target - current < 0 ? 0 : target - current)} ml',
+                        '$target ml',
                         style: const TextStyle(
-                            fontSize: 20.0, fontWeight: FontWeight.w600),
+                          fontSize: 20.0,
+                          fontWeight: FontWeight.w600,
+                        ),
                       )
                     ],
-                  ),
-                ),
-                Expanded(
-                    child: Column(
-                  children: <Widget>[
-                    const Text(
-                      'Target',
-                      style: TextStyle(
-                          color: Color(0xFF363535),
-                          fontWeight: FontWeight.w300),
-                    ),
-                    Text(
-                      '$target ml',
-                      style: const TextStyle(
-                          fontSize: 20.0, fontWeight: FontWeight.w600),
-                    )
-                  ],
-                ))
-              ],
-            ),
-          ],
-        ));
+                  ))
+                ],
+              ),
+            ],
+          ),
+        );
       },
     );
   }
 }
+
+
+//? Custom Wave Clipper.
 
 class WaveClipper extends CustomClipper<Path> {
   final double progress;
