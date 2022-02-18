@@ -31,23 +31,23 @@ class AppTheme {
   );
 }
 
+//0xffcaf0f6
 //custom material color
-//const Color(0xFFF66BBE)
-//?  f5bad3 (pinkish), c7d0df (grayish), fcfbfe (whiteish)
+//?  0xff007577 (greenish water)
 const MaterialColor primaryColor = MaterialColor(
-  0xFFF66BBE,
+  0xffcaf0f6,
   <int, Color>{
-    //?no applied shades, mzintained one constant
-    50: Color(0xFFF66BBE),
-    100: Color(0xFFF66BBE),
-    200: Color(0xFFF66BBE),
-    300: Color(0xFFF66BBE),
-    400: Color(0xFFF66BBE),
-    500: Color(0xFFF66BBE),
-    600: Color(0xFFF66BBE),
-    700: Color(0xFFF66BBE),
-    800: Color(0xFFF66BBE),
-    900: Color(0xFFF66BBE),
+    //?no applied shades, maintained one constant
+    50: Color(0xffcaf0f6),
+    100: Color(0xffcaf0f6),
+    200: Color(0xffcaf0f6),
+    300: Color(0xffcaf0f6),
+    400: Color(0xffcaf0f6),
+    500: Color(0xffcaf0f6),
+    600: Color(0xffcaf0f6),
+    700: Color(0xffcaf0f6),
+    800: Color(0xffcaf0f6),
+    900: Color(0xffcaf0f6),
   },
 );
 

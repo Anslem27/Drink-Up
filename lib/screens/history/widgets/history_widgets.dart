@@ -72,7 +72,8 @@ class _HistoryListsState extends State<HistoryLists> {
                               Text(
                                 "You hav'nt had anything to drink...",
                                 textAlign: TextAlign.center,
-                                style: GoogleFonts.nunitoSans(fontSize: 18),
+                                style: GoogleFonts.nunitoSans(
+                                    fontSize: 18, color: Colors.black),
                               ),
                             ],
                           ),
@@ -112,6 +113,7 @@ class _HistoryListsState extends State<HistoryLists> {
                           child: DrinkHitoryListItem(
                             entry.amount,
                             DateTime.fromMillisecondsSinceEpoch(entry.date),
+                            //entry.image,
                           ),
                         ),
                         key: entry.id != null

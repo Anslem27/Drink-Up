@@ -100,6 +100,7 @@ class _DailyGoalCardState extends State<DailyGoalCard> {
                     style: GoogleFonts.nunitoSans(
                       fontSize: 18,
                       fontWeight: FontWeight.w500,
+                      color: Theme.of(context).focusColor,
                     ),
                   ),
                 ),
@@ -110,9 +111,10 @@ class _DailyGoalCardState extends State<DailyGoalCard> {
                   alignment: Alignment.topRight,
                   child: Text(
                     '$_value ml',
-                    style: const TextStyle(
+                    style: TextStyle(
                       fontSize: 18,
                       fontWeight: FontWeight.w500,
+                      color: Theme.of(context).focusColor,
                     ),
                   ),
                 ),
@@ -145,10 +147,18 @@ class _DailyGoalCardState extends State<DailyGoalCard> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: <Widget>[
-                      const Text('Recommended: '),
+                      Text(
+                        'Recommended: ',
+                        style: TextStyle(
+                          color: Theme.of(context).focusColor,
+                        ),
+                      ),
                       Text(
                         "${widget.suggestedAmount().toString()} ml",
-                        style: const TextStyle(fontWeight: FontWeight.w700),
+                        style: TextStyle(
+                          fontWeight: FontWeight.w700,
+                          color: Theme.of(context).focusColor,
+                        ),
                       ),
                     ],
                   ),

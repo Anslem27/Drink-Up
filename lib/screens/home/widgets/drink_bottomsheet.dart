@@ -48,8 +48,7 @@ class DrinkBottomSheet extends StatelessWidget {
     );
   }
 
-  Material drinkBottomSheet(
-      BuildContext context, OnDrinkAddedCallback callback) {
+  drinkBottomSheet(BuildContext context, OnDrinkAddedCallback callback) {
     return Material(
       child: Padding(
         padding: const EdgeInsets.all(15.0),

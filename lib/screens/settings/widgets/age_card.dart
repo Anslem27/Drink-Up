@@ -43,7 +43,10 @@ class _AgeSelectorCardState extends State<AgeSelectorCard> {
                       alignment: Alignment.topCenter,
                       child: Text(
                         "Age\n $_value",
-                        style: const TextStyle(fontSize: 18),
+                        style: TextStyle(
+                          fontSize: 18,
+                          color: Theme.of(context).focusColor,
+                        ),
                       ),
                     ),
                   ),

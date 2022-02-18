@@ -103,7 +103,7 @@ class _HistoryPageState extends State<HistoryPage>
         child: HistorySummaryText(
           "TOTAL",
           summary,
-          Colors.black,
+          Theme.of(context).focusColor,
           unit: 'ml',
         ),
       ),
@@ -115,7 +115,7 @@ class _HistoryPageState extends State<HistoryPage>
           child: HistorySummaryText(
               "AVERAGE INTAKE",
               currentEntries.isNotEmpty ? summary / currentEntries.length : 0.0,
-              Colors.black,
+              Theme.of(context).focusColor,
               unit: 'ml'),
         ),
       );
@@ -135,7 +135,8 @@ class _HistoryPageState extends State<HistoryPage>
       }
       statWidgets.add(
         Expanded(
-          child: HistorySummaryText("AVERAGE\nA DAY", avg, Colors.black,
+          child: HistorySummaryText(
+              "AVERAGE\nA DAY", avg, Theme.of(context).focusColor,
               unit: 'ml'),
         ),
       );
@@ -146,7 +147,7 @@ class _HistoryPageState extends State<HistoryPage>
         child: HistorySummaryText(
           "TOTAL\nCUPS",
           currentEntries.length.toDouble(),
-          Colors.black,
+          Theme.of(context).focusColor,
         ),
       ),
     );
@@ -200,9 +201,10 @@ class _HistoryPageState extends State<HistoryPage>
                       IconButton(
                         onPressed: () {},
                         tooltip: "History",
-                        icon: const Icon(
+                        icon: Icon(
                           Icons.history_rounded,
                           size: 30,
+                          color: Theme.of(context).focusColor,
                         ),
                         splashRadius: 25,
                       ),
@@ -240,9 +242,10 @@ class _HistoryPageState extends State<HistoryPage>
                             ),
                           ),
                           tooltip: "Summary",
-                          icon: const Icon(
+                          icon: Icon(
                             Icons.auto_awesome_mosaic_rounded,
                             size: 30,
+                            color: Theme.of(context).focusColor,
                             semanticLabel: "Summary",
                           ),
                           splashRadius: 25,
@@ -386,6 +389,7 @@ class HistorySummaryText extends StatelessWidget {
 class DrinkHitoryListItem extends StatelessWidget {
   final int amount;
   final DateTime date;
+  //final Image image;
 
   const DrinkHitoryListItem(this.amount, this.date, {Key key})
       : super(key: key);
@@ -393,7 +397,7 @@ class DrinkHitoryListItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     String readableDay = DateFormat('EEEEEE').format(date);
-    String itsdate = DateFormat('d-M-y').format(date);
+    String itsdate = DateFormat('d/M/y').format(date);
     String readableTime = DateFormat('HH:mm').format(date);
     return Padding(
       padding: const EdgeInsets.all(8.0),
@@ -412,8 +416,12 @@ class DrinkHitoryListItem extends StatelessWidget {
                 padding: const EdgeInsets.only(left: 7.5, top: 9),
                 child: Row(
                   children: [
-                    const Icon(Icons.calendar_month_rounded, size: 39),
-                    const SizedBox(width: 3),
+                    const Icon(
+                      Icons.calendar_today_rounded,
+                      size: 30,
+                      color: Colors.black,
+                    ),
+                    SizedBox(width: MediaQuery.of(context).size.width / 35),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -422,13 +430,16 @@ class DrinkHitoryListItem extends StatelessWidget {
                           readableDay,
                           style: const TextStyle(
                             fontSize: 19.5,
+                            fontWeight: FontWeight.w400,
+                            color: Colors.black,
                           ),
                         ),
                         const SizedBox(height: 3),
                         Text(
                           itsdate,
                           style: const TextStyle(
-                            fontSize: 19.5,
+                            fontSize: 17,
+                            color: Colors.black,
                           ),
                         ),
                         const SizedBox(height: 5),
@@ -437,6 +448,7 @@ class DrinkHitoryListItem extends StatelessWidget {
                           style: const TextStyle(
                             fontSize: 18.0,
                             fontWeight: FontWeight.w300,
+                            color: Colors.black,
                           ),
                         ),
                       ],
@@ -452,11 +464,8 @@ class DrinkHitoryListItem extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
-                    Image.asset(
-                      "assets/icons/water.png",
-                      height: 45,
-                      width: 45,
-                    ),
+                    //? Dynamic image.
+                    getImage(amount),
                     const SizedBox(width: 8),
                     Text(
                       '$amount ml',
@@ -474,5 +483,35 @@ class DrinkHitoryListItem extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  //? Fetches image per water entry.
+  getImage(int amount) {
+    switch (amount) {
+      case 200:
+        return Image.asset(
+          "assets/bottle/glass-of-water.png",
+          height: 45,
+          width: 45,
+        );
+      case 300:
+        return Image.asset(
+          "assets/bottle/mineral-water.png",
+          height: 45,
+          width: 45,
+        );
+      case 500:
+        return Image.asset(
+          "assets/bottle/plastic-bottle-blue.png",
+          height: 45,
+          width: 45,
+        );
+      default:
+        return Image.asset(
+          "assets/icons/water.png",
+          height: 45,
+          width: 45,
+        );
+    }
   }
 }

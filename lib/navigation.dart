@@ -1,9 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'screens/settings/profile_page.dart';
 import 'util/utilities.dart';
 import 'screens/history/history_page.dart';
 import 'screens/notifications/notifications_settings_page.dart';
-import 'screens/settings/settings_page.dart';
 import 'screens/today/today_page.dart';
 
 class HomePage extends StatefulWidget {
@@ -41,7 +41,7 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
     const TodayPage(),
     const HistoryPage(),
     const NotificationsSettingsPage(),
-    const SettingsPage(),
+    const ProfilePage(),
   ];
 
   int currentindex = 0;

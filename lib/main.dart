@@ -4,13 +4,13 @@ import 'package:flutter_redux/flutter_redux.dart';
 import 'package:get/get.dart';
 import 'package:redux/redux.dart';
 import 'Models/app_state.dart';
+import 'Settings/app_settings.dart';
 import 'actions/history_actions.dart';
 import 'actions/settings_actions.dart';
 import 'middleware/middleware.dart';
 import 'reducers/app_state_reducer.dart';
 import 'navigation.dart';
 import 'styles/app_theme.dart';
-
 
 // APP NAME: Drink Up
 void main() {
@@ -29,7 +29,10 @@ class MyApp extends StatelessWidget {
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light);
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
+      //!Theme Changing variable.
+      themeMode: thememode,
       theme: AppTheme.lightTheme,
+      darkTheme: AppTheme.darkTheme,
       home: StoreProvider(
         store: store,
         child: StoreBuilder<AppState>(

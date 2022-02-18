@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hydrate_me/Settings/reusable_widgets.dart';
 
-// Theme,notifications,share,rate us,about,privacy pollicy,contact us,whats new
+import '../styles/theme_controller.dart';
+
+ThemeMode thememode = ThemeMode.system;
+
+// TODO: Suggest a new feature.
 class AppSettings extends StatefulWidget {
   const AppSettings({Key key}) : super(key: key);
 
@@ -60,12 +65,131 @@ class _AppSettingsState extends State<AppSettings> {
     );
   }
 
+  final themeController = Get.put(ThemeController());
+
+  //? Change app theme dialog.
+  //!FIXME save user theme state.
+  Widget themeChanger() {
+    return Dialog(
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(16),
+      ),
+      clipBehavior: Clip.antiAlias,
+      child: Padding(
+        padding: const EdgeInsets.all(16),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Image.asset(
+              "assets/settings/theme-icon.png",
+              height: 50,
+              width: 50,
+            ),
+            Text(
+              "Choose theme",
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                color: Theme.of(context).hoverColor,
+                fontSize: 22,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            const SizedBox(height: 8),
+            SizedBox(
+              width: 150,
+              child: Row(
+                children: <Widget>[
+                  Radio(
+                    value: ThemeMode.light,
+                    groupValue: thememode,
+                    onChanged: (val) {
+                      thememode = val;
+                      setState(() {
+                        themeController.changeThemeMode(ThemeMode.light);
+                        themeController.saveTheme(true);
+                      });
+                    },
+                  ),
+                  const Flexible(
+                    child: Text(
+                      'Light',
+                      style: TextStyle(fontSize: 15),
+                    ),
+                  )
+                ],
+              ),
+            ),
+            SizedBox(
+              width: 150,
+              child: Row(
+                children: <Widget>[
+                  Radio(
+                    value: ThemeMode.dark,
+                    groupValue: thememode,
+                    onChanged: (val) {
+                      thememode = val;
+                      setState(() {
+                        themeController.changeThemeMode(ThemeMode.dark);
+                        themeController.saveTheme(false);
+                      });
+                    },
+                  ),
+                  const Flexible(
+                    child: Text(
+                      'Dark',
+                      style: TextStyle(fontSize: 15),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            SizedBox(
+              width: 150,
+              child: Row(
+                children: <Widget>[
+                  Radio(
+                      value: ThemeMode.system,
+                      groupValue: thememode,
+                      onChanged: (val) {
+                        thememode = val;
+                        setState(() {
+                          themeController.changeThemeMode(ThemeMode.system);
+                          themeController.saveTheme(false);
+                        });
+                      }),
+                  const Flexible(
+                    child: Text(
+                      'System\nDefault',
+                      style: TextStyle(fontSize: 15),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10),
+                ),
+              ),
+              onPressed: () => Navigator.of(context).pop(),
+              child: const Text("Done"),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
   settingsBody() {
     return Column(
       children: [
         ReusableSettings(
           image: "assets/settings/theme-icon.png",
-          onTap: () {},
+          onTap: () => showDialog(
+            context: context,
+            builder: (_) => themeChanger(),
+          ),
           header: "Theme",
           subtitle: "General App theme appearance",
         ),

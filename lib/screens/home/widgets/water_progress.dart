@@ -131,7 +131,6 @@ class _WaterProgressState extends State<WaterProgress>
                       const Text(
                         'Target',
                         style: TextStyle(
-                          color: Color(0xFF363535),
                           fontWeight: FontWeight.w500,
                         ),
                       ),
@@ -153,7 +152,6 @@ class _WaterProgressState extends State<WaterProgress>
     );
   }
 }
-
 
 //? Custom Wave Clipper.
 

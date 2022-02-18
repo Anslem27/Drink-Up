@@ -12,14 +12,14 @@ import 'widgets/gender_card.dart';
 
 typedef OnSaveCallback = Function({Gender gender, int age, int dailyGoal});
 
-class SettingsPage extends StatefulWidget {
-  const SettingsPage({Key key}) : super(key: key);
+class ProfilePage extends StatefulWidget {
+  const ProfilePage({Key key}) : super(key: key);
 
   @override
-  _SettingsPageState createState() => _SettingsPageState();
+  _ProfilePageState createState() => _ProfilePageState();
 }
 
-class _SettingsPageState extends State<SettingsPage> {
+class _ProfilePageState extends State<ProfilePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -72,59 +72,47 @@ class _SettingsPageState extends State<SettingsPage> {
           child: Padding(
             padding: const EdgeInsets.all(5),
             child: Container(
-              height: MediaQuery.of(context).size.height / 3.5,
+              //height: MediaQuery.of(context).size.height / 3.5,
               width: MediaQuery.of(context).size.width,
               margin: const EdgeInsets.only(left: 8, right: 8),
               decoration: BoxDecoration(
                 color: Colors.blue[200],
                 borderRadius: BorderRadius.circular(10),
               ),
-              child: Stack(
+              child: Column(
                 children: [
-                  Align(
-                    alignment: Alignment.topCenter,
-                    child: Padding(
-                      padding: const EdgeInsets.only(
-                        top: 10,
-                        bottom: 25,
-                        left: 20,
-                        right: 20,
-                      ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Text(
-                            "Watery Facts",
-                            style: GoogleFonts.raleway(
-                              fontSize: 22,
-                              fontWeight: FontWeight.w600,
-                            ),
+                  Padding(
+                    padding: const EdgeInsets.all(5),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Text(
+                          "Watery Facts",
+                          style: GoogleFonts.raleway(
+                            fontSize: 22,
+                            fontWeight: FontWeight.w400,
                           ),
-                          const SizedBox(width: 3),
-                          IconButton(
-                            splashRadius: 24,
-                            onPressed: () {},
-                            icon: const Icon(
-                              Icons.star,
-                              color: Colors.yellow,
-                            ),
+                        ),
+                        const SizedBox(width: 3),
+                        IconButton(
+                          splashRadius: 24,
+                          onPressed: () {},
+                          icon: const Icon(
+                            Icons.star,
+                            color: Colors.yellow,
                           ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
                   ),
-                  Align(
-                    alignment: Alignment.center,
-                    child: Padding(
-                      padding: const EdgeInsets.all(20),
-                      child: Text(
-                        randomFact,
-                        maxLines: 5,
-                        style: GoogleFonts.raleway(
-                          fontSize: 18,
-                          //fontWeight: FontWeight.w500,
-                        ),
+                  Padding(
+                    padding: const EdgeInsets.all(8),
+                    child: Text(
+                      randomFact,
+                      textAlign: TextAlign.center,
+                      style: GoogleFonts.raleway(
+                        fontSize: 19.5,
                       ),
                     ),
                   ),

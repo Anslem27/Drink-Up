@@ -11,6 +11,7 @@ class DrinkHistoryTable extends DatabaseTable {
     entry.id = map['_id'];
     entry.amount = map['amount'];
     entry.date = map['date'];
+    //entry.image = map["image"];
 
     return entry;
   }
