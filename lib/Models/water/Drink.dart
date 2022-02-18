@@ -1,12 +1,9 @@
-import 'package:flutter/material.dart';
-
 abstract class Drink {
   final String name;
   final int amount;
-  //final Image image;
 
   Drink(this.name, this.amount);
-
+  
   // TODO:Create Additional variables where neccesary
   factory Drink.small() => Water(200);
   factory Drink.medium() => Water(300);

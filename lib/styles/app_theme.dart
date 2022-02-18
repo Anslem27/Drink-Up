@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 
-//! Do not alter with these values.
 
 class AppTheme {
   //!private contructor
+
   AppTheme._();
+
   static final ThemeData lightTheme = ThemeData(
     brightness: Brightness.light,
     focusColor: Colors.black,
@@ -15,6 +16,7 @@ class AppTheme {
     hintColor: const Color(0xff0F2576),
     primaryColor: const Color(0xFF4C9BFB),
   );
+
   static final ThemeData darkTheme = ThemeData(
     iconTheme: const IconThemeData(color: Colors.white),
     focusColor: Colors.white,

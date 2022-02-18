@@ -55,98 +55,94 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
   Widget build(BuildContext context) {
     final iconThemeColor = Theme.of(context).hoverColor;
     return SafeArea(
-      top: false,
       child: Scaffold(
-        body: Stack(
-          children: <Widget>[
-            Padding(
-              padding: const EdgeInsets.only(top: 40),
-              child: appBody[currentindex],
-            ),
-          ],
-        ),
-        bottomNavigationBar: NavigationBarTheme(
-          data: NavigationBarThemeData(
-            indicatorColor: Theme.of(context).primaryColor,
-            labelTextStyle: MaterialStateProperty.all(
-              const TextStyle(
-                fontSize: 14,
-              ),
-            ),
-          ),
-          child: NavigationBar(
-            labelBehavior: NavigationDestinationLabelBehavior.onlyShowSelected,
-            selectedIndex: currentindex,
-            onDestinationSelected: (index) {
-              setState(() {
-                currentindex = index;
-              });
-            },
-            height: 55,
-            destinations: [
-              NavigationDestination(
-                selectedIcon: Icon(
-                  CupertinoIcons.home,
-                  semanticLabel: 'Home',
-                  size: 33,
-                  color: iconThemeColor,
-                ),
-                icon: Icon(
-                  Icons.home_outlined,
-                  semanticLabel: 'Home',
-                  size: 33,
-                  color: iconThemeColor,
-                ),
-                label: "Home",
-              ),
-              NavigationDestination(
-                selectedIcon: Icon(
-                  Icons.history_rounded,
-                  semanticLabel: 'History',
-                  size: 29,
-                  color: iconThemeColor,
-                ),
-                icon: Icon(
-                  Icons.history,
-                  semanticLabel: 'History',
-                  size: 29,
-                  color: iconThemeColor,
-                ),
-                label: "History",
-              ),
-              NavigationDestination(
-                selectedIcon: Icon(
-                  Icons.notifications,
-                  size: 30,
-                  semanticLabel: 'Notifications',
-                  color: iconThemeColor,
-                ),
-                icon: Icon(
-                  Icons.notifications_outlined,
-                  size: 30,
-                  semanticLabel: 'Notifications',
-                  color: iconThemeColor,
-                ),
-                label: "Notifications",
-              ),
-              NavigationDestination(
-                selectedIcon: Icon(
-                  Icons.account_circle_sharp,
-                  size: 30,
-                  semanticLabel: 'Profile',
-                  color: iconThemeColor,
-                ),
-                icon: Icon(
-                  Icons.account_circle_outlined,
-                  size: 30,
-                  semanticLabel: 'Profile',
-                  color: iconThemeColor,
-                ),
-                label: "Profile",
-              ),
-            ],
+        body: appBody[currentindex],
+        bottomNavigationBar: navigationDestinations(context, iconThemeColor),
+      ),
+    );
+  }
+
+  navigationDestinations(BuildContext context, Color iconThemeColor) {
+    return NavigationBarTheme(
+      data: NavigationBarThemeData(
+        indicatorColor: Theme.of(context).primaryColor,
+        labelTextStyle: MaterialStateProperty.all(
+          const TextStyle(
+            fontSize: 14,
           ),
         ),
+      ),
+      child: NavigationBar(
+        labelBehavior: NavigationDestinationLabelBehavior.onlyShowSelected,
+        selectedIndex: currentindex,
+        onDestinationSelected: (index) {
+          setState(() {
+            currentindex = index;
+          });
+        },
+        height: 55,
+        destinations: [
+          NavigationDestination(
+            selectedIcon: Icon(
+              CupertinoIcons.home,
+              semanticLabel: 'Home',
+              size: 33,
+              color: iconThemeColor,
+            ),
+            icon: Icon(
+              Icons.home_outlined,
+              semanticLabel: 'Home',
+              size: 33,
+              color: iconThemeColor,
+            ),
+            label: "Home",
+          ),
+          NavigationDestination(
+            selectedIcon: Icon(
+              Icons.history_rounded,
+              semanticLabel: 'History',
+              size: 29,
+              color: iconThemeColor,
+            ),
+            icon: Icon(
+              Icons.history,
+              semanticLabel: 'History',
+              size: 29,
+              color: iconThemeColor,
+            ),
+            label: "History",
+          ),
+          NavigationDestination(
+            selectedIcon: Icon(
+              Icons.notifications,
+              size: 30,
+              semanticLabel: 'Notifications',
+              color: iconThemeColor,
+            ),
+            icon: Icon(
+              Icons.notifications_outlined,
+              size: 30,
+              semanticLabel: 'Notifications',
+              color: iconThemeColor,
+            ),
+            label: "Notifications",
+          ),
+          NavigationDestination(
+            selectedIcon: Icon(
+              Icons.account_circle_sharp,
+              size: 30,
+              semanticLabel: 'Profile',
+              color: iconThemeColor,
+            ),
+            icon: Icon(
+              Icons.account_circle_outlined,
+              size: 30,
+              semanticLabel: 'Profile',
+              color: iconThemeColor,
+            ),
+            label: "Profile",
+          ),
+        ],
       ),
     );
   }

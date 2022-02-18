@@ -74,7 +74,6 @@ class _AppSettingsKeys {
   static const gender = "gender";
   static const age = "age";
   static const dailyGoal = "dailyGoal";
-
   static const notificationsEnabled = "notificationsEnabled";
   static const notificationsFromH = "notificationsFromH";
   static const notificationsFromM = "notificationsFromM";

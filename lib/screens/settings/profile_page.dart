@@ -38,6 +38,8 @@ class _ProfilePageState extends State<ProfilePage> {
               builder: (context, callback) {
                 return SingleChildScrollView(
                   child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       userActivity(),
                       Row(
@@ -67,57 +69,53 @@ class _ProfilePageState extends State<ProfilePage> {
         dailyGoalCard(state, callback),
         const SizedBox(height: 10),
         //? Random Water Facts
-        GestureDetector(
-          onTap: () {},
-          child: Padding(
-            padding: const EdgeInsets.all(5),
-            child: Container(
-              //height: MediaQuery.of(context).size.height / 3.5,
-              width: MediaQuery.of(context).size.width,
-              margin: const EdgeInsets.only(left: 8, right: 8),
-              decoration: BoxDecoration(
-                color: Colors.blue[200],
-                borderRadius: BorderRadius.circular(10),
-              ),
-              child: Column(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.all(5),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Text(
-                          "Watery Facts",
-                          style: GoogleFonts.raleway(
-                            fontSize: 22,
-                            fontWeight: FontWeight.w400,
-                          ),
+        Padding(
+          padding: const EdgeInsets.all(5),
+          child: Container(
+            width: MediaQuery.of(context).size.width,
+            margin: const EdgeInsets.only(left: 8, right: 8),
+            decoration: BoxDecoration(
+              color: Colors.blue[200],
+              borderRadius: BorderRadius.circular(10),
+            ),
+            child: Column(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(5),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Text(
+                        "Watery Facts",
+                        style: GoogleFonts.raleway(
+                          fontSize: 22,
+                          fontWeight: FontWeight.w400,
                         ),
-                        const SizedBox(width: 3),
-                        IconButton(
-                          splashRadius: 24,
-                          onPressed: () {},
-                          icon: const Icon(
-                            Icons.star,
-                            color: Colors.yellow,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(8),
-                    child: Text(
-                      randomFact,
-                      textAlign: TextAlign.center,
-                      style: GoogleFonts.raleway(
-                        fontSize: 19.5,
                       ),
+                      const SizedBox(width: 3),
+                      IconButton(
+                        splashRadius: 24,
+                        onPressed: () {},
+                        icon: const Icon(
+                          Icons.star,
+                          color: Colors.yellow,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8),
+                  child: Text(
+                    randomFact,
+                    textAlign: TextAlign.center,
+                    style: GoogleFonts.raleway(
+                      fontSize: 19.5,
                     ),
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
           ),
         ),
