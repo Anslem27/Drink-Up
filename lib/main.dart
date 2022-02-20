@@ -41,10 +41,7 @@ class MyApp extends StatelessWidget {
             store.dispatch(LoadAppSettingsAction());
           },
           builder: (context, store) {
-            return const Material(
-              type: MaterialType.transparency,
-              child: HomePage(),
-            );
+            return const HomePage();
           },
         ),
       ),

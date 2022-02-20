@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-
 class AppTheme {
   //!private contructor
 
@@ -34,22 +33,23 @@ class AppTheme {
 }
 
 //0xffcaf0f6
+//Color(0xff6D28D9)
 //custom material color
 //?  0xff007577 (greenish water)
 const MaterialColor primaryColor = MaterialColor(
-  0xffcaf0f6,
+  0xff6D28D9,
   <int, Color>{
     //?no applied shades, maintained one constant
-    50: Color(0xffcaf0f6),
-    100: Color(0xffcaf0f6),
-    200: Color(0xffcaf0f6),
-    300: Color(0xffcaf0f6),
-    400: Color(0xffcaf0f6),
-    500: Color(0xffcaf0f6),
-    600: Color(0xffcaf0f6),
-    700: Color(0xffcaf0f6),
-    800: Color(0xffcaf0f6),
-    900: Color(0xffcaf0f6),
+    50: Color(0xff6D28D9),
+    100: Color(0xff6D28D9),
+    200: Color(0xff6D28D9),
+    300: Color(0xff6D28D9),
+    400: Color(0xff6D28D9),
+    500: Color(0xff6D28D9),
+    600: Color(0xff6D28D9),
+    700: Color(0xff6D28D9),
+    800: Color(0xff6D28D9),
+    900: Color(0xff6D28D9),
   },
 );
 

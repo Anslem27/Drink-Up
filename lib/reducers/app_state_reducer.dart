@@ -1,4 +1,4 @@
-import 'package:hydrate_me/reducers/settings_reducer.dart';
+import 'package:drink_up/reducers/settings_reducer.dart';
 
 import '../Models/app_state.dart';
 import '../managers/database/drink_history.dart';

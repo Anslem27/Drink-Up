@@ -54,11 +54,9 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
   @override
   Widget build(BuildContext context) {
     final iconThemeColor = Theme.of(context).hoverColor;
-    return SafeArea(
-      child: Scaffold(
-        body: appBody[currentindex],
-        bottomNavigationBar: navigationDestinations(context, iconThemeColor),
-      ),
+    return Scaffold(
+      body: appBody[currentindex],
+      bottomNavigationBar: navigationDestinations(context, iconThemeColor),
     );
   }
 

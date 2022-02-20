@@ -73,9 +73,15 @@ class _ProfilePageState extends State<ProfilePage> {
           padding: const EdgeInsets.all(5),
           child: Container(
             width: MediaQuery.of(context).size.width,
-            margin: const EdgeInsets.only(left: 8, right: 8),
+            margin: const EdgeInsets.only(left: 30, right: 30),
             decoration: BoxDecoration(
               color: Colors.blue[200],
+              gradient: const LinearGradient(
+                colors: [
+                  Color(0xff4338CA),
+                  Color(0xff6D28D9),
+                ],
+              ),
               borderRadius: BorderRadius.circular(10),
             ),
             child: Column(
@@ -197,11 +203,18 @@ class _ProfilePageState extends State<ProfilePage> {
             child: Stack(
               children: [
                 Container(
-                  height: 220,
+                  height: 250,
                   width: MediaQuery.of(context).size.width / 2.3,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10),
-                    color: Colors.red[100],
+                    //color: Colors.red[100],
+                    gradient: const LinearGradient(
+                      colors: [
+                        //TODO: Add different better gradients
+                        Color(0xff4338CA),
+                        Color(0xff6D28D9),
+                      ],
+                    ),
                   ),
                   child: Stack(
                     children: [
@@ -230,7 +243,7 @@ class _ProfilePageState extends State<ProfilePage> {
                           padding: const EdgeInsets.only(bottom: 10),
                           child: TextButton.icon(
                             style: TextButton.styleFrom(
-                              primary: Colors.black,
+                              primary: Theme.of(context).focusColor,
                             ),
                             onPressed: () {},
                             icon: const Icon(Icons.edit),

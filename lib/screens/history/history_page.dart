@@ -389,7 +389,6 @@ class HistorySummaryText extends StatelessWidget {
 class DrinkHitoryListItem extends StatelessWidget {
   final int amount;
   final DateTime date;
-  //final Image image;
 
   const DrinkHitoryListItem(this.amount, this.date, {Key key})
       : super(key: key);
@@ -397,7 +396,7 @@ class DrinkHitoryListItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     String readableDay = DateFormat('EEEEEE').format(date);
-    String itsdate = DateFormat('d/M/y').format(date);
+    String drinkdate = DateFormat('d/M/y').format(date);
     String readableTime = DateFormat('HH:mm').format(date);
     return Padding(
       padding: const EdgeInsets.all(8.0),
@@ -436,7 +435,7 @@ class DrinkHitoryListItem extends StatelessWidget {
                         ),
                         const SizedBox(height: 3),
                         Text(
-                          itsdate,
+                          drinkdate,
                           style: const TextStyle(
                             fontSize: 17,
                             color: Colors.black,

@@ -1,7 +1,7 @@
+import 'package:drink_up/Settings/reusable_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:hydrate_me/Settings/reusable_widgets.dart';
 
 import '../styles/theme_controller.dart';
 

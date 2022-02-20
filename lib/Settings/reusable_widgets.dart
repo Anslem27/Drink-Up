@@ -1,5 +1,6 @@
-//...............//?Used with settings rows................................//
 import 'package:flutter/material.dart';
+
+//...............//?Used with settings rows................................//
 
 class ReusableSettings extends StatelessWidget {
   final String image, header, subtitle;
@@ -56,6 +57,80 @@ class ReusableSettings extends StatelessWidget {
           ),
         ),
       ],
+    );
+  }
+}
+
+//...............//?Used with drink dialogs................................//
+
+class QuirkyDialog extends StatelessWidget {
+  const QuirkyDialog({
+    Key key,
+    @required this.title,
+    @required this.assetImage,
+    @required this.child,
+  }) : super(key: key);
+  final String title, assetImage;
+  final Widget child;
+  //primary and secondary color gradients for each
+
+  final primaryColor = const Color(0xff4338CA);
+  final secondaryColor = const Color(0xff6D28D9);
+  final accentColor = const Color(0xffffffff);
+  final backgroundColor = const Color(0xffffffff);
+  final errorColor = const Color(0xffEF4444);
+
+  @override
+  Widget build(BuildContext context) {
+    return Dialog(
+      elevation: 1,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+      child: Container(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(colors: [primaryColor, secondaryColor]),
+          borderRadius: BorderRadius.circular(15.0),
+          boxShadow: [
+            BoxShadow(
+              offset: const Offset(12, 26),
+              blurRadius: 50,
+              spreadRadius: 0,
+              color: Colors.grey.withOpacity(.1),
+            ),
+          ],
+        ),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: CircleAvatar(
+                backgroundColor: Colors.transparent,
+                backgroundImage: AssetImage(assetImage),
+                radius: 25,
+              ),
+            ),
+            const SizedBox(
+              height: 15,
+            ),
+            Text(
+              title,
+              style: TextStyle(
+                color: accentColor,
+                fontSize: 22,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            const SizedBox(
+              height: 3.5,
+            ),
+            SizedBox(child: child),
+            const SizedBox(
+              height: 15,
+            ),
+          ],
+        ),
+      ),
     );
   }
 }

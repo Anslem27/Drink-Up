@@ -30,10 +30,16 @@ class TodayPage extends StatelessWidget {
                     child: Row(
                       children: [
                         //TODO Add a suitable Image within the header.
+                        Image.asset(
+                          "assets/icons/calendar.png",
+                          height: 40,
+                          width: 40,
+                        ),
+                        SizedBox(width: MediaQuery.of(context).size.width / 23),
                         Text(
-                          "TODAY",
-                          style: GoogleFonts.raleway(
-                            fontSize: 30,
+                          "Today",
+                          style: GoogleFonts.nunitoSans(
+                            fontSize: 38,
                             color: Theme.of(context).focusColor,
                           ),
                         ),

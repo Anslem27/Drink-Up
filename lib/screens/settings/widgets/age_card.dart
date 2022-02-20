@@ -34,6 +34,12 @@ class _AgeSelectorCardState extends State<AgeSelectorCard> {
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10),
                 color: Colors.orange[100],
+                gradient: const LinearGradient(
+                  colors: [
+                    Color(0xff6D28D9),
+                    Color(0xff4338CA),
+                  ],
+                ),
               ),
               child: Stack(
                 children: [

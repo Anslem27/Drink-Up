@@ -84,10 +84,16 @@ class _DailyGoalCardState extends State<DailyGoalCard> {
         child: Container(
           height: MediaQuery.of(context).size.height / 5.8,
           width: MediaQuery.of(context).size.width,
-          margin: const EdgeInsets.only(left: 8, right: 8),
+          margin: const EdgeInsets.only(left: 30, right: 30),
           decoration: BoxDecoration(
-            color: Colors.red[100],
+            //color: Colors.red[100],
             borderRadius: BorderRadius.circular(10),
+            gradient: const LinearGradient(
+              colors: [
+                Color(0xffa4508b),
+                Color(0xff5f0a87),
+              ],
+            ),
           ),
           child: Stack(
             children: [
