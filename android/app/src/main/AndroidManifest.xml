@@ -1,9 +1,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.hydrate_me">
+    package="com.app.drinkup">
 
    <uses-permission android:name="android.permission.INTERNET" />
    <application
-        android:label="Get Hydrated"
+        android:label="Drink Up"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

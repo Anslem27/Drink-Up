@@ -41,7 +41,7 @@ class _AppSettingsState extends State<AppSettings> {
                     const SizedBox(width: 2),
                     Text(
                       "Settings",
-                      style: GoogleFonts.raleway(
+                      style: GoogleFonts.nunitoSans(
                           fontSize: 30, color: Theme.of(context).focusColor),
                     ),
                   ],

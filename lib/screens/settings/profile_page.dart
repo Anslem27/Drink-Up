@@ -94,7 +94,7 @@ class _ProfilePageState extends State<ProfilePage> {
                     children: [
                       Text(
                         "Watery Facts",
-                        style: GoogleFonts.raleway(
+                        style: GoogleFonts.nunitoSans(
                           fontSize: 22,
                           fontWeight: FontWeight.w400,
                         ),
@@ -168,7 +168,7 @@ class _ProfilePageState extends State<ProfilePage> {
         children: [
           Text(
             "My Profile",
-            style: GoogleFonts.raleway(fontSize: 28),
+            style: GoogleFonts.nunitoSans(fontSize: 28),
           ),
           const Spacer(),
           Padding(

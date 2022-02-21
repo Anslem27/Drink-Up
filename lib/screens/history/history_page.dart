@@ -211,7 +211,7 @@ class _HistoryPageState extends State<HistoryPage>
                       const SizedBox(width: 2),
                       Text(
                         "History",
-                        style: GoogleFonts.raleway(
+                        style: GoogleFonts.nunitoSans(
                           fontSize: 30,
                           color: Theme.of(context).focusColor,
                         ),
