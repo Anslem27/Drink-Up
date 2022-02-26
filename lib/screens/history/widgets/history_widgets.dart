@@ -50,7 +50,7 @@ class _HistoryListsState extends State<HistoryLists> {
                         ),
                       ),
                       Container(
-                        margin: const EdgeInsets.only(left: 20, right: 20),
+                        margin: const EdgeInsets.only(left: 30, right: 30),
                         height: 80,
                         decoration: BoxDecoration(
                           color: const Color.fromARGB(255, 210, 229, 245),
@@ -61,8 +61,8 @@ class _HistoryListsState extends State<HistoryLists> {
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: Column(
-                            children: [
-                              const Padding(
+                            children: const [
+                              Padding(
                                 padding: EdgeInsets.all(5.0),
                                 child: Icon(
                                   Icons.info_outline_rounded,
@@ -72,8 +72,10 @@ class _HistoryListsState extends State<HistoryLists> {
                               Text(
                                 "You hav'nt had anything to drink...",
                                 textAlign: TextAlign.center,
-                                style: GoogleFonts.nunitoSans(
-                                    fontSize: 18, color: Colors.black),
+                                style: TextStyle(
+                                  fontSize: 18,
+                                  color: Colors.black,
+                                ),
                               ),
                             ],
                           ),

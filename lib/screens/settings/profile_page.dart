@@ -75,13 +75,7 @@ class _ProfilePageState extends State<ProfilePage> {
             width: MediaQuery.of(context).size.width,
             margin: const EdgeInsets.only(left: 30, right: 30),
             decoration: BoxDecoration(
-              color: Colors.blue[200],
-              gradient: const LinearGradient(
-                colors: [
-                  Color(0xff4338CA),
-                  Color(0xff6D28D9),
-                ],
-              ),
+              color: Theme.of(context).highlightColor,
               borderRadius: BorderRadius.circular(10),
             ),
             child: Column(
@@ -105,7 +99,7 @@ class _ProfilePageState extends State<ProfilePage> {
                         onPressed: () {},
                         icon: const Icon(
                           Icons.star,
-                          color: Colors.yellow,
+                          //color: Colors.yellow,
                         ),
                       ),
                     ],
@@ -208,11 +202,13 @@ class _ProfilePageState extends State<ProfilePage> {
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10),
                     //color: Colors.red[100],
-                    gradient: const LinearGradient(
+                    gradient: LinearGradient(
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
                       colors: [
                         //TODO: Add different better gradients
-                        Color(0xff4338CA),
-                        Color(0xff6D28D9),
+                        Theme.of(context).highlightColor,
+                        const Color(0xff448ee4)
                       ],
                     ),
                   ),

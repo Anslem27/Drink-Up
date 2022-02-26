@@ -1,9 +1,11 @@
+import 'package:drink_up/navigation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
+import 'package:get/get.dart';
 import 'package:sliding_sheet/sliding_sheet.dart';
 import '../../../Models/app_state.dart';
 import '../../../Models/water/Drink.dart';
-import '../../../Settings/reusable_widgets.dart';
+import '../../../Settings/Widgets/reusable_widgets.dart';
 import '../../../actions/history_actions.dart';
 import '../../../managers/database/drink_history.dart';
 
@@ -141,7 +143,7 @@ class DrinkBottomSheet extends StatelessWidget {
                   GestureDetector(
                     onTap: () {
                       callback(Drink.small());
-                      Navigator.of(context).pop;
+                      Navigator.pop(context);
                     },
                     child: Image.asset(
                       "assets/icons/juice-box.png",
@@ -165,7 +167,7 @@ class DrinkBottomSheet extends StatelessWidget {
                   GestureDetector(
                     onTap: () {
                       callback(Drink.medium());
-                      Navigator.of(context).pop;
+                      Navigator.pop(context);
                     },
                     child: Image.asset(
                       "assets/bottle/medium-juice.png",
@@ -189,7 +191,8 @@ class DrinkBottomSheet extends StatelessWidget {
                   GestureDetector(
                     onTap: () {
                       callback(Drink.big());
-                      Navigator.of(context).pop;
+                      Navigator.pop(context);
+                      ;
                     },
                     child: Image.asset(
                       "assets/bottle/big-juice.png",
@@ -232,7 +235,7 @@ class DrinkBottomSheet extends StatelessWidget {
                     onTap: () {
                       //TODO: This one returns an error when saving to sql database.
                       callback(Drink.small());
-                      Navigator.of(context).pop();
+                      Navigator.pop(context);
                     },
                     child: Image.asset(
                       "assets/bottle/glass-of-water.png",
@@ -256,7 +259,7 @@ class DrinkBottomSheet extends StatelessWidget {
                   GestureDetector(
                     onTap: () {
                       callback(Drink.medium());
-                      Navigator.of(context).pop;
+                      Navigator.pop(context);
                     },
                     child: Image.asset(
                       "assets/bottle/mineral-water.png",
@@ -280,7 +283,7 @@ class DrinkBottomSheet extends StatelessWidget {
                   GestureDetector(
                     onTap: () {
                       callback(Drink.big());
-                      Navigator.of(context).pop;
+                      Navigator.pop(context);
                     },
                     child: Image.asset(
                       "assets/bottle/plastic-bottle-blue.png",
@@ -314,7 +317,7 @@ class DrinkBottomSheet extends StatelessWidget {
                 children: [
                   GestureDetector(
                     onTap: () {
-                      /* Navigator.of(context).pop;
+                      /* Navigator.pop(context);;
                       callback(Drink.small()); */
                     },
                     child: Image.asset(
@@ -340,7 +343,7 @@ class DrinkBottomSheet extends StatelessWidget {
                 children: [
                   GestureDetector(
                     onTap: () {
-                      /* Navigator.of(context).pop;
+                      /* Navigator.pop(context);
                       callback(Drink.medium()); */
                     },
                     child: Image.asset(
@@ -423,7 +426,7 @@ class DrinkBottomSheet extends StatelessWidget {
                   GestureDetector(
                     onTap: () {
                       /* callback(Drink.small());
-                      Navigator.of(context).pop; */
+                      Navigator.pop(context);*/
                     },
                     child: Image.asset(
                       "assets/icons/wine.png",
@@ -447,7 +450,7 @@ class DrinkBottomSheet extends StatelessWidget {
                   GestureDetector(
                     onTap: () {
                       /* callback(Drink.medium());
-                      Navigator.of(context).pop; */
+                      Navigator.pop(context);*/
                     },
                     child: Image.asset(
                       "assets/icons/water-bottle.png",
@@ -471,7 +474,7 @@ class DrinkBottomSheet extends StatelessWidget {
                   GestureDetector(
                     onTap: () {
                       /* callback(Drink.big());
-                      Navigator.of(context).pop; */
+                    Navigator.pop(context); */
                     },
                     child: Image.asset(
                       "assets/icons/water-big.png",

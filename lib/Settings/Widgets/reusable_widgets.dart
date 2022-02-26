@@ -87,16 +87,11 @@ class QuirkyDialog extends StatelessWidget {
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
       child: Container(
         decoration: BoxDecoration(
-          gradient: LinearGradient(colors: [primaryColor, secondaryColor]),
+          gradient: LinearGradient(
+            //TODO: Add  better gradients or completely remove them
+            colors: [Theme.of(context).highlightColor, const Color(0xff448ee4)],
+          ),
           borderRadius: BorderRadius.circular(15.0),
-          boxShadow: [
-            BoxShadow(
-              offset: const Offset(12, 26),
-              blurRadius: 50,
-              spreadRadius: 0,
-              color: Colors.grey.withOpacity(.1),
-            ),
-          ],
         ),
         child: Column(
           mainAxisSize: MainAxisSize.min,
@@ -124,6 +119,7 @@ class QuirkyDialog extends StatelessWidget {
             const SizedBox(
               height: 3.5,
             ),
+            //? Any widget
             SizedBox(child: child),
             const SizedBox(
               height: 15,

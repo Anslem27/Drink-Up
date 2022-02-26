@@ -63,7 +63,7 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
   navigationDestinations(BuildContext context, Color iconThemeColor) {
     return NavigationBarTheme(
       data: NavigationBarThemeData(
-        indicatorColor: Theme.of(context).primaryColor,
+        indicatorColor: Theme.of(context).highlightColor,
         labelTextStyle: MaterialStateProperty.all(
           const TextStyle(
             fontSize: 14,

@@ -27,7 +27,8 @@ class _HistoryPageState extends State<HistoryPage>
   int _currentIndex = 0;
 
   //? WaterLike blue colors
-  final Color color = Colors.blue[200];
+  final Color
+      color = /* Theme.of(context).highlightColor */ const Color(0xffa4dded);
   final Color selectedColor = Colors.blueAccent;
 
   @override
@@ -155,7 +156,7 @@ class _HistoryPageState extends State<HistoryPage>
     return statWidgets;
   }
 
-  Widget tabButton(String title, int index) {
+  Widget tabButton(String respectiveTitle, int index) {
     return Expanded(
       child: Padding(
         padding: const EdgeInsets.all(10.0),
@@ -170,12 +171,10 @@ class _HistoryPageState extends State<HistoryPage>
             _onItemTapped(index);
           },
           child: Text(
-            title,
+            respectiveTitle,
             textAlign: TextAlign.center,
-            style: GoogleFonts.raleway(
-              color: _currentIndex == index
-                  ? Colors.white
-                  : const Color.fromARGB(255, 110, 100, 246),
+            style: GoogleFonts.nunitoSans(
+              color: _currentIndex == index ? Colors.white : Colors.blueAccent,
             ),
           ),
         ),
@@ -198,28 +197,23 @@ class _HistoryPageState extends State<HistoryPage>
                   padding: const EdgeInsets.only(bottom: 8, right: 8, left: 8),
                   child: Row(
                     children: [
-                      IconButton(
-                        onPressed: () {},
-                        tooltip: "History",
-                        icon: Icon(
-                          Icons.history_rounded,
-                          size: 30,
-                          color: Theme.of(context).focusColor,
-                        ),
-                        splashRadius: 25,
-                      ),
+                     /*  Icon(
+                        Icons.history_rounded,
+                        size: 30,
+                        color: Theme.of(context).focusColor,
+                      ), */
                       const SizedBox(width: 2),
                       Text(
                         "History",
                         style: GoogleFonts.nunitoSans(
-                          fontSize: 30,
+                          fontSize: 40,
                           color: Theme.of(context).focusColor,
                         ),
                       ),
                       const Spacer(),
                       Text(
                         "Summary",
-                        style: GoogleFonts.raleway(
+                        style: TextStyle(
                           fontSize: 19,
                           color: Theme.of(context).focusColor,
                         ),
@@ -404,7 +398,7 @@ class DrinkHitoryListItem extends StatelessWidget {
         height: MediaQuery.of(context).size.height / 9,
         margin: const EdgeInsets.only(left: 2, right: 2),
         decoration: BoxDecoration(
-          color: Colors.blue[100],
+          color: /* Colors.blue[100] */ Theme.of(context).highlightColor,
           borderRadius: BorderRadius.circular(10),
         ),
         child: Stack(
@@ -415,10 +409,22 @@ class DrinkHitoryListItem extends StatelessWidget {
                 padding: const EdgeInsets.only(left: 7.5, top: 9),
                 child: Row(
                   children: [
-                    const Icon(
-                      Icons.calendar_today_rounded,
-                      size: 30,
-                      color: Colors.black,
+                    Padding(
+                      padding: const EdgeInsets.all(5.5),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: const [
+                          Icon(
+                            Icons.calendar_today_rounded,
+                            size: 28,
+                          ),
+                          Icon(
+                            Icons.access_time_outlined,
+                            size: 30,
+                          ),
+                        ],
+                      ),
                     ),
                     SizedBox(width: MediaQuery.of(context).size.width / 35),
                     Column(
@@ -430,7 +436,6 @@ class DrinkHitoryListItem extends StatelessWidget {
                           style: const TextStyle(
                             fontSize: 19.5,
                             fontWeight: FontWeight.w400,
-                            color: Colors.black,
                           ),
                         ),
                         const SizedBox(height: 3),
@@ -438,7 +443,6 @@ class DrinkHitoryListItem extends StatelessWidget {
                           drinkdate,
                           style: const TextStyle(
                             fontSize: 17,
-                            color: Colors.black,
                           ),
                         ),
                         const SizedBox(height: 5),
@@ -447,7 +451,6 @@ class DrinkHitoryListItem extends StatelessWidget {
                           style: const TextStyle(
                             fontSize: 18.0,
                             fontWeight: FontWeight.w300,
-                            color: Colors.black,
                           ),
                         ),
                       ],

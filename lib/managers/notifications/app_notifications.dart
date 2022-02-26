@@ -94,6 +94,7 @@ class NotificationsManager {
     var platformChannelSpecifics = NotificationDetails(
         android: androidPlatformChannelSpecifics,
         iOS: iOSPlatformChannelSpecifics);
+    // ignore: deprecated_member_use
     await plugin.showDailyAtTime(id, 'Drink Water!',
         facts[Random().nextInt(facts.length)], time, platformChannelSpecifics);
   }

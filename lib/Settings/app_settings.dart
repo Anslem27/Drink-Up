@@ -1,4 +1,4 @@
-import 'package:drink_up/Settings/reusable_widgets.dart';
+import 'package:drink_up/Settings/Widgets/reusable_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';

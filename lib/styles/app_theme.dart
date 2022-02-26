@@ -13,16 +13,20 @@ class AppTheme {
     scaffoldBackgroundColor: Colors.white,
     primarySwatch: primaryColor,
     hintColor: const Color(0xff0F2576),
+    //* Card theme color
+    highlightColor: const Color(0xffa4dded),
     primaryColor: const Color(0xFF4C9BFB),
   );
 
   static final ThemeData darkTheme = ThemeData(
     iconTheme: const IconThemeData(color: Colors.white),
     focusColor: Colors.white,
+    shadowColor: Colors.grey.shade800,
     disabledColor: const Color(0xFF0096FF),
     hoverColor: const Color(0xFF0096FF),
     appBarTheme: AppBarTheme(color: Colors.grey.shade900),
-    cardColor: Colors.grey.shade900,
+    cardColor: Colors.grey.shade800,
+    highlightColor: Colors.grey.shade800,
     scaffoldBackgroundColor: darkThemeColor,
     primarySwatch: darkThemeColor,
     primaryColor: Colors.grey.shade800,

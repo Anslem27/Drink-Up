@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'dart:math';
 import 'package:vector_math/vector_math.dart' as Vector;
 import '../../../Models/app_state.dart';
@@ -41,11 +42,11 @@ class _WaterProgressState extends State<WaterProgress>
       builder: (context, state) {
         var current = state.glass.currentWaterAmount;
         //TODO Create bool to display done text when user has finished there target goal.
+        //TODO: Make home more dynamic
         var target = state.glass.waterAmountTarget;
         var percentage = target > 0 ? current / target * 100 : 100.0;
         var progress = (percentage > 100.0 ? 100.0 : percentage) / 100.0;
         progress = 1.0 - progress;
-        //TODO Handle homepage upgrade.
         return SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -109,14 +110,21 @@ class _WaterProgressState extends State<WaterProgress>
                   Expanded(
                     child: Column(
                       children: <Widget>[
-                        const Text(
-                          'Remaining',
-                          style: TextStyle(
+                        Text(
+                          //TODO: if(target < current){"Remaining"else{"You have reached your goal"}} ml'}
+                          target < current
+                              ? "You have reached your daily goal"
+                              : "Remaining",
+                          style: GoogleFonts.raleway(
                             fontWeight: FontWeight.w500,
+                            fontSize: 16,
                           ),
+                          textAlign: TextAlign.center,
                         ),
                         Text(
+                          //TODO: if(target < current){'${(target - current)else{"You have reached your goal"}} ml'}
                           '${(target - current < 0 ? 0 : target - current)} ml',
+                          textAlign: TextAlign.center,
                           style: const TextStyle(
                             fontSize: 20.0,
                             fontWeight: FontWeight.w600,
@@ -126,23 +134,25 @@ class _WaterProgressState extends State<WaterProgress>
                     ),
                   ),
                   Expanded(
-                      child: Column(
-                    children: <Widget>[
-                      const Text(
-                        'Target',
-                        style: TextStyle(
-                          fontWeight: FontWeight.w500,
+                    child: Column(
+                      children: <Widget>[
+                        Text(
+                          'Target',
+                          style: GoogleFonts.raleway(
+                            fontWeight: FontWeight.w500,
+                            fontSize: 16.0,
+                          ),
                         ),
-                      ),
-                      Text(
-                        '$target ml',
-                        style: const TextStyle(
-                          fontSize: 20.0,
-                          fontWeight: FontWeight.w600,
-                        ),
-                      )
-                    ],
-                  ))
+                        Text(
+                          '$target ml',
+                          style: const TextStyle(
+                            fontSize: 20.0,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
                 ],
               ),
             ],
