@@ -1,7 +1,6 @@
-import 'package:drink_up/Settings/reusable_widgets.dart';
+import 'package:drink_up/Settings/Widgets/reusable_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 import '../styles/theme_controller.dart';
 
@@ -41,17 +40,19 @@ class _AppSettingsState extends State<AppSettings> {
                     const SizedBox(width: 2),
                     Text(
                       "Settings",
-                      style: GoogleFonts.raleway(
-                          fontSize: 30, color: Theme.of(context).focusColor),
+                      style: TextStyle(
+                        fontSize: 30,
+                        color: Theme.of(context).focusColor,
+                      ),
                     ),
                   ],
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
+              const Padding(
+                padding: EdgeInsets.all(8.0),
                 child: Text(
                   "General",
-                  style: GoogleFonts.raleway(
+                  style: TextStyle(
                     fontSize: 19.5,
                     color: Colors.grey,
                   ),
@@ -159,14 +160,14 @@ class _AppSettingsState extends State<AppSettings> {
                       }),
                   const Flexible(
                     child: Text(
-                      'System\nDefault',
+                      'System Default',
                       style: TextStyle(fontSize: 15),
                     ),
                   ),
                 ],
               ),
             ),
-            ElevatedButton(
+            /* ElevatedButton(
               style: ElevatedButton.styleFrom(
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10),
@@ -174,7 +175,7 @@ class _AppSettingsState extends State<AppSettings> {
               ),
               onPressed: () => Navigator.of(context).pop(),
               child: const Text("Done"),
-            ),
+            ), */
           ],
         ),
       ),
@@ -250,6 +251,137 @@ class _AppSettingsState extends State<AppSettings> {
           subtitle: "App build info",
         ),
       ],
+    );
+  }
+
+  //? Whats New Dialog
+  Widget newDialog() {
+    return Dialog(
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(16),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.all(10),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Text(
+              "📣 Whats new!",
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                color: Theme.of(context).hoverColor,
+                fontSize: 22,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            const SizedBox(height: 12),
+            Center(
+              child: Column(
+                children: [
+                  Image.asset("", height: 60, width: 60),
+                  const Padding(
+                    padding: EdgeInsets.only(
+                      left: 5.0,
+                      right: 5,
+                      bottom: 5,
+                      top: 14,
+                    ),
+                    child: Text(
+                      "We're constantly working on  new features, check by once in a while",
+                      style: TextStyle(color: Colors.grey, fontSize: 18),
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(16),
+                ),
+              ),
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              child: const Text("Ok"),
+            ),
+          ],
+        ),
+      ),
+      clipBehavior: Clip.antiAlias,
+    );
+  }
+
+//?Rating Dialog
+  Widget ratingDialog() {
+    return Dialog(
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(16),
+      ),
+      child: Padding(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Text(
+              "Rate the app!",
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                color: Theme.of(context).hoverColor,
+                fontSize: 22,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            SizedBox(height: MediaQuery.of(context).size.height / 40),
+            const Text(
+              "Satisfied with the app 😀,then rate us!!",
+              style: TextStyle(color: Colors.grey, fontSize: 17),
+            ),
+            SizedBox(height: MediaQuery.of(context).size.height / 40),
+            GestureDetector(
+              onTap: () {
+                /* => StoreRedirect.redirect(
+                  androidAppId: "com.diafcon.alpha",
+                  iOSAppId: "com.diafcon.flutterapp"), */
+              },
+              child: Image.asset(
+                "",
+                height: 40,
+                width: 40,
+              ),
+            ),
+            SizedBox(height: MediaQuery.of(context).size.height / 40),
+            const Text(
+              "Something's lacking?, email us here",
+              style: TextStyle(color: Colors.grey, fontSize: 17),
+            ),
+            SizedBox(height: MediaQuery.of(context).size.height / 40),
+            GestureDetector(
+              onTap: () {
+                //mailUSIssue();
+              },
+              child: Image.asset(
+                "",
+                height: 40,
+                width: 40,
+              ),
+            ),
+            const SizedBox(height: 8),
+            ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(16),
+                ),
+              ),
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              child: const Text("Dismiss"),
+            ),
+          ],
+        ),
+        padding: const EdgeInsets.all(10),
+      ),
     );
   }
 }

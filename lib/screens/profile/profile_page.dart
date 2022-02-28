@@ -75,13 +75,7 @@ class _ProfilePageState extends State<ProfilePage> {
             width: MediaQuery.of(context).size.width,
             margin: const EdgeInsets.only(left: 30, right: 30),
             decoration: BoxDecoration(
-              color: Colors.blue[200],
-              gradient: const LinearGradient(
-                colors: [
-                  Color(0xff4338CA),
-                  Color(0xff6D28D9),
-                ],
-              ),
+              color: Theme.of(context).highlightColor,
               borderRadius: BorderRadius.circular(10),
             ),
             child: Column(
@@ -91,22 +85,18 @@ class _ProfilePageState extends State<ProfilePage> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
+                    children: const [
                       Text(
                         "Watery Facts",
-                        style: GoogleFonts.raleway(
-                          fontSize: 22,
+                        style: TextStyle(
+                          fontSize: 25,
                           fontWeight: FontWeight.w400,
                         ),
                       ),
-                      const SizedBox(width: 3),
-                      IconButton(
-                        splashRadius: 24,
-                        onPressed: () {},
-                        icon: const Icon(
-                          Icons.star,
-                          color: Colors.yellow,
-                        ),
+                      SizedBox(width: 3),
+                      Icon(
+                        Icons.fact_check_outlined,
+                        color: Colors.blueAccent,
                       ),
                     ],
                   ),
@@ -116,7 +106,7 @@ class _ProfilePageState extends State<ProfilePage> {
                   child: Text(
                     randomFact,
                     textAlign: TextAlign.center,
-                    style: GoogleFonts.raleway(
+                    style: GoogleFonts.nunitoSans(
                       fontSize: 19.5,
                     ),
                   ),
@@ -166,9 +156,9 @@ class _ProfilePageState extends State<ProfilePage> {
       padding: const EdgeInsets.only(top: 10, bottom: 8, right: 8, left: 8),
       child: Row(
         children: [
-          Text(
+          const Text(
             "My Profile",
-            style: GoogleFonts.raleway(fontSize: 28),
+            style: TextStyle(fontSize: 30),
           ),
           const Spacer(),
           Padding(
@@ -181,7 +171,7 @@ class _ProfilePageState extends State<ProfilePage> {
               ),
               tooltip: "Menu",
               icon: const Icon(
-                Icons.auto_awesome_mosaic_rounded,
+                Icons.settings,
                 size: 30,
                 semanticLabel: "Menu",
               ),
@@ -208,11 +198,13 @@ class _ProfilePageState extends State<ProfilePage> {
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10),
                     //color: Colors.red[100],
-                    gradient: const LinearGradient(
+                    gradient: LinearGradient(
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
                       colors: [
                         //TODO: Add different better gradients
-                        Color(0xff4338CA),
-                        Color(0xff6D28D9),
+                        Theme.of(context).highlightColor,
+                        const Color(0xff448ee4)
                       ],
                     ),
                   ),

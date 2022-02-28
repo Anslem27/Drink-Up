@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
-import 'package:google_fonts/google_fonts.dart';
 import '../../../Models/app_state.dart';
 import '../../../Models/water/Drink.dart';
 import '../../../actions/intake_actions.dart';
@@ -50,7 +49,7 @@ class _HistoryListsState extends State<HistoryLists> {
                         ),
                       ),
                       Container(
-                        margin: const EdgeInsets.only(left: 20, right: 20),
+                        margin: const EdgeInsets.only(left: 30, right: 30),
                         height: 80,
                         decoration: BoxDecoration(
                           color: const Color.fromARGB(255, 210, 229, 245),
@@ -61,8 +60,8 @@ class _HistoryListsState extends State<HistoryLists> {
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: Column(
-                            children: [
-                              const Padding(
+                            children: const [
+                              Padding(
                                 padding: EdgeInsets.all(5.0),
                                 child: Icon(
                                   Icons.info_outline_rounded,
@@ -72,8 +71,10 @@ class _HistoryListsState extends State<HistoryLists> {
                               Text(
                                 "You hav'nt had anything to drink...",
                                 textAlign: TextAlign.center,
-                                style: GoogleFonts.nunitoSans(
-                                    fontSize: 18, color: Colors.black),
+                                style: TextStyle(
+                                  fontSize: 18,
+                                  color: Colors.black,
+                                ),
                               ),
                             ],
                           ),
@@ -109,11 +110,13 @@ class _HistoryListsState extends State<HistoryLists> {
                             borderRadius: BorderRadius.circular(15),
                           ),
                           padding: const EdgeInsets.only(
-                              left: 8.0, right: 8.0, bottom: 8.0),
+                            left: 8.0,
+                            right: 8.0,
+                            bottom: 8.0,
+                          ),
                           child: DrinkHitoryListItem(
                             entry.amount,
                             DateTime.fromMillisecondsSinceEpoch(entry.date),
-                            //entry.image,
                           ),
                         ),
                         key: entry.id != null
@@ -122,22 +125,44 @@ class _HistoryListsState extends State<HistoryLists> {
                         background: Container(
                           height: MediaQuery.of(context).size.height / 10,
                           decoration: BoxDecoration(
-                            color: Colors.red[200],
+                            color: Colors.redAccent,
                             borderRadius: BorderRadius.circular(10),
                           ),
-                          child: const Align(
-                            alignment: Alignment.centerLeft,
-                            child: Padding(
-                              padding: EdgeInsets.only(left: 8.0),
-                              child: Text(
-                                'Swipe to remove.....',
-                                style: TextStyle(
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.w500,
-                                  fontSize: 20,
+                          child: Stack(
+                            children: [
+                              Align(
+                                alignment: Alignment.centerLeft,
+                                child: Padding(
+                                  padding: const EdgeInsets.only(left: 10.0),
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    children: const [
+                                      Icon(Icons.archive_outlined),
+                                      SizedBox(height: 8),
+                                      Text("Remove")
+                                    ],
+                                  ),
                                 ),
                               ),
-                            ),
+                              Align(
+                                alignment: Alignment.centerRight,
+                                child: Padding(
+                                  padding: const EdgeInsets.only(right: 10.0),
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    children: const [
+                                      Icon(Icons.archive_outlined),
+                                      SizedBox(height: 8),
+                                      Text("Remove")
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ],
                           ),
                         ),
                         onDismissed: (direction) {

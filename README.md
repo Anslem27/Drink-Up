@@ -1,4 +1,6 @@
-# Get Hydrated
+# Drink Up
+
+#### `com.app.drinkup`
 
 Hydrating monitoring mobile app project.
 
@@ -8,7 +10,7 @@ Hydrating monitoring mobile app project.
 
 #### [🥰Support Repository]()
 
-##### [🧠Add Contribution to repo](anslembarn@gmail.com)
+##### [🧠Add Contribution to repo]()
 
 Get your flutter environment up and running.
 

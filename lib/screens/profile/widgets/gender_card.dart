@@ -43,15 +43,7 @@ class _GenderSelectorCardState extends State<GenderSelectorCard> {
             width: MediaQuery.of(context).size.width / 2.3,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10),
-              //color: Colors.blue[100],
-              gradient: const LinearGradient(
-                colors: [
-                  /* Color(0xff4338CA),
-                  Color(0xff6D28D9), */
-                  Color(0xff5f0a87),
-                  Color(0xffa4508b),
-                ],
-              ),
+              color: Theme.of(context).highlightColor,
             ),
             child: Stack(
               children: [
@@ -61,7 +53,7 @@ class _GenderSelectorCardState extends State<GenderSelectorCard> {
                     padding: const EdgeInsets.only(top: 8.0),
                     child: Text(
                       "Gender",
-                      style: GoogleFonts.nunitoSans(fontSize: 19),
+                      style: GoogleFonts.nunitoSans(fontSize: 22),
                     ),
                   ),
                 ),
@@ -93,7 +85,7 @@ class _GenderSelectorCardState extends State<GenderSelectorCard> {
                           icon: Icon(
                             Icons.female,
                             color: _selectedGender == Gender.female
-                                ? const Color(0xFFf5bad3)
+                                ?  Colors.pink
                                 : Colors.grey,
                             size: 40,
                           ),

@@ -33,13 +33,7 @@ class _AgeSelectorCardState extends State<AgeSelectorCard> {
               width: MediaQuery.of(context).size.width / 2.3,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10),
-                color: Colors.orange[100],
-                gradient: const LinearGradient(
-                  colors: [
-                    Color(0xff6D28D9),
-                    Color(0xff4338CA),
-                  ],
-                ),
+                color: Theme.of(context).highlightColor,
               ),
               child: Stack(
                 children: [
@@ -48,9 +42,10 @@ class _AgeSelectorCardState extends State<AgeSelectorCard> {
                     child: Align(
                       alignment: Alignment.topCenter,
                       child: Text(
-                        "Age\n $_value",
+                        "My Age\n $_value",
+                        textAlign: TextAlign.center,
                         style: TextStyle(
-                          fontSize: 18,
+                          fontSize: 20,
                           color: Theme.of(context).focusColor,
                         ),
                       ),
@@ -60,19 +55,24 @@ class _AgeSelectorCardState extends State<AgeSelectorCard> {
                     alignment: Alignment.bottomCenter,
                     child: Padding(
                       padding: const EdgeInsets.only(top: 50.0),
-                      child: Slider(
-                        onChanged: (double value) {
-                          setState(() {
-                            _value = value.round();
-                          });
-                        },
-                        value: _value.toDouble(),
-                        min: 0.0,
-                        max: 100.0,
-                        divisions: 100,
-                        onChangeEnd: (double value) {
-                          widget.changed(value.round());
-                        },
+                      child: SliderTheme(
+                        data: SliderThemeData(
+                          thumbColor: Theme.of(context).disabledColor,
+                        ),
+                        child: Slider(
+                          onChanged: (double value) {
+                            setState(() {
+                              _value = value.round();
+                            });
+                          },
+                          value: _value.toDouble(),
+                          min: 0.0,
+                          max: 100.0,
+                          divisions:100,
+                          onChangeEnd: (double value) {
+                            widget.changed(value.round());
+                          },
+                        ),
                       ),
                     ),
                   ),

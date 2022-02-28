@@ -1,4 +1,4 @@
-// ignore_for_file: unnecessary_this
+// ignore_for_file: file_names
 
 import 'Drink.dart';
 
@@ -9,12 +9,10 @@ class Glass {
   Glass(this.waterAmountTarget, this.currentWaterAmount);
 
   Glass addDrink(Drink drink) {
-    return Glass(
-        this.waterAmountTarget, this.currentWaterAmount + drink.amount);
+    return Glass(waterAmountTarget, currentWaterAmount + drink.amount);
   }
 
   Glass removeDrink(Drink drink) {
-    return Glass(
-        this.waterAmountTarget, this.currentWaterAmount - drink.amount);
+    return Glass(waterAmountTarget, currentWaterAmount - drink.amount);
   }
 }

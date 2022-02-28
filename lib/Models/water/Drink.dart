@@ -1,3 +1,5 @@
+// ignore_for_file: file_names
+
 abstract class Drink {
   final String name;
   final int amount;

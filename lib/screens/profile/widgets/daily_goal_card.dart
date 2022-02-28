@@ -86,14 +86,8 @@ class _DailyGoalCardState extends State<DailyGoalCard> {
           width: MediaQuery.of(context).size.width,
           margin: const EdgeInsets.only(left: 30, right: 30),
           decoration: BoxDecoration(
-            //color: Colors.red[100],
+            color: Theme.of(context).highlightColor,
             borderRadius: BorderRadius.circular(10),
-            gradient: const LinearGradient(
-              colors: [
-                Color(0xffa4508b),
-                Color(0xff5f0a87),
-              ],
-            ),
           ),
           child: Stack(
             children: [
@@ -104,7 +98,7 @@ class _DailyGoalCardState extends State<DailyGoalCard> {
                   child: Text(
                     "Daily Goal",
                     style: GoogleFonts.nunitoSans(
-                      fontSize: 18,
+                      fontSize: 20,
                       fontWeight: FontWeight.w500,
                       color: Theme.of(context).focusColor,
                     ),
@@ -128,21 +122,29 @@ class _DailyGoalCardState extends State<DailyGoalCard> {
               Align(
                 alignment: Alignment.bottomCenter,
                 child: Padding(
-                  padding: const EdgeInsets.only(top: 50.0),
-                  child: Slider(
-                    //activeColor: ,
-                    onChanged: (double value) {
-                      setState(() {
-                        _value = value.toInt();
-                      });
-                    },
-                    value: _value.toDouble(),
-                    min: 0.0,
-                    max: 10000.0,
-                    divisions: 100,
-                    onChangeEnd: (double value) {
-                      widget.changed(value.toInt());
-                    },
+                  padding: const EdgeInsets.only(top: 45.0),
+                  child: SizedBox(
+                    child: SliderTheme(
+                      data: SliderThemeData(
+                        trackHeight: 16,
+                        thumbColor: Theme.of(context).disabledColor,
+                      ),
+                      child: Slider(
+                        //activeColor: ,
+                        onChanged: (double value) {
+                          setState(() {
+                            _value = value.toInt();
+                          });
+                        },
+                        value: _value.toDouble(),
+                        min: 0.0,
+                        max: 10000.0,
+                        divisions: 1000,
+                        onChangeEnd: (double value) {
+                          widget.changed(value.toInt());
+                        },
+                      ),
+                    ),
                   ),
                 ),
               ),
@@ -156,6 +158,7 @@ class _DailyGoalCardState extends State<DailyGoalCard> {
                       Text(
                         'Recommended: ',
                         style: TextStyle(
+                          fontSize: 17,
                           color: Theme.of(context).focusColor,
                         ),
                       ),

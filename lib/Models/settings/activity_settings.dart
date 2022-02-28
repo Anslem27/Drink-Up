@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-import '../../screens/settings/Gender.dart';
+import '../../screens/profile/Gender.dart';
 
 class AppSettings {
   Gender gender;
