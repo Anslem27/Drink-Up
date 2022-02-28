@@ -1,3 +1,4 @@
+import 'package:drink_up/Settings/Widgets/reusable_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -29,7 +30,7 @@ class TodayPage extends StatelessWidget {
                     ),
                     child: Row(
                       children: [
-                        //TODO Add a suitable Image within the header.
+                        //TODO Add a suitable Image within the header,hopefuly dynamic.
                         Image.asset(
                           "assets/icons/calendar.png",
                           height: 40,
@@ -43,14 +44,14 @@ class TodayPage extends StatelessWidget {
                             color: Theme.of(context).focusColor,
                           ),
                         ),
+                        const Spacer(),
+                        const Padding(
+                          padding: EdgeInsets.only(right: 25.0),
+                          child: TodaysHistory(),
+                        ),
                       ],
                     ),
                   ),
-                  //? TODO Add drink history somewhere else more vibrant.
-                  /* const Padding(
-                    padding: EdgeInsets.symmetric(vertical: 24.0),
-                    child: TodaysHistory(),
-                  ), */
                   const SizedBox(
                     child: WaterProgress(),
                   ),
@@ -85,7 +86,7 @@ class TodaysHistory extends StatelessWidget {
     return StoreConnector<AppState, AppState>(
       converter: (store) => store.state,
       builder: (context, state) {
-        var historyText = "\nYou hav'nt drunk anything today!\n";
+        var historyText = "You hav'nt drunk\nanything today!";
         var todayEntries = state.drinksHistory
             .where((entry) => Utils.isToday(
                   DateTime.fromMillisecondsSinceEpoch(entry.date),
@@ -98,11 +99,16 @@ class TodaysHistory extends StatelessWidget {
           );
           var i = 0;
           historyText = '';
+
           for (var entry in todayEntries) {
-            historyText = DateFormat('HH:mm').format(
-                  DateTime.fromMillisecondsSinceEpoch(entry.date),
-                ) +
-                ' - ${entry.amount} ml' +
+            /* 
+            DateFormat('HH:mm a')
+            formats am and pm
+             
+             */
+            historyText = "${entry.amount} ml at  " +
+                DateFormat('HH:mm a')
+                    .format(DateTime.fromMillisecondsSinceEpoch(entry.date)) +
                 historyText;
             i++;
 
@@ -120,13 +126,63 @@ class TodaysHistory extends StatelessWidget {
           }
         }
 
-        return Text(
-          historyText,
-          textAlign: TextAlign.center,
-          style: const TextStyle(
-            fontSize: 16.0,
-            fontWeight: FontWeight.normal,
-          ),
+        return Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(bottom: 5.0),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Padding(
+                    padding: EdgeInsets.only(right: 5.0),
+                    child: Icon(Icons.wine_bar_outlined, size: 28),
+                  ),
+                  Text(
+                    "GLANCE",
+                    textAlign: TextAlign.center,
+                    style: GoogleFonts.nunito(
+                      fontSize: 20.0,
+                      fontWeight: FontWeight.w800,
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(right: 5.0),
+                    child: IconButton(
+                      splashRadius: 22,
+                      //TODO: Maybe move this to the faq page.
+                      onPressed: () => showDialog(
+                        context: context,
+                        builder: (_) => InfoDialog(
+                          headercolor: Colors.redAccent,
+                          header: "My Glance",
+                          buttontext: "Ok",
+                          onpressed: () => Navigator.pop(context),
+                          subtitletext:
+                              "Your glance features all your drink history up to three records with there corresponding time intervals",
+                        ),
+                      ),
+                      icon: const Icon(Icons.info_outline_rounded, size: 25),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(4.0),
+              child: Text(
+                historyText,
+                textAlign: TextAlign.center,
+                style: const TextStyle(
+                  fontSize: 16.0,
+                  fontWeight: FontWeight.normal,
+                ),
+              ),
+            ),
+          ],
         );
       },
     );

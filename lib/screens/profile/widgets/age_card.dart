@@ -45,7 +45,7 @@ class _AgeSelectorCardState extends State<AgeSelectorCard> {
                         "My Age\n $_value",
                         textAlign: TextAlign.center,
                         style: TextStyle(
-                          fontSize: 18,
+                          fontSize: 20,
                           color: Theme.of(context).focusColor,
                         ),
                       ),
@@ -68,7 +68,7 @@ class _AgeSelectorCardState extends State<AgeSelectorCard> {
                           value: _value.toDouble(),
                           min: 0.0,
                           max: 100.0,
-                          divisions: 100,
+                          divisions:100,
                           onChangeEnd: (double value) {
                             widget.changed(value.round());
                           },

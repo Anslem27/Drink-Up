@@ -13,7 +13,6 @@ class AppTheme {
     scaffoldBackgroundColor: Colors.white,
     primarySwatch: primaryColor,
     hintColor: const Color(0xff0F2576),
-    //* Card theme color
     highlightColor: const Color(0xffa4dded),
     primaryColor: const Color(0xFF4C9BFB),
   );

@@ -1,7 +1,5 @@
-import 'package:drink_up/navigation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
-import 'package:get/get.dart';
 import 'package:sliding_sheet/sliding_sheet.dart';
 import '../../../Models/app_state.dart';
 import '../../../Models/water/Drink.dart';
@@ -192,7 +190,7 @@ class DrinkBottomSheet extends StatelessWidget {
                     onTap: () {
                       callback(Drink.big());
                       Navigator.pop(context);
-                      ;
+                      
                     },
                     child: Image.asset(
                       "assets/bottle/big-juice.png",
@@ -233,7 +231,6 @@ class DrinkBottomSheet extends StatelessWidget {
                   const SizedBox(height: 8),
                   GestureDetector(
                     onTap: () {
-                      //TODO: This one returns an error when saving to sql database.
                       callback(Drink.small());
                       Navigator.pop(context);
                     },

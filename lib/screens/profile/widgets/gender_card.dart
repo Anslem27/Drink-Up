@@ -53,7 +53,7 @@ class _GenderSelectorCardState extends State<GenderSelectorCard> {
                     padding: const EdgeInsets.only(top: 8.0),
                     child: Text(
                       "Gender",
-                      style: GoogleFonts.nunitoSans(fontSize: 19),
+                      style: GoogleFonts.nunitoSans(fontSize: 22),
                     ),
                   ),
                 ),

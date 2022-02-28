@@ -85,22 +85,18 @@ class _ProfilePageState extends State<ProfilePage> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
+                    children: const [
                       Text(
                         "Watery Facts",
-                        style: GoogleFonts.nunitoSans(
-                          fontSize: 22,
+                        style: TextStyle(
+                          fontSize: 25,
                           fontWeight: FontWeight.w400,
                         ),
                       ),
-                      const SizedBox(width: 3),
-                      IconButton(
-                        splashRadius: 24,
-                        onPressed: () {},
-                        icon: const Icon(
-                          Icons.star,
-                          //color: Colors.yellow,
-                        ),
+                      SizedBox(width: 3),
+                      Icon(
+                        Icons.fact_check_outlined,
+                        color: Colors.blueAccent,
                       ),
                     ],
                   ),
@@ -110,7 +106,7 @@ class _ProfilePageState extends State<ProfilePage> {
                   child: Text(
                     randomFact,
                     textAlign: TextAlign.center,
-                    style: GoogleFonts.raleway(
+                    style: GoogleFonts.nunitoSans(
                       fontSize: 19.5,
                     ),
                   ),
@@ -160,9 +156,9 @@ class _ProfilePageState extends State<ProfilePage> {
       padding: const EdgeInsets.only(top: 10, bottom: 8, right: 8, left: 8),
       child: Row(
         children: [
-          Text(
+          const Text(
             "My Profile",
-            style: GoogleFonts.nunitoSans(fontSize: 28),
+            style: TextStyle(fontSize: 30),
           ),
           const Spacer(),
           Padding(
@@ -175,7 +171,7 @@ class _ProfilePageState extends State<ProfilePage> {
               ),
               tooltip: "Menu",
               icon: const Icon(
-                Icons.auto_awesome_mosaic_rounded,
+                Icons.settings,
                 size: 30,
                 semanticLabel: "Menu",
               ),

@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../Models/settings/activity_settings.dart';
-import '../../screens/settings/Gender.dart';
+import '../../screens/profile/Gender.dart';
 
 class AppSettingsManager {
   static final Future<SharedPreferences> _prefs =

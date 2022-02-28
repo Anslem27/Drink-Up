@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'screens/settings/profile_page.dart';
+
+import 'screens/profile/profile_page.dart';
 import 'util/utilities.dart';
 import 'screens/history/history_page.dart';
 import 'screens/notifications/notifications_settings_page.dart';
@@ -45,11 +46,6 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
   ];
 
   int currentindex = 0;
-  void indexChanger(int value) {
-    setState(() {
-      currentindex = value;
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -114,16 +110,16 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
             selectedIcon: Icon(
               Icons.notifications,
               size: 30,
-              semanticLabel: 'Notifications',
+              semanticLabel: 'Reminders',
               color: iconThemeColor,
             ),
             icon: Icon(
               Icons.notifications_outlined,
               size: 30,
-              semanticLabel: 'Notifications',
+              semanticLabel: 'Reminders',
               color: iconThemeColor,
             ),
-            label: "Notifications",
+            label: "Reminders",
           ),
           NavigationDestination(
             selectedIcon: Icon(

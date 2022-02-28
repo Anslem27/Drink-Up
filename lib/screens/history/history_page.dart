@@ -174,7 +174,9 @@ class _HistoryPageState extends State<HistoryPage>
             respectiveTitle,
             textAlign: TextAlign.center,
             style: GoogleFonts.nunitoSans(
-              color: _currentIndex == index ? Colors.white : Colors.blueAccent,
+              color: _currentIndex == index
+                  ? Colors.white
+                  : const Color.fromARGB(255, 14, 75, 179),
             ),
           ),
         ),
@@ -197,7 +199,7 @@ class _HistoryPageState extends State<HistoryPage>
                   padding: const EdgeInsets.only(bottom: 8, right: 8, left: 8),
                   child: Row(
                     children: [
-                     /*  Icon(
+                      /*  Icon(
                         Icons.history_rounded,
                         size: 30,
                         color: Theme.of(context).focusColor,

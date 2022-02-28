@@ -1,4 +1,3 @@
-import 'package:drink_up/screens/settings/profile_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_redux/flutter_redux.dart';
@@ -12,6 +11,7 @@ import 'middleware/middleware.dart';
 import 'reducers/app_state_reducer.dart';
 import 'navigation.dart';
 import 'screens/history/history_page.dart';
+import 'screens/profile/profile_page.dart';
 import 'screens/today/today_page.dart';
 import 'styles/app_theme.dart';
 

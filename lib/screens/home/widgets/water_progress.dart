@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'dart:math';
-import 'package:vector_math/vector_math.dart' as Vector;
+import 'package:vector_math/vector_math.dart' as vector;
 import '../../../Models/app_state.dart';
 
 class WaterProgress extends StatefulWidget {
@@ -41,12 +41,14 @@ class _WaterProgressState extends State<WaterProgress>
       converter: (store) => store.state,
       builder: (context, state) {
         var current = state.glass.currentWaterAmount;
-        //TODO Create bool to display done text when user has finished there target goal.
-        //TODO: Make home more dynamic
         var target = state.glass.waterAmountTarget;
         var percentage = target > 0 ? current / target * 100 : 100.0;
         var progress = (percentage > 100.0 ? 100.0 : percentage) / 100.0;
         progress = 1.0 - progress;
+
+        //? Current water intake double.
+        var currentIntakePercentage =
+            (target > 0 ? current / target * 100 : 100).toStringAsFixed(0);
         return SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -74,10 +76,11 @@ class _WaterProgressState extends State<WaterProgress>
                             fit: BoxFit.scaleDown,
                           ),
                           clipper: WaveClipper(
-                              progress,
-                              (progress > 0.0 && progress < 1.0)
-                                  ? animationController.value
-                                  : 0.0),
+                            progress,
+                            (progress > 0.0 && progress < 1.0)
+                                ? animationController.value
+                                : 0.0,
+                          ),
                         ),
                       ),
                     ),
@@ -85,19 +88,25 @@ class _WaterProgressState extends State<WaterProgress>
                       child: Column(
                         children: <Widget>[
                           Text(
-                            '${(target > 0 ? current / target * 100 : 100).toStringAsFixed(0)}%',
+                            target < current
+                                ? 'Your $currentIntakePercentage%\nof your daily\ngoal.'
+                                : "$currentIntakePercentage%",
+                            textAlign: TextAlign.center,
                             style: TextStyle(
-                              color: Colors.blue[800],
-                              fontSize: 40.0,
+                              color: target < current
+                                  ? Theme.of(context).focusColor
+                                  : Colors.blue[800],
+                              fontSize: target < current ? 19.0 : 40.0,
                               fontWeight: FontWeight.bold,
                             ),
                           ),
                           Text(
-                            '$current ml',
+                            target < current ? "" : "$current ml",
                             style: TextStyle(
-                                color: Colors.blue[800],
-                                fontSize: 18.0,
-                                fontWeight: FontWeight.bold),
+                              color: Colors.blue[800],
+                              fontSize: 18.0,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
                         ],
                       ),
@@ -111,19 +120,20 @@ class _WaterProgressState extends State<WaterProgress>
                     child: Column(
                       children: <Widget>[
                         Text(
-                          //TODO: if(target < current){"Remaining"else{"You have reached your goal"}} ml'}
                           target < current
                               ? "You have reached your daily goal"
                               : "Remaining",
-                          style: GoogleFonts.raleway(
+                          style: GoogleFonts.nunitoSans(
                             fontWeight: FontWeight.w500,
-                            fontSize: 16,
+                            fontSize: target < current ? 20 : 17.5,
                           ),
                           textAlign: TextAlign.center,
                         ),
                         Text(
                           //TODO: if(target < current){'${(target - current)else{"You have reached your goal"}} ml'}
-                          '${(target - current < 0 ? 0 : target - current)} ml',
+                          target < current
+                              ? ""
+                              : '${(target - current < 0 ? 0 : target - current)} ml',
                           textAlign: TextAlign.center,
                           style: const TextStyle(
                             fontSize: 20.0,
@@ -137,10 +147,10 @@ class _WaterProgressState extends State<WaterProgress>
                     child: Column(
                       children: <Widget>[
                         Text(
-                          'Target',
-                          style: GoogleFonts.raleway(
+                          'My Target',
+                          style: GoogleFonts.nunitoSans(
                             fontWeight: FontWeight.w500,
-                            fontSize: 16.0,
+                            fontSize: 17.5,
                           ),
                         ),
                         Text(
@@ -192,7 +202,7 @@ class WaveClipper extends CustomClipper<Path> {
       var extraHeight = wavesHeight * 0.5;
       extraHeight *= i / (size.width / 2 - size.width);
       var dx = i.toDouble();
-      var dy = sin((animation * 360 - i) % 360 * Vector.degrees2Radians) * 5 +
+      var dy = sin((animation * 360 - i) % 360 * vector.degrees2Radians) * 5 +
           progress * size.height -
           extraHeight;
       if (!dx.isNaN && !dy.isNaN) {
