@@ -121,7 +121,7 @@ class _WaterProgressState extends State<WaterProgress>
                       children: <Widget>[
                         Text(
                           target < current
-                              ? "You have reached your daily goal"
+                              ? "You have\nreached your\ndaily goal."
                               : "Remaining",
                           style: GoogleFonts.nunitoSans(
                             fontWeight: FontWeight.w500,
@@ -130,7 +130,6 @@ class _WaterProgressState extends State<WaterProgress>
                           textAlign: TextAlign.center,
                         ),
                         Text(
-                          //TODO: if(target < current){'${(target - current)else{"You have reached your goal"}} ml'}
                           target < current
                               ? ""
                               : '${(target - current < 0 ? 0 : target - current)} ml',
@@ -144,24 +143,48 @@ class _WaterProgressState extends State<WaterProgress>
                     ),
                   ),
                   Expanded(
-                    child: Column(
-                      children: <Widget>[
-                        Text(
-                          'My Target',
-                          style: GoogleFonts.nunitoSans(
-                            fontWeight: FontWeight.w500,
-                            fontSize: 17.5,
+                    child: target < current
+                        ? Padding(
+                            padding: const EdgeInsets.only(bottom: 18.0),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                IconButton(
+                                  splashRadius: 23,
+                                  onPressed: () {},
+                                  icon: const Icon(Icons.coffee_outlined,
+                                      size: 40),
+                                ),
+                                Text(
+                                  "Set new goal",
+                                  style: TextStyle(
+                                    color: Theme.of(context).focusColor,
+                                    fontSize: 20.0,
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          )
+                        : Column(
+                            children: <Widget>[
+                              Text(
+                                'My Target',
+                                style: GoogleFonts.nunitoSans(
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: 17.5,
+                                ),
+                              ),
+                              Text(
+                                '$target ml',
+                                style: const TextStyle(
+                                  fontSize: 20.0,
+                                  fontWeight: FontWeight.w600,
+                                ),
+                              )
+                            ],
                           ),
-                        ),
-                        Text(
-                          '$target ml',
-                          style: const TextStyle(
-                            fontSize: 20.0,
-                            fontWeight: FontWeight.w600,
-                          ),
-                        )
-                      ],
-                    ),
                   ),
                 ],
               ),

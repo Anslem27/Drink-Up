@@ -101,11 +101,6 @@ class TodaysHistory extends StatelessWidget {
           historyText = '';
 
           for (var entry in todayEntries) {
-            /* 
-            DateFormat('HH:mm a')
-            formats am and pm
-             
-             */
             historyText = "${entry.amount} ml at  " +
                 DateFormat('HH:mm a')
                     .format(DateTime.fromMillisecondsSinceEpoch(entry.date)) +
@@ -139,10 +134,10 @@ class TodaysHistory extends StatelessWidget {
                 children: [
                   const Padding(
                     padding: EdgeInsets.only(right: 5.0),
-                    child: Icon(Icons.wine_bar_outlined, size: 28),
+                    child: Icon(Icons.coffee_outlined, size: 28),
                   ),
                   Text(
-                    "GLANCE",
+                    "Glance",
                     textAlign: TextAlign.center,
                     style: GoogleFonts.nunito(
                       fontSize: 20.0,
@@ -162,7 +157,7 @@ class TodaysHistory extends StatelessWidget {
                           buttontext: "Ok",
                           onpressed: () => Navigator.pop(context),
                           subtitletext:
-                              "Your glance features all your drink history up to three records with there corresponding time intervals",
+                              "Your glance features, all your drink history up to three records with there corresponding time intervals",
                         ),
                       ),
                       icon: const Icon(Icons.info_outline_rounded, size: 25),

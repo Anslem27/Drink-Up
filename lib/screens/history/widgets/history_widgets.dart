@@ -103,7 +103,6 @@ class _HistoryListsState extends State<HistoryLists> {
                     },
                     builder: (context, callback) {
                       return Dismissible(
-                        //TODO Maybe retun a listtile, with an icon plus corresponding historical data.
                         child: Container(
                           height: MediaQuery.of(context).size.height / 7,
                           decoration: BoxDecoration(
@@ -139,7 +138,7 @@ class _HistoryListsState extends State<HistoryLists> {
                                     crossAxisAlignment:
                                         CrossAxisAlignment.center,
                                     children: const [
-                                      Icon(Icons.archive_outlined),
+                                      Icon(Icons.delete_forever_outlined),
                                       SizedBox(height: 8),
                                       Text("Remove")
                                     ],
@@ -155,7 +154,7 @@ class _HistoryListsState extends State<HistoryLists> {
                                     crossAxisAlignment:
                                         CrossAxisAlignment.center,
                                     children: const [
-                                      Icon(Icons.archive_outlined),
+                                      Icon(Icons.delete_forever_outlined),
                                       SizedBox(height: 8),
                                       Text("Remove")
                                     ],
