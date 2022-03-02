@@ -196,14 +196,10 @@ class _HistoryPageState extends State<HistoryPage>
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 Padding(
-                  padding: const EdgeInsets.only(bottom: 8, right: 8, left: 8),
+                  padding: const EdgeInsets.only(
+                      bottom: 8, right: 8, left: 8, top: 8),
                   child: Row(
                     children: [
-                      /*  Icon(
-                        Icons.history_rounded,
-                        size: 30,
-                        color: Theme.of(context).focusColor,
-                      ), */
                       const SizedBox(width: 2),
                       Text(
                         "History",
@@ -393,14 +389,14 @@ class DrinkHitoryListItem extends StatelessWidget {
   Widget build(BuildContext context) {
     String readableDay = DateFormat('EEEEEE').format(date);
     String drinkdate = DateFormat('d/M/y').format(date);
-    String readableTime = DateFormat('HH:mm').format(date);
+    String readableTime = DateFormat('HH:mm a').format(date);
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Container(
-        height: MediaQuery.of(context).size.height / 9,
+        //height: MediaQuery.of(context).size.height / 9,
         margin: const EdgeInsets.only(left: 2, right: 2),
         decoration: BoxDecoration(
-          color: /* Colors.blue[100] */ Theme.of(context).highlightColor,
+          color: Theme.of(context).highlightColor,
           borderRadius: BorderRadius.circular(10),
         ),
         child: Stack(
@@ -408,51 +404,54 @@ class DrinkHitoryListItem extends StatelessWidget {
             Align(
               alignment: Alignment.topLeft,
               child: Padding(
-                padding: const EdgeInsets.only(left: 7.5, top: 9),
+                padding: const EdgeInsets.only(left: 4, top: 9),
                 child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    Padding(
-                      padding: const EdgeInsets.all(5.5),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: const [
-                          Icon(
-                            Icons.calendar_today_rounded,
-                            size: 28,
-                          ),
-                          Icon(
-                            Icons.access_time_outlined,
-                            size: 30,
-                          ),
-                        ],
-                      ),
-                    ),
                     SizedBox(width: MediaQuery.of(context).size.width / 35),
                     Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.start,
                       children: <Widget>[
-                        Text(
-                          readableDay,
-                          style: const TextStyle(
-                            fontSize: 19.5,
-                            fontWeight: FontWeight.w400,
+                        Padding(
+                          padding: const EdgeInsets.all(4.5),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              const Icon(
+                                Icons.calendar_today_rounded,
+                                size: 25,
+                              ),
+                              const SizedBox(width: 3),
+                              Text(
+                                readableDay,
+                                style: const TextStyle(
+                                  fontSize: 19.5,
+                                  fontWeight: FontWeight.w400,
+                                ),
+                              ),
+                            ],
                           ),
                         ),
                         const SizedBox(height: 3),
-                        Text(
-                          drinkdate,
-                          style: const TextStyle(
-                            fontSize: 17,
-                          ),
-                        ),
-                        const SizedBox(height: 5),
-                        Text(
-                          "At $readableTime",
-                          style: const TextStyle(
-                            fontSize: 18.0,
-                            fontWeight: FontWeight.w300,
+                        Padding(
+                          padding: const EdgeInsets.all(4.5),
+                          child: Row(
+                            children: [
+                              const Icon(
+                                Icons.calendar_view_day,
+                                size: 25,
+                              ),
+                              const SizedBox(width: 3),
+                              Text(
+                                drinkdate,
+                                style: const TextStyle(
+                                  fontSize: 17,
+                                ),
+                              ),
+                            ],
                           ),
                         ),
                       ],
@@ -468,16 +467,30 @@ class DrinkHitoryListItem extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
-                    //? Dynamic image.
+                    //? Dynamic water intake icon.
                     getImage(amount),
                     const SizedBox(width: 8),
-                    Text(
-                      '$amount ml',
-                      style: const TextStyle(
-                        color: Colors.blueAccent,
-                        fontSize: 22.0,
-                        fontWeight: FontWeight.w500,
-                      ),
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Text(
+                          '$amount ml',
+                          style: const TextStyle(
+                            color: Colors.blueAccent,
+                            fontSize: 22.0,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                        const SizedBox(height: 5),
+                        Text(
+                          "At $readableTime",
+                          style: const TextStyle(
+                            fontSize: 18.0,
+                            fontWeight: FontWeight.w300,
+                          ),
+                        ),
+                      ],
                     ),
                   ],
                 ),

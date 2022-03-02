@@ -99,11 +99,7 @@ class QuirkyDialog extends StatelessWidget {
           children: [
             Padding(
               padding: const EdgeInsets.all(8.0),
-              child: CircleAvatar(
-                backgroundColor: Colors.transparent,
-                backgroundImage: AssetImage(assetImage),
-                radius: 25,
-              ),
+              child: Image.asset(assetImage),
             ),
             const SizedBox(
               height: 15,
@@ -116,14 +112,10 @@ class QuirkyDialog extends StatelessWidget {
                 fontWeight: FontWeight.bold,
               ),
             ),
-            const SizedBox(
-              height: 3.5,
-            ),
+            const SizedBox(height: 3.5),
             //? Any widget
             SizedBox(child: child),
-            const SizedBox(
-              height: 15,
-            ),
+            const SizedBox(height: 15),
           ],
         ),
       ),

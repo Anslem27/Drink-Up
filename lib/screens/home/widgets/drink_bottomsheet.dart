@@ -190,7 +190,6 @@ class DrinkBottomSheet extends StatelessWidget {
                     onTap: () {
                       callback(Drink.big());
                       Navigator.pop(context);
-                      
                     },
                     child: Image.asset(
                       "assets/bottle/big-juice.png",
@@ -313,10 +312,14 @@ class DrinkBottomSheet extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   GestureDetector(
-                    onTap: () {
-                      /* Navigator.pop(context);;
-                      callback(Drink.small()); */
-                    },
+                    onTap: () => showDialog(
+                      context: context,
+                      builder: (_) => QuirkyDialog(
+                        assetImage: "assets/bottle/soda.png",
+                        title: "Soda's",
+                        child: sodaDialogBody(callback, context),
+                      ),
+                    ),
                     child: Image.asset(
                       "assets/bottle/soda.png",
                       height: 55,
@@ -326,7 +329,6 @@ class DrinkBottomSheet extends StatelessWidget {
                   const SizedBox(height: 8),
                   const Text(
                     "Cola/Soda's",
-                    /* "200ml", */
                     style: TextStyle(
                       fontSize: 17,
                       fontWeight: FontWeight.w500,
@@ -339,10 +341,14 @@ class DrinkBottomSheet extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   GestureDetector(
-                    onTap: () {
-                      /* Navigator.pop(context);
-                      callback(Drink.medium()); */
-                    },
+                    onTap: () => showDialog(
+                      context: context,
+                      builder: (_) => QuirkyDialog(
+                        assetImage: "assets/icons/big-milk.png",
+                        title: 'Diary',
+                        child: diaryDialogBody(callback, context),
+                      ),
+                    ),
                     child: Image.asset(
                       "assets/bottle/milkshake.png",
                       height: 55,
@@ -353,7 +359,6 @@ class DrinkBottomSheet extends StatelessWidget {
                   const Text(
                     "Dairy Drinks",
                     textAlign: TextAlign.center,
-                    /* "300ml", */
                     style: TextStyle(
                       fontWeight: FontWeight.w500,
                       fontSize: 17,
@@ -386,6 +391,188 @@ class DrinkBottomSheet extends StatelessWidget {
                     style: TextStyle(
                       fontWeight: FontWeight.w500,
                       fontSize: 17,
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+
+  sodaDialogBody(OnDrinkAddedCallback callback, BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(10),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Column(
+                children: [
+                  //? Small Juice Intake
+                  const Text(
+                    "200ml",
+                    style: TextStyle(
+                      fontSize: 17,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                  const SizedBox(height: 8),
+                  GestureDetector(
+                    onTap: () {
+                      /* callback(Drink.small());
+                      Navigator.pop(context);*/
+                    },
+                    child: Image.asset(
+                      "assets/icons/can.png",
+                      height: 55,
+                      width: 55,
+                    ),
+                  ),
+                ],
+              ),
+              //? Medium Juice intake
+              Column(
+                children: [
+                  const Text(
+                    "300ml",
+                    style: TextStyle(
+                      fontWeight: FontWeight.w500,
+                      fontSize: 17,
+                    ),
+                  ),
+                  const SizedBox(height: 8),
+                  GestureDetector(
+                    onTap: () {
+                      /* callback(Drink.medium());
+                      Navigator.pop(context);*/
+                    },
+                    child: Image.asset(
+                      "assets/icons/coke.png",
+                      height: 55,
+                      width: 55,
+                    ),
+                  ),
+                ],
+              ),
+              //? High Juice intake
+              Column(
+                children: [
+                  const Text(
+                    "500ml",
+                    style: TextStyle(
+                      fontWeight: FontWeight.w500,
+                      fontSize: 17,
+                    ),
+                  ),
+                  const SizedBox(height: 8),
+                  GestureDetector(
+                    onTap: () {
+                      /* callback(Drink.big());
+                    Navigator.pop(context); */
+                    },
+                    child: Image.asset(
+                      "assets/icons/soft-drink.png",
+                      height: 60,
+                      width: 60,
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+
+  diaryDialogBody(OnDrinkAddedCallback callback, BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(10),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Column(
+                children: [
+                  //? Small Juice Intake
+                  const Text(
+                    "200ml",
+                    style: TextStyle(
+                      fontSize: 17,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                  const SizedBox(height: 8),
+                  GestureDetector(
+                    onTap: () {
+                      /* callback(Drink.small());
+                      Navigator.pop(context);*/
+                    },
+                    child: Image.asset(
+                      "assets/bottle/milkshake.png",
+                      height: 55,
+                      width: 55,
+                    ),
+                  ),
+                ],
+              ),
+              //? Medium Juice intake
+              Column(
+                children: [
+                  const Text(
+                    "300ml",
+                    style: TextStyle(
+                      fontWeight: FontWeight.w500,
+                      fontSize: 17,
+                    ),
+                  ),
+                  const SizedBox(height: 8),
+                  GestureDetector(
+                    onTap: () {
+                      /* callback(Drink.medium());
+                      Navigator.pop(context);*/
+                    },
+                    child: Image.asset(
+                      "assets/icons/milk.png",
+                      height: 55,
+                      width: 55,
+                    ),
+                  ),
+                ],
+              ),
+              //? High Juice intake
+              Column(
+                children: [
+                  const Text(
+                    "500ml",
+                    style: TextStyle(
+                      fontWeight: FontWeight.w500,
+                      fontSize: 17,
+                    ),
+                  ),
+                  const SizedBox(height: 8),
+                  GestureDetector(
+                    onTap: () {
+                      /* callback(Drink.big());
+                    Navigator.pop(context); */
+                    },
+                    child: Image.asset(
+                      "assets/icons/big-milk.png",
+                      height: 60,
+                      width: 60,
                     ),
                   ),
                 ],
