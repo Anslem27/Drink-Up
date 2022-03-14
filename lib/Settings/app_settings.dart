@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sliding_sheet/sliding_sheet.dart';
 
+import '../Addons/feedback.dart';
 import '../styles/theme_controller.dart';
 import 'About/about_page.dart';
 
@@ -241,7 +242,12 @@ class _AppSettingsState extends State<AppSettings> {
         spaceBtn,
         ReusableSettings(
           image: "assets/settings/rate.png",
-          onTap: () {},
+          onTap: () => Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (_) => const FeedBackPage(),
+            ),
+          ),
           header: "Contact Us",
           subtitle: "Report or Suggest an Issue",
         ),
@@ -259,6 +265,7 @@ class _AppSettingsState extends State<AppSettings> {
       ],
     );
   }
+
 //? rating bottomsheet
   ratingBottomSheet(BuildContext context) {
     return Material(

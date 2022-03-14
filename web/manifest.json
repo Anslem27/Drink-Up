@@ -1,6 +1,6 @@
 {
-    "name": "hydrate_me",
-    "short_name": "hydrate_me",
+    "name": "drink_up",
+    "short_name": "drink_up",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

@@ -8,15 +8,14 @@ List<String> wateryFacts = [
   'Water is essential for proper functioning of the kidneys and other bodily functions',
   'When dehydrated, the skin can become more vulnerable to skin disorders and wrinkling',
   'Drinking water instead of soda can help with weight loss',
-  'Water lubricates your joints',
-  'Water forms saliva and mucus',
+  'Water forms saliva and mucus essential for lubricating most parts of the body',
   'Water delivers oxygen throughout the body.',
   'Water boosts skin health and beauty',
   'Water cushions the brain, spinal cord, and other sensitive tissues',
   'Water regulates body temperature',
   'Water flushes out body waste',
   'Water helps regulate blood pressure',
-  'Water makes minerals and nutrients accessible',
+  'Water makes minerals and nutrients accessible throughout the body',
   'Water prevents kidney damage',
   'Water boosts performance during exercise.',
   'Water reduces the chance of a hangover.',
@@ -38,3 +37,12 @@ List<String> wateryFacts = [
 //! Generate Random Fact.
 var random = Random();
 var randomFact = wateryFacts[random.nextInt(wateryFacts.length)];
+
+List wateryFactsImage = [
+  "assets/illustrations/cyborg-speech-bubble.png",
+  "assets/illustrations/cyborg-lemonade.png",
+  "assets/illustrations/cyborg-cocktail-1.png"
+];
+
+var factImageDissolver =
+    wateryFactsImage[random.nextInt(wateryFactsImage.length)];

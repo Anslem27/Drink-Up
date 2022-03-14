@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import '../../../Models/app_state.dart';
@@ -7,6 +9,15 @@ import '../../../actions/history_actions.dart';
 import '../../../managers/database/drink_history.dart';
 import '../history_manager.dart';
 import '../history_page.dart';
+
+List randomHistoryImage = [
+  "assets/illustrations/coffee-down.png",
+  "assets/illustrations/cyborg-button-with-exclamation-point.png",
+  "assets/illustrations/cyborg-cocktail-umbrella.png"
+];
+var noDrinkImage = Random();
+var historyImageDissolver =
+    randomHistoryImage[noDrinkImage.nextInt(randomHistoryImage.length)];
 
 class HistoryLists extends StatefulWidget {
   final TabController tabController;
@@ -42,12 +53,13 @@ class _HistoryListsState extends State<HistoryLists> {
                         padding: const EdgeInsets.all(8),
                         //TODO make the images somewhat random dynamic.
                         child: Image.asset(
-                          "assets/illustrations/coffee-down.png",
+                          historyImageDissolver,
                           height: 190,
                           width: 240,
                           fit: BoxFit.scaleDown,
                         ),
                       ),
+                      SizedBox(height: MediaQuery.of(context).size.height / 40),
                       Container(
                         margin: const EdgeInsets.only(left: 30, right: 30),
                         height: 80,

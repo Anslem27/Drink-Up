@@ -33,7 +33,7 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       //named routes.
       routes: <String, WidgetBuilder>{
-        "/homepage": (_) => const TodayPage(),
+        "/homepage": (_) =>  const TodayPage(),
         "/profilepage": (_) => const ProfilePage(),
         "/historypage": (_) => const HistoryPage(),
         "/settingspage": (_) => const AppSettings(),

@@ -58,9 +58,15 @@ class _AboutpageState extends State<Aboutpage> {
           ),
           const Align(
             alignment: Alignment.bottomCenter,
-            child: Text(
-              "Drink up",
-              style: TextStyle(color: Colors.grey),
+            child: Padding(
+              padding: EdgeInsets.all(8.0),
+              child: Text(
+                "Drink up",
+                style: TextStyle(
+                    color: Colors.grey,
+                    fontWeight: FontWeight.w400,
+                    fontSize: 18),
+              ),
             ),
           )
         ],
@@ -73,47 +79,84 @@ class _AboutpageState extends State<Aboutpage> {
       width: MediaQuery.of(context).size.width,
       margin: const EdgeInsets.only(left: 10, right: 10),
       decoration: BoxDecoration(
-        color: Colors.grey.shade900,
+        color: Theme.of(context).cardColor,
+        border: Border.all(color: Theme.of(context).highlightColor),
         borderRadius: BorderRadius.circular(13),
       ),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: const [
+        children: [
           Padding(
-            padding: EdgeInsets.all(15.0),
-            child: Text(
-              "Provide feedback",
-              style: TextStyle(
-                fontSize: 19,
-              ),
+            padding: const EdgeInsets.all(15.0),
+            child: Row(
+              children: const [
+                Text(
+                  "Provide feedback",
+                  style: TextStyle(
+                    fontSize: 19,
+                  ),
+                ),
+                Spacer(),
+                Padding(
+                  padding: EdgeInsets.only(right: 10),
+                  child: Icon(Icons.feed_outlined),
+                )
+              ],
             ),
           ),
           Padding(
-            padding: EdgeInsets.all(15.0),
-            child: Text(
-              "Change log",
-              style: TextStyle(
-                fontSize: 19,
-              ),
+            padding: const EdgeInsets.all(15.0),
+            child: Row(
+              children: const [
+                Text(
+                  "Change log",
+                  style: TextStyle(
+                    fontSize: 19,
+                  ),
+                ),
+                Spacer(),
+                Padding(
+                  padding: EdgeInsets.only(right: 10),
+                  child: Icon(Icons.book_online_outlined),
+                )
+              ],
             ),
           ),
           Padding(
-            padding: EdgeInsets.all(15.0),
-            child: Text(
-              "Rate on play store",
-              style: TextStyle(
-                fontSize: 19,
-              ),
+            padding: const EdgeInsets.all(15.0),
+            child: Row(
+              children: const [
+                Text(
+                  "Rate on playstore",
+                  style: TextStyle(
+                    fontSize: 19,
+                  ),
+                ),
+                Spacer(),
+                Padding(
+                  padding: EdgeInsets.only(right: 10),
+                  child: Icon(Icons.stars_outlined),
+                )
+              ],
             ),
           ),
           Padding(
-            padding: EdgeInsets.all(15.0),
-            child: Text(
-              "Privacy policy",
-              style: TextStyle(
-                fontSize: 19,
-              ),
+            padding: const EdgeInsets.all(15.0),
+            child: Row(
+              children: const [
+                Text(
+                  "Privacy policy",
+                  style: TextStyle(
+                    fontSize: 19,
+                  ),
+                ),
+                Spacer(),
+                Padding(
+                  padding: EdgeInsets.only(right: 10),
+                  child: Icon(Icons.shield_outlined),
+                )
+              ],
             ),
           ),
         ],
@@ -126,7 +169,8 @@ class _AboutpageState extends State<Aboutpage> {
       width: MediaQuery.of(context).size.width,
       margin: const EdgeInsets.only(left: 10, right: 10),
       decoration: BoxDecoration(
-        color: Colors.grey.shade900,
+        color: Theme.of(context).cardColor,
+        border: Border.all(color: Theme.of(context).highlightColor),
         borderRadius: BorderRadius.circular(13),
       ),
       child: Row(

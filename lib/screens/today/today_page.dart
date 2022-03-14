@@ -13,6 +13,9 @@ class TodayPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var now = DateTime.now();
+    String todayDate = DateFormat('dd').format(now);
+    String today = DateFormat("MMM").format(now);
     //TODO: Finish setting up landscape view
     return LayoutBuilder(
       builder: (context, constraints) {
@@ -35,10 +38,37 @@ class TodayPage extends StatelessWidget {
                           child: Row(
                             children: [
                               //TODO Add a suitable Image within the header,hopefuly dynamic.
-                              Image.asset(
-                                "assets/icons/calendar.png",
-                                height: 40,
-                                width: 40,
+                              Container(
+                                width: MediaQuery.of(context).size.width / 6,
+                                height: MediaQuery.of(context).size.height / 10,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(12),
+                                  color: Theme.of(context).highlightColor,
+                                ),
+                                child: Column(
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.only(top: 8.0),
+                                      child: Text(
+                                        today,
+                                        style: const TextStyle(
+                                          fontSize: 17,
+                                          fontWeight: FontWeight.w500,
+                                        ),
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.only(top: 8.0),
+                                      child: Text(
+                                        todayDate + "th",
+                                        style: const TextStyle(
+                                          fontSize: 21,
+                                          fontWeight: FontWeight.w500,
+                                        ),
+                                      ),
+                                    )
+                                  ],
+                                ),
                               ),
                               SizedBox(
                                   width:

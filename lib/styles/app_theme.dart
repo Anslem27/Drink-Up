@@ -9,10 +9,11 @@ class AppTheme {
     brightness: Brightness.light,
     focusColor: Colors.black,
     hoverColor: Colors.black,
+    cardColor: Colors.white,
     disabledColor: Colors.white,
     scaffoldBackgroundColor: Colors.white,
     primarySwatch: primaryColor,
-    hintColor: const Color(0xff0F2576),
+    hintColor: const Color(0xFF4C9BFB),
     highlightColor: const Color(0xffa4dded),
     primaryColor: const Color(0xFF4C9BFB),
   );
@@ -35,10 +36,8 @@ class AppTheme {
   );
 }
 
-//0xffcaf0f6
 //Color(0xff6D28D9)
 //custom material color
-//?  0xff007577 (greenish water)
 const MaterialColor primaryColor = MaterialColor(
   0xff7fffd4,
   <int, Color>{

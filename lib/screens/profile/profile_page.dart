@@ -6,7 +6,7 @@ import 'package:flutter_redux/flutter_redux.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:path_provider/path_provider.dart';
-import '../../Addons/waterly_facts.dart';
+import '../../Addons/random_lists.dart';
 import '../../Models/app_state.dart';
 import '../../Settings/app_settings.dart';
 import '../../actions/settings_actions.dart';
@@ -104,7 +104,7 @@ class _ProfilePageState extends State<ProfilePage> {
           padding: const EdgeInsets.all(5),
           child: Container(
             width: MediaQuery.of(context).size.width,
-            margin: const EdgeInsets.only(left: 30, right: 30),
+            margin: const EdgeInsets.only(left: 15, right: 15),
             decoration: BoxDecoration(
               color: Theme.of(context).highlightColor,
               borderRadius: BorderRadius.circular(10),
@@ -117,11 +117,14 @@ class _ProfilePageState extends State<ProfilePage> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: const [
-                      Text(
-                        "Watery Facts",
-                        style: TextStyle(
-                          fontSize: 25,
-                          fontWeight: FontWeight.w400,
+                      Padding(
+                        padding: EdgeInsets.only(top:5.0),
+                        child: Text(
+                          "Watery Facts",
+                          style: TextStyle(
+                            fontSize: 25,
+                            fontWeight: FontWeight.w400,
+                          ),
                         ),
                       ),
                       SizedBox(width: 3),
@@ -140,6 +143,14 @@ class _ProfilePageState extends State<ProfilePage> {
                     style: GoogleFonts.nunitoSans(
                       fontSize: 19.5,
                     ),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8),
+                  child: Image.asset(
+                    factImageDissolver,
+                    height: 120,
+                    width: 120,
                   ),
                 ),
               ],
@@ -182,6 +193,7 @@ class _ProfilePageState extends State<ProfilePage> {
     );
   }
 
+//TODO: Move to gender card locati0on and incoperate it.
   userActivity(context) {
     return Padding(
       padding: const EdgeInsets.only(top: 10, bottom: 8, right: 8, left: 8),

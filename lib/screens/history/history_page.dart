@@ -38,8 +38,7 @@ class _HistoryPageState extends State<HistoryPage>
   int _currentIndex = 0;
 
   //? WaterLike blue colors
-  final Color
-      color = /* Theme.of(context).highlightColor */ const Color(0xffa4dded);
+  final Color color = const Color(0xffa4dded);
   final Color selectedColor = Colors.blueAccent;
 
   @override
@@ -284,11 +283,7 @@ class _HistoryPageState extends State<HistoryPage>
         },
       ),
     );
-  } /* 
-
-  var random = Random();
-var randomFact = wateryFacts[random.nextInt(wateryFacts.length)];
- */
+  }
 
   Widget summaryBottomSheet(List<DrinkHistoryEntry> entries) {
     return Material(
