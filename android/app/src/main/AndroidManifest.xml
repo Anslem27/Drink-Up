@@ -5,7 +5,7 @@
    <application
         android:label="Drink Up"
         android:name="${applicationName}"
-        android:icon="@mipmap/ic_launcher">
+        android:icon="@mipmap/drinkup">
         <activity
             android:name=".MainActivity"
             android:exported="true"

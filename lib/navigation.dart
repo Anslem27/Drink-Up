@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'screens/profile/profile_page.dart';
 import 'util/utilities.dart';
 import 'screens/history/history_page.dart';
-import 'screens/notifications/notifications_settings_page.dart';
+//import 'screens/notifications/notifications_settings_page.dart';
 import 'screens/today/today_page.dart';
 
 class HomePage extends StatefulWidget {
@@ -41,7 +41,6 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
   final appBody = [
     const TodayPage(),
     const HistoryPage(),
-    const NotificationsSettingsPage(),
     const ProfilePage(),
   ];
 
@@ -106,7 +105,7 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
             ),
             label: "History",
           ),
-          NavigationDestination(
+          /*  NavigationDestination(
             selectedIcon: Icon(
               Icons.notifications,
               size: 30,
@@ -120,7 +119,7 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
               color: iconThemeColor,
             ),
             label: "Reminders",
-          ),
+          ), */
           NavigationDestination(
             selectedIcon: Icon(
               Icons.account_circle_sharp,

@@ -13,30 +13,92 @@ class TodayPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: <Widget>[
-        SafeArea(
-          child: SingleChildScrollView(
-            child: Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                mainAxisSize: MainAxisSize.max,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: <Widget>[
-                  Padding(
-                    padding: const EdgeInsets.only(
-                      top: 8,
-                      left: 8,
+    //TODO: Finish setting up landscape view
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        if (constraints.maxWidth < 600) {
+          return Stack(
+            children: <Widget>[
+              SafeArea(
+                child: SingleChildScrollView(
+                  child: Center(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      mainAxisSize: MainAxisSize.max,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: <Widget>[
+                        Padding(
+                          padding: const EdgeInsets.only(
+                            top: 8,
+                            left: 8,
+                          ),
+                          child: Row(
+                            children: [
+                              //TODO Add a suitable Image within the header,hopefuly dynamic.
+                              Image.asset(
+                                "assets/icons/calendar.png",
+                                height: 40,
+                                width: 40,
+                              ),
+                              SizedBox(
+                                  width:
+                                      MediaQuery.of(context).size.width / 23),
+                              Text(
+                                "Today",
+                                style: GoogleFonts.nunitoSans(
+                                  fontSize: 38,
+                                  color: Theme.of(context).focusColor,
+                                ),
+                              ),
+                              const Spacer(),
+                              const Padding(
+                                padding: EdgeInsets.only(right: 25.0),
+                                child: TodaysHistory(),
+                              ),
+                            ],
+                          ),
+                        ),
+                        const SizedBox(
+                          child: WaterProgress(),
+                        ),
+                      ],
                     ),
+                  ),
+                ),
+              ),
+              Align(
+                alignment: Alignment.bottomCenter,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisSize: MainAxisSize.max,
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: const [
+                    Padding(
+                      padding: EdgeInsets.only(bottom: 48.0),
+                      child: Center(
+                        child: DrinkBottomSheet(),
+                      ),
+                    )
+                  ],
+                ),
+              ),
+            ],
+          );
+        } else {
+          return SafeArea(
+            child: SingleChildScrollView(
+              child: Column(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
                     child: Row(
                       children: [
-                        //TODO Add a suitable Image within the header,hopefuly dynamic.
                         Image.asset(
                           "assets/icons/calendar.png",
                           height: 40,
                           width: 40,
                         ),
-                        SizedBox(width: MediaQuery.of(context).size.width / 23),
+                        SizedBox(width: MediaQuery.of(context).size.width / 40),
                         Text(
                           "Today",
                           style: GoogleFonts.nunitoSans(
@@ -44,36 +106,32 @@ class TodayPage extends StatelessWidget {
                             color: Theme.of(context).focusColor,
                           ),
                         ),
-                        const Spacer(),
-                        const Padding(
-                          padding: EdgeInsets.only(right: 25.0),
-                          child: TodaysHistory(),
-                        ),
                       ],
                     ),
                   ),
-                  const SizedBox(
-                    child: WaterProgress(),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: const [
+                          Padding(
+                            padding: EdgeInsets.all(18.0),
+                            child: TodaysHistory(),
+                          ),
+                          DrinkBottomSheet()
+                        ],
+                      ),
+                      const Expanded(child: WaterProgress()),
+                    ],
                   ),
                 ],
               ),
             ),
-          ),
-        ),
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisSize: MainAxisSize.max,
-          mainAxisAlignment: MainAxisAlignment.end,
-          children: const [
-            Padding(
-              padding: EdgeInsets.only(bottom: 48.0),
-              child: Center(
-                child: DrinkBottomSheet(),
-              ),
-            )
-          ],
-        ),
-      ],
+          );
+        }
+      },
     );
   }
 }

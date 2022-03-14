@@ -1,6 +1,11 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:path_provider/path_provider.dart';
 import '../../Addons/waterly_facts.dart';
 import '../../Models/app_state.dart';
 import '../../Settings/app_settings.dart';
@@ -9,6 +14,7 @@ import 'Gender.dart';
 import 'widgets/age_card.dart';
 import 'widgets/daily_goal_card.dart';
 import 'widgets/gender_card.dart';
+import 'package:path/path.dart';
 
 typedef OnSaveCallback = Function({Gender gender, int age, int dailyGoal});
 
@@ -20,6 +26,31 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePage> {
+  //image instance
+  File image;
+  Future pickImage() async {
+    try {
+      final image = await ImagePicker().pickImage(source: ImageSource.gallery);
+      if (image == null) return;
+      final permanentImage = await saveImagePermanently(image.path);
+      //final imageTemporary = File(image.path);
+      setState(() {
+        this.image = permanentImage;
+      });
+    } on PlatformException catch (e) {
+      //? Just incase user denies persmission for camera.
+      // ignore: avoid_print
+      print("Failed to pick image: $e");
+    }
+  }
+
+  Future<File> saveImagePermanently(String imagePath) async {
+    final directory = await getApplicationDocumentsDirectory();
+    final name = basename(imagePath);
+    final image = File("${directory.path}/$name");
+    return File(imagePath).copy(image.path);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -41,11 +72,11 @@ class _ProfilePageState extends State<ProfilePage> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      userActivity(),
+                      userActivity(context),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          userProfile(),
+                          userProfile(context),
                           genderAgeView(callback, state)
                         ],
                       ),
@@ -151,7 +182,7 @@ class _ProfilePageState extends State<ProfilePage> {
     );
   }
 
-  userActivity() {
+  userActivity(context) {
     return Padding(
       padding: const EdgeInsets.only(top: 10, bottom: 8, right: 8, left: 8),
       child: Row(
@@ -183,7 +214,16 @@ class _ProfilePageState extends State<ProfilePage> {
     );
   }
 
-  userProfile() {
+  /*  //image instance
+  File image;
+  Future pickImage() async {
+    final image = await ImagePicker().pickImage(source: ImageSource.gallery);
+    if (image == null) return;
+    final imageTemporary = File(image.path);
+    this.image = imageTemporary;
+  } */
+
+  userProfile(context) {
     return Row(
       children: [
         GestureDetector(
@@ -197,7 +237,6 @@ class _ProfilePageState extends State<ProfilePage> {
                   width: MediaQuery.of(context).size.width / 2.3,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10),
-                    //color: Colors.red[100],
                     gradient: LinearGradient(
                       begin: Alignment.topLeft,
                       end: Alignment.bottomRight,
@@ -210,15 +249,25 @@ class _ProfilePageState extends State<ProfilePage> {
                   ),
                   child: Stack(
                     children: [
-                      const Align(
-                        alignment: Alignment.center,
-                        child: CircleAvatar(
-                          radius: 37,
-                          backgroundImage: AssetImage(
-                            "assets/icons/avatar.png",
-                          ),
-                        ),
-                      ),
+                      Align(
+                          alignment: Alignment.center,
+                          child: image != null
+                              ? ClipOval(
+                                  child: Image.file(
+                                    // image!,
+                                    //? null check.
+                                    image,
+                                    width: 85, height: 85,
+                                  ),
+                                )
+                              //TODO: Create a bool image with an option of a different constant avatar for females and males
+                              : const CircleAvatar(
+                                  backgroundColor: Colors.transparent,
+                                  radius: 40,
+                                  backgroundImage: AssetImage(
+                                    "assets/illustrations/man-1.png",
+                                  ),
+                                )),
                       Align(
                         alignment: Alignment.topCenter,
                         child: Padding(
@@ -237,7 +286,9 @@ class _ProfilePageState extends State<ProfilePage> {
                             style: TextButton.styleFrom(
                               primary: Theme.of(context).focusColor,
                             ),
-                            onPressed: () {},
+                            onPressed: () {
+                              pickImage();
+                            },
                             icon: const Icon(Icons.edit),
                             label: const Text("Edit Avatar"),
                           ),

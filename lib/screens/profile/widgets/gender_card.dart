@@ -5,6 +5,52 @@ import '../Gender.dart';
 
 typedef GenderChangedCallback = void Function(Gender gender);
 
+class GenderImage extends StatefulWidget {
+  const GenderImage({Key key, this.changed, this.value}) : super(key: key);
+  final GenderChangedCallback changed;
+  final Gender value;
+  @override
+  State<GenderImage> createState() => _GenderImageState();
+}
+
+class _GenderImageState extends State<GenderImage> {
+  _GenderImageState();
+  Gender _selectedGender;
+
+  void selectGender(Gender gender) {
+    widget.changed(gender);
+
+    setState(() {
+      _selectedGender = gender;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    genderImage() {
+      if (_selectedGender == Gender.male) {
+        return const CircleAvatar(
+          backgroundColor: Colors.transparent,
+          radius: 40,
+          backgroundImage: AssetImage(
+            "assets/illustrations/man-1.png",
+          ),
+        );
+      } else {
+        return const CircleAvatar(
+          backgroundColor: Colors.transparent,
+          radius: 40,
+          backgroundImage: AssetImage(
+            "assets/illustrations/woman-1.png",
+          ),
+        );
+      }
+    }
+
+    return genderImage();
+  }
+}
+
 class GenderSelectorCard extends StatefulWidget {
   final GenderChangedCallback changed;
   final Gender value;
@@ -31,6 +77,26 @@ class _GenderSelectorCardState extends State<GenderSelectorCard> {
     setState(() {
       _selectedGender = gender;
     });
+  }
+
+  genderImage() {
+    if (_selectedGender == Gender.male) {
+      return const CircleAvatar(
+        backgroundColor: Colors.transparent,
+        radius: 40,
+        backgroundImage: AssetImage(
+          "assets/illustrations/man-1.png",
+        ),
+      );
+    } else {
+      return const CircleAvatar(
+        backgroundColor: Colors.transparent,
+        radius: 40,
+        backgroundImage: AssetImage(
+          "assets/illustrations/woman-1.png",
+        ),
+      );
+    }
   }
 
   genderCard() {
@@ -85,7 +151,7 @@ class _GenderSelectorCardState extends State<GenderSelectorCard> {
                           icon: Icon(
                             Icons.female,
                             color: _selectedGender == Gender.female
-                                ?  Colors.pink
+                                ? Colors.pink
                                 : Colors.grey,
                             size: 40,
                           ),

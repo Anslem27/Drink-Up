@@ -62,6 +62,7 @@ class _WaterProgressState extends State<WaterProgress>
                       child: Image.asset(
                         'assets/bottle/plastic-bottle.png',
                         fit: BoxFit.scaleDown,
+                        height: MediaQuery.of(context).size.height / 2,
                       ),
                     ),
                     Center(
@@ -73,6 +74,7 @@ class _WaterProgressState extends State<WaterProgress>
                         builder: (context, child) => ClipPath(
                           child: Image.asset(
                             'assets/bottle/plastic-bottle-blue.png',
+                            height: MediaQuery.of(context).size.height / 2,
                             fit: BoxFit.scaleDown,
                           ),
                           clipper: WaveClipper(
@@ -87,18 +89,40 @@ class _WaterProgressState extends State<WaterProgress>
                     Center(
                       child: Column(
                         children: <Widget>[
-                          Text(
-                            target < current
-                                ? 'Your $currentIntakePercentage%\nof your daily\ngoal.'
-                                : "$currentIntakePercentage%",
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                              color: target < current
-                                  ? Theme.of(context).focusColor
-                                  : Colors.blue[800],
-                              fontSize: target < current ? 19.0 : 40.0,
-                              fontWeight: FontWeight.bold,
-                            ),
+                          //TODO handle landscape view fully
+                          LayoutBuilder(
+                            builder: (context, constraints) {
+                              if (constraints.maxWidth < 600) {
+                                return Text(
+                                  target < current
+                                      ? 'Your $currentIntakePercentage%\nof your daily\ngoal.'
+                                      : "$currentIntakePercentage%",
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                    color: target < current
+                                        ? Theme.of(context).focusColor
+                                        : Colors.blue[800],
+                                    fontSize: target < current ? 17.0 : 40.0,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                );
+                              } else {
+                                //? Rather useless as appstate doesnt change rather remains constant
+                                return Text(
+                                  target < current
+                                      ? 'Your $currentIntakePercentage%\nof your daily\ngoal.'
+                                      : "$currentIntakePercentage%",
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                    color: target < current
+                                        ? Theme.of(context).focusColor
+                                        : Colors.blue[800],
+                                    fontSize: target < current ? 15.0 : 20.0,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                );
+                              }
+                            },
                           ),
                           Text(
                             target < current ? "" : "$current ml",

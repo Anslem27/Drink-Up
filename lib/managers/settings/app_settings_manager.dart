@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_if_null_operators
+
 
 import 'dart:async';
 import 'package:flutter/material.dart';
@@ -45,8 +45,8 @@ class AppSettingsManager {
     final SharedPreferences prefs = await _prefs;
 
     prefs.setInt(_AppSettingsKeys.gender, gender != null ? gender.index : -1);
-    prefs.setInt(_AppSettingsKeys.age, age != null ? age : 0);
-    prefs.setInt(_AppSettingsKeys.dailyGoal, dailyGoal != null ? dailyGoal : 0);
+    prefs.setInt(_AppSettingsKeys.age, age ?? 0);
+    prefs.setInt(_AppSettingsKeys.dailyGoal, dailyGoal ?? 0);
 
     return true;
   }
@@ -56,7 +56,7 @@ class AppSettingsManager {
     final SharedPreferences prefs = await _prefs;
 
     prefs.setBool(_AppSettingsKeys.notificationsEnabled,
-        enabled != null ? enabled : false);
+        enabled ?? false);
     prefs.setInt(
         _AppSettingsKeys.notificationsFromH, from != null ? from.hour : 7);
     prefs.setInt(
@@ -64,7 +64,7 @@ class AppSettingsManager {
     prefs.setInt(_AppSettingsKeys.notificationsToH, to != null ? to.hour : 20);
     prefs.setInt(_AppSettingsKeys.notificationsToM, to != null ? to.minute : 0);
     prefs.setInt(_AppSettingsKeys.notificationsInterval,
-        interval != null ? interval : 30);
+        interval ?? 30);
 
     return true;
   }

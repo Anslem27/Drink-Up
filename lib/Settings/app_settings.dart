@@ -1,8 +1,10 @@
 import 'package:drink_up/Settings/Widgets/reusable_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:sliding_sheet/sliding_sheet.dart';
 
 import '../styles/theme_controller.dart';
+import 'About/about_page.dart';
 
 ThemeMode thememode = ThemeMode.system;
 
@@ -167,15 +169,6 @@ class _AppSettingsState extends State<AppSettings> {
                 ],
               ),
             ),
-            /* ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10),
-                ),
-              ),
-              onPressed: () => Navigator.of(context).pop(),
-              child: const Text("Done"),
-            ), */
           ],
         ),
       ),
@@ -196,13 +189,6 @@ class _AppSettingsState extends State<AppSettings> {
         ),
         spaceBtn,
         ReusableSettings(
-          image: "assets/settings/send-mail.png",
-          onTap: () {},
-          header: "Notifications",
-          subtitle: "Turn on or off notifications",
-        ),
-        spaceBtn,
-        ReusableSettings(
           image: "assets/settings/share.png",
           onTap: () {},
           header: "Share",
@@ -211,27 +197,43 @@ class _AppSettingsState extends State<AppSettings> {
         spaceBtn,
         ReusableSettings(
           image: "assets/settings/rate.png",
-          onTap: () {},
+          onTap: () => showSlidingBottomSheet(
+            context,
+            builder: (_) => SlidingSheetDialog(
+              duration: const Duration(milliseconds: 500),
+              cornerRadius: 16,
+              snapSpec: const SnapSpec(
+                initialSnap: 0.8,
+                snappings: [0.8, 0.8],
+              ),
+              builder: (_, SheetState state) {
+                return ratingBottomSheet(context);
+              },
+            ),
+          ),
           header: "Rate Us",
           subtitle: "Rate your experience with the app",
         ),
         spaceBtn,
         ReusableSettings(
-          image: "assets/settings/rate.png",
+          image: "assets/settings/privacy.png",
           onTap: () {},
           header: "Privacy Policy",
           subtitle: "Terms and conditions of use",
         ),
         spaceBtn,
         ReusableSettings(
-          image: "assets/settings/rate.png",
-          onTap: () {},
+          image: "assets/settings/new.png",
+          onTap: () => showDialog(
+            context: context,
+            builder: (_) => newDialog(),
+          ),
           header: "Whats New",
           subtitle: "Discover New App features",
         ),
         spaceBtn,
         ReusableSettings(
-          image: "assets/settings/rate.png",
+          image: "assets/settings/faq.png",
           onTap: () {},
           header: "Faq's",
           subtitle: "Frequently Asked Questions",
@@ -246,11 +248,150 @@ class _AppSettingsState extends State<AppSettings> {
         spaceBtn,
         ReusableSettings(
           image: "assets/settings/information-button.png",
-          onTap: () {},
+          onTap: () => Navigator.of(context).push(
+            MaterialPageRoute(
+              builder: (_) => const Aboutpage(),
+            ),
+          ),
           header: "About",
           subtitle: "App build info",
         ),
       ],
+    );
+  }
+//? rating bottomsheet
+  ratingBottomSheet(BuildContext context) {
+    return Material(
+      child: Padding(
+        padding: const EdgeInsets.all(15.0),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Container(
+              height: 8,
+              width: MediaQuery.of(context).size.width / 8,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(30),
+                color: Colors.blue[300],
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(5.5),
+              child: Image.asset(
+                "assets/images/drinkup.png",
+                height: 150,
+                width: 150,
+              ),
+            ),
+            SizedBox(height: MediaQuery.of(context).size.height / 50),
+            const Padding(
+              padding: EdgeInsets.all(3.5),
+              child: Text(
+                "Thank you for using the Drink up app",
+                style: TextStyle(fontWeight: FontWeight.w500, fontSize: 19),
+              ),
+            ),
+            SizedBox(height: MediaQuery.of(context).size.height / 50),
+            const Padding(
+              padding: EdgeInsets.all(3.5),
+              child: Text(
+                "You can show your love by leaving a great rating, or donating to help improve the app and as well as sharing to all your friends.",
+                style: TextStyle(color: Colors.grey),
+                textAlign: TextAlign.center,
+              ),
+            ),
+            const Padding(
+              padding: EdgeInsets.all(3.5),
+              child: Text(
+                "A five star rating is also a great contribution and keeps us motivated to introduce more new features.\n And dont forget to hydrate",
+                style: TextStyle(color: Colors.grey),
+                textAlign: TextAlign.center,
+              ),
+            ),
+            SizedBox(height: MediaQuery.of(context).size.height / 40),
+            Row(
+              children: [
+                Expanded(
+                  child: GestureDetector(
+                    onTap: () {},
+                    child: Container(
+                      height: 130,
+                      width: MediaQuery.of(context).size.width / 2.2,
+                      margin: const EdgeInsets.only(left: 5, right: 5),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(12),
+                        border: Border.all(color: Colors.yellowAccent),
+                      ),
+                      child: Center(
+                          child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          const Padding(
+                            padding: EdgeInsets.only(top: 10.0, bottom: 8.0),
+                            child: Icon(
+                              Icons.star_border_outlined,
+                              color: Colors.yellowAccent,
+                              size: 35,
+                            ),
+                          ),
+                          const SizedBox(height: 10),
+                          Padding(
+                            padding: const EdgeInsets.only(
+                              top: 8.0,
+                            ),
+                            child: Text(
+                              "Rate 5 stars on playstore",
+                              style: TextStyle(color: Colors.blue[100]),
+                            ),
+                          )
+                        ],
+                      )),
+                    ),
+                  ),
+                ),
+                Expanded(
+                  child: GestureDetector(
+                    onTap: () {},
+                    child: Container(
+                      height: 130,
+                      margin: const EdgeInsets.only(left: 5, right: 5),
+                      width: MediaQuery.of(context).size.width / 2.2,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(12),
+                          border: Border.all(color: Colors.redAccent)),
+                      child: Center(
+                          child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          const Padding(
+                            padding: EdgeInsets.only(top: 10.0, bottom: 8.0),
+                            child: Icon(
+                              Icons.email_outlined,
+                              color: Colors.redAccent,
+                              size: 35,
+                            ),
+                          ),
+                          const SizedBox(height: 10),
+                          Padding(
+                            padding: const EdgeInsets.only(
+                              top: 8.0,
+                            ),
+                            child: Text(
+                              "Contact us by email",
+                              style: TextStyle(color: Colors.red[200]),
+                            ),
+                          )
+                        ],
+                      )),
+                    ),
+                  ),
+                ),
+              ],
+            )
+          ],
+        ),
+      ),
     );
   }
 
@@ -278,16 +419,17 @@ class _AppSettingsState extends State<AppSettings> {
             Center(
               child: Column(
                 children: [
-                  Image.asset("", height: 60, width: 60),
+                  Image.asset("assets/settings/marketing.png",
+                      height: 80, width: 60),
                   const Padding(
                     padding: EdgeInsets.only(
                       left: 5.0,
                       right: 5,
                       bottom: 5,
-                      top: 14,
+                      top: 16,
                     ),
                     child: Text(
-                      "We're constantly working on  new features, check by once in a while",
+                      "We're constantly working on new features, check by once in a while",
                       style: TextStyle(color: Colors.grey, fontSize: 18),
                       textAlign: TextAlign.center,
                     ),
@@ -310,78 +452,6 @@ class _AppSettingsState extends State<AppSettings> {
         ),
       ),
       clipBehavior: Clip.antiAlias,
-    );
-  }
-
-//?Rating Dialog
-  Widget ratingDialog() {
-    return Dialog(
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(16),
-      ),
-      child: Padding(
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Text(
-              "Rate the app!",
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                color: Theme.of(context).hoverColor,
-                fontSize: 22,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            SizedBox(height: MediaQuery.of(context).size.height / 40),
-            const Text(
-              "Satisfied with the app 😀,then rate us!!",
-              style: TextStyle(color: Colors.grey, fontSize: 17),
-            ),
-            SizedBox(height: MediaQuery.of(context).size.height / 40),
-            GestureDetector(
-              onTap: () {
-                /* => StoreRedirect.redirect(
-                  androidAppId: "com.diafcon.alpha",
-                  iOSAppId: "com.diafcon.flutterapp"), */
-              },
-              child: Image.asset(
-                "",
-                height: 40,
-                width: 40,
-              ),
-            ),
-            SizedBox(height: MediaQuery.of(context).size.height / 40),
-            const Text(
-              "Something's lacking?, email us here",
-              style: TextStyle(color: Colors.grey, fontSize: 17),
-            ),
-            SizedBox(height: MediaQuery.of(context).size.height / 40),
-            GestureDetector(
-              onTap: () {
-                //mailUSIssue();
-              },
-              child: Image.asset(
-                "",
-                height: 40,
-                width: 40,
-              ),
-            ),
-            const SizedBox(height: 8),
-            ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(16),
-                ),
-              ),
-              onPressed: () {
-                Navigator.pop(context);
-              },
-              child: const Text("Dismiss"),
-            ),
-          ],
-        ),
-        padding: const EdgeInsets.all(10),
-      ),
     );
   }
 }

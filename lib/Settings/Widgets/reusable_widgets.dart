@@ -26,8 +26,8 @@ class ReusableSettings extends StatelessWidget {
           ),
           child: Image.asset(
             image,
-            width: 28,
-            height: 28,
+            width: 30,
+            height: 30,
           ),
         ),
         const SizedBox(width: 20),
@@ -182,3 +182,22 @@ class InfoDialog extends StatelessWidget {
     );
   }
 }
+
+/* 
+
+//...............//? Fetches current app version Ps. Used in about Page................................//
+//TODO Add app version to email in order to handle errors in future.
+var versioncontrol = FutureBuilder<PackageInfo>(
+  future: PackageInfo.fromPlatform(),
+  builder: (context, snapshot) {
+    if (snapshot.connectionState == ConnectionState.done) {
+      return Text(
+        'Version: ${snapshot.data.version}',
+        style: GoogleFonts.rubik(
+            fontWeight: FontWeight.w300, fontSize: 18, color: Colors.white),
+      );
+    } else {
+      return const Loader();
+    }
+  },
+); */

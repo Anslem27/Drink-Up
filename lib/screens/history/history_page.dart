@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import 'package:flutter/material.dart';
@@ -9,6 +11,15 @@ import '../../Models/app_state.dart';
 import '../../util/utilities.dart';
 import 'history_manager.dart';
 import 'widgets/history_widgets.dart';
+
+List randomImage = [
+  "assets/illustrations/cyborg-chart-1.png",
+  "assets/illustrations/cyborg-chart-10.png",
+  "assets/illustrations/cyborg-art.png",
+];
+var randomSummaryImage = Random();
+var randomImageDissolver =
+    randomImage[randomSummaryImage.nextInt(randomImage.length)];
 
 typedef OnDrinkEntryRemovedCallback = Function(DrinkHistoryEntry entry);
 
@@ -210,7 +221,8 @@ class _HistoryPageState extends State<HistoryPage>
                       ),
                       const Spacer(),
                       Text(
-                        "Summary",
+                        "My\nSummary",
+                        textAlign: TextAlign.center,
                         style: TextStyle(
                           fontSize: 19,
                           color: Theme.of(context).focusColor,
@@ -225,8 +237,8 @@ class _HistoryPageState extends State<HistoryPage>
                               duration: const Duration(milliseconds: 500),
                               cornerRadius: 16,
                               snapSpec: const SnapSpec(
-                                initialSnap: 0.5,
-                                snappings: [0.5, 0.7],
+                                initialSnap: 0.7,
+                                snappings: [0.7, 0.9],
                               ),
                               builder: (_, SheetState state) {
                                 return summaryBottomSheet(entries);
@@ -272,7 +284,11 @@ class _HistoryPageState extends State<HistoryPage>
         },
       ),
     );
-  }
+  } /* 
+
+  var random = Random();
+var randomFact = wateryFacts[random.nextInt(wateryFacts.length)];
+ */
 
   Widget summaryBottomSheet(List<DrinkHistoryEntry> entries) {
     return Material(
@@ -291,6 +307,14 @@ class _HistoryPageState extends State<HistoryPage>
                   borderRadius: BorderRadius.circular(30),
                   color: Colors.blue[300],
                 ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(5.5),
+              child: Image.asset(
+                randomImageDissolver,
+                height: MediaQuery.of(context).size.height / 3,
+                width: MediaQuery.of(context).size.width / 2.5,
               ),
             ),
             Text(

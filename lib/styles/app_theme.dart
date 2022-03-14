@@ -40,19 +40,19 @@ class AppTheme {
 //custom material color
 //?  0xff007577 (greenish water)
 const MaterialColor primaryColor = MaterialColor(
-  0xff6D28D9,
+  0xff7fffd4,
   <int, Color>{
     //?no applied shades, maintained one constant
-    50: Color(0xff6D28D9),
-    100: Color(0xff6D28D9),
-    200: Color(0xff6D28D9),
-    300: Color(0xff6D28D9),
-    400: Color(0xff6D28D9),
-    500: Color(0xff6D28D9),
-    600: Color(0xff6D28D9),
-    700: Color(0xff6D28D9),
-    800: Color(0xff6D28D9),
-    900: Color(0xff6D28D9),
+    50: Color(0xff7fffd4),
+    100: Color(0xff7fffd4),
+    200: Color(0xff7fffd4),
+    300: Color(0xff7fffd4),
+    400: Color(0xff7fffd4),
+    500: Color(0xff7fffd4),
+    600: Color(0xff7fffd4),
+    700: Color(0xff7fffd4),
+    800: Color(0xff7fffd4),
+    900: Color(0xff7fffd4),
   },
 );
 
