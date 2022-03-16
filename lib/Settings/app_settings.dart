@@ -284,11 +284,11 @@ class _AppSettingsState extends State<AppSettings> {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.all(5.5),
+              padding: const EdgeInsets.only(bottom: 5.5, top: 15.0),
               child: Image.asset(
                 "assets/images/drinkup.png",
-                height: 150,
-                width: 150,
+                height: 110,
+                width: 110,
               ),
             ),
             SizedBox(height: MediaQuery.of(context).size.height / 50),

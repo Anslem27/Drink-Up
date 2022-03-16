@@ -69,7 +69,7 @@ class _WaterProgressState extends State<WaterProgress>
                       child: AnimatedBuilder(
                         animation: CurvedAnimation(
                           parent: animationController,
-                          curve: Curves.easeInOut,
+                          curve: Curves.easeInBack,
                         ),
                         builder: (context, child) => ClipPath(
                           child: Image.asset(
@@ -170,25 +170,10 @@ class _WaterProgressState extends State<WaterProgress>
                     child: target < current
                         ? Padding(
                             padding: const EdgeInsets.only(bottom: 18.0),
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                IconButton(
-                                  splashRadius: 23,
-                                  onPressed: () {},
-                                  icon: const Icon(Icons.coffee_outlined,
-                                      size: 40),
-                                ),
-                                Text(
-                                  "Set new goal",
-                                  style: TextStyle(
-                                    color: Theme.of(context).focusColor,
-                                    fontSize: 20.0,
-                                    fontWeight: FontWeight.w600,
-                                  ),
-                                ),
-                              ],
+                            child: Image.asset(
+                              "assets/illustrations/cyborg-prize-cup.png",
+                              height: 85,
+                              width: 90,
                             ),
                           )
                         : Column(

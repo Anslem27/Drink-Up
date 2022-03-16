@@ -43,7 +43,7 @@ class _AboutpageState extends State<Aboutpage> {
                     ),
                   ),
                   versionStatus(context),
-                  SizedBox(height: MediaQuery.of(context).size.height / 50),
+                  SizedBox(height: MediaQuery.of(context).size.height / 18),
                   Text(
                     "Support",
                     style: GoogleFonts.nunitoSans(
@@ -173,57 +173,53 @@ class _AboutpageState extends State<Aboutpage> {
         border: Border.all(color: Theme.of(context).highlightColor),
         borderRadius: BorderRadius.circular(13),
       ),
-      child: Row(
+      child: Column(
         children: [
           Image.asset(
             "assets/images/drinkup.png",
-            height: 200,
-            width: 150,
+            height: 160,
+            width: 120,
           ),
-          Column(
-            children: [
-              const Padding(
-                padding: EdgeInsets.all(8.0),
-                child: Text(
-                  "Drink up",
-                  style: TextStyle(
-                    fontSize: 22,
-                    fontWeight: FontWeight.w500,
+          const Padding(
+            padding: EdgeInsets.all(8.0),
+            child: Text(
+              "Drink up",
+              style: TextStyle(
+                fontSize: 22,
+                fontWeight: FontWeight.w500,
+              ),
+            ),
+          ),
+          const Text(
+            "Version: 0.0 beta",
+            style: TextStyle(
+              color: Colors.grey,
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(top: 5.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(3.0),
+                  child: GestureDetector(
+                    onTap: () {},
+                    child: Image.asset("assets/settings/github.png",
+                        height: 40, width: 40),
                   ),
                 ),
-              ),
-              const Text(
-                "Version: 0.0 beta",
-                style: TextStyle(
-                  color: Colors.grey,
+                Padding(
+                  padding: const EdgeInsets.all(3.0),
+                  child: GestureDetector(
+                    onTap: () {},
+                    child: Image.asset("assets/settings/email-us.png",
+                        height: 40, width: 40),
+                  ),
                 ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(top: 5.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.all(3.0),
-                      child: GestureDetector(
-                        onTap: () {},
-                        child: Image.asset("assets/settings/github.png",
-                            height: 30, width: 30),
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(3.0),
-                      child: GestureDetector(
-                        onTap: () {},
-                        child: Image.asset("assets/settings/email-us.png",
-                            height: 30, width: 30),
-                      ),
-                    ),
-                  ],
-                ),
-              )
-            ],
+              ],
+            ),
           )
         ],
       ),

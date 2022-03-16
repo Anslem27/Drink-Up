@@ -30,4 +30,4 @@ Get your flutter environment up and running.
 - [Preferably use VsCode](https://code.visualstudio.com/)
 - [Better comments -> Elaborated Comments](https://marketplace.visualstudio.com/items?itemName=aaron-bond.better-comments)
 
-### [OpenSource Contributions]()
+### [OpenSource Contributions](https://github.com/artrmz/watermaniac)
