@@ -412,7 +412,6 @@ class DrinkHitoryListItem extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Container(
-        //height: MediaQuery.of(context).size.height / 9,
         margin: const EdgeInsets.only(left: 2, right: 2),
         decoration: BoxDecoration(
           color: Theme.of(context).highlightColor,
@@ -524,7 +523,7 @@ class DrinkHitoryListItem extends StatelessWidget {
   //? Fetches image per water entry.
   getImage(int amount) {
     switch (amount) {
-      case 200:
+      case 250:
         return Image.asset(
           "assets/bottle/glass-of-water.png",
           height: 45,
@@ -539,6 +538,24 @@ class DrinkHitoryListItem extends StatelessWidget {
       case 500:
         return Image.asset(
           "assets/bottle/plastic-bottle-blue.png",
+          height: 45,
+          width: 45,
+        );
+      case 501:
+        return Image.asset(
+          "assets/bottle/big-juice.png",
+          height: 45,
+          width: 45,
+        );
+      case 251:
+        return Image.asset(
+          "assets/bottle/small-juice.png",
+          height: 45,
+          width: 45,
+        );
+      case 301:
+        return Image.asset(
+          "assets/bottle/medium-juice.png",
           height: 45,
           width: 45,
         );

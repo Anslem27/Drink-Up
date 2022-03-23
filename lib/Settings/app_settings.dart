@@ -328,7 +328,7 @@ class _AppSettingsState extends State<AppSettings> {
                       margin: const EdgeInsets.only(left: 5, right: 5),
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(12),
-                        border: Border.all(color: Colors.yellowAccent),
+                        border: Border.all(color: Colors.indigoAccent),
                       ),
                       child: Center(
                           child: Column(
@@ -338,7 +338,7 @@ class _AppSettingsState extends State<AppSettings> {
                             padding: EdgeInsets.only(top: 10.0, bottom: 8.0),
                             child: Icon(
                               Icons.star_border_outlined,
-                              color: Colors.yellowAccent,
+                              color: Colors.indigoAccent,
                               size: 35,
                             ),
                           ),
@@ -349,7 +349,7 @@ class _AppSettingsState extends State<AppSettings> {
                             ),
                             child: Text(
                               "Rate 5 stars on playstore",
-                              style: TextStyle(color: Colors.blue[100]),
+                              style: TextStyle(color: Colors.blue[400]),
                             ),
                           )
                         ],

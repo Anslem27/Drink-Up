@@ -92,8 +92,7 @@ class _ProfilePageState extends State<ProfilePage> {
     );
   }
 
-  Column bottomBody(
-      AppState state, OnSaveCallback callback, BuildContext context) {
+  bottomBody(AppState state, OnSaveCallback callback, BuildContext context) {
     return Column(
       children: [
         //?dailyGoal card method.
@@ -118,7 +117,7 @@ class _ProfilePageState extends State<ProfilePage> {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: const [
                       Padding(
-                        padding: EdgeInsets.only(top:5.0),
+                        padding: EdgeInsets.only(top: 5.0),
                         child: Text(
                           "Watery Facts",
                           style: TextStyle(

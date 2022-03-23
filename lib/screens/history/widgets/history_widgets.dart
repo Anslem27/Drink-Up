@@ -12,6 +12,7 @@ import '../history_page.dart';
 
 List randomHistoryImage = [
   "assets/illustrations/coffee-down.png",
+  "assets/illustrations/coffee-down1.png",
   "assets/illustrations/cyborg-button-with-exclamation-point.png",
   "assets/illustrations/cyborg-cocktail-umbrella.png"
 ];

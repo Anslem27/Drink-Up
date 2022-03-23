@@ -131,7 +131,7 @@ class DrinkBottomSheet extends StatelessWidget {
                 children: [
                   //? Small Juice Intake
                   const Text(
-                    "200ml",
+                    "250ml",
                     style: TextStyle(
                       fontSize: 17,
                       fontWeight: FontWeight.w500,
@@ -140,7 +140,7 @@ class DrinkBottomSheet extends StatelessWidget {
                   const SizedBox(height: 8),
                   GestureDetector(
                     onTap: () {
-                      callback(Drink.small());
+                      callback(Drink.smallJuice());
                       Navigator.pop(context);
                     },
                     child: Image.asset(
@@ -164,7 +164,7 @@ class DrinkBottomSheet extends StatelessWidget {
                   const SizedBox(height: 8),
                   GestureDetector(
                     onTap: () {
-                      callback(Drink.medium());
+                      callback(Drink.mediumJuice());
                       Navigator.pop(context);
                     },
                     child: Image.asset(
@@ -188,7 +188,7 @@ class DrinkBottomSheet extends StatelessWidget {
                   const SizedBox(height: 8),
                   GestureDetector(
                     onTap: () {
-                      callback(Drink.big());
+                      callback(Drink.bigJuice());
                       Navigator.pop(context);
                     },
                     child: Image.asset(
@@ -221,7 +221,7 @@ class DrinkBottomSheet extends StatelessWidget {
               Column(
                 children: [
                   const Text(
-                    "200ml",
+                    "250ml",
                     style: TextStyle(
                       fontSize: 17,
                       fontWeight: FontWeight.w500,
@@ -418,7 +418,7 @@ class DrinkBottomSheet extends StatelessWidget {
                 children: [
                   //? Small Juice Intake
                   const Text(
-                    "200ml",
+                    "250ml",
                     style: TextStyle(
                       fontSize: 17,
                       fontWeight: FontWeight.w500,
@@ -509,7 +509,7 @@ class DrinkBottomSheet extends StatelessWidget {
                 children: [
                   //? Small Juice Intake
                   const Text(
-                    "200ml",
+                    "250ml",
                     style: TextStyle(
                       fontSize: 17,
                       fontWeight: FontWeight.w500,
@@ -600,7 +600,7 @@ class DrinkBottomSheet extends StatelessWidget {
                 children: [
                   //? Small Juice Intake
                   const Text(
-                    "200ml",
+                    "250ml",
                     style: TextStyle(
                       fontSize: 17,
                       fontWeight: FontWeight.w500,
@@ -609,8 +609,7 @@ class DrinkBottomSheet extends StatelessWidget {
                   const SizedBox(height: 8),
                   GestureDetector(
                     onTap: () {
-                      /* callback(Drink.small());
-                      Navigator.pop(context);*/
+                      
                     },
                     child: Image.asset(
                       "assets/icons/wine.png",

@@ -235,21 +235,24 @@ class TodaysHistory extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.only(right: 5.0),
                     child: IconButton(
-                      splashRadius: 22,
-                      //TODO: Maybe move this to the faq page.
-                      onPressed: () => showDialog(
-                        context: context,
-                        builder: (_) => InfoDialog(
-                          headercolor: Colors.redAccent,
-                          header: "My Glance",
-                          buttontext: "Ok",
-                          onpressed: () => Navigator.pop(context),
-                          subtitletext:
-                              "Your glance features, all your drink history up to three records with there corresponding time intervals",
-                        ),
-                      ),
-                      icon: const Icon(Icons.info_outline_rounded, size: 25),
-                    ),
+                        splashRadius: 22,
+                        //TODO: Maybe move this to the faq page.
+                        onPressed: () => showDialog(
+                              context: context,
+                              builder: (_) => InfoDialog(
+                                headercolor: Colors.redAccent,
+                                header: "My Glance",
+                                buttontext: "Ok",
+                                onpressed: () => Navigator.pop(context),
+                                subtitletext:
+                                    "Your glance features, all your intake history up to three records with there corresponding time intervals",
+                              ),
+                            ),
+                        icon: Image.asset(
+                          "assets/icons/icons8-water-64.png",
+                          height: 30,
+                          width: 30,
+                        )),
                   ),
                 ],
               ),

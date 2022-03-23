@@ -95,13 +95,22 @@ class _DailyGoalCardState extends State<DailyGoalCard> {
                 padding: const EdgeInsets.only(top: 20.0, left: 20),
                 child: Align(
                   alignment: Alignment.topLeft,
-                  child: Text(
-                    "Daily Goal",
-                    style: GoogleFonts.nunitoSans(
-                      fontSize: 20,
-                      fontWeight: FontWeight.w500,
-                      color: Theme.of(context).focusColor,
-                    ),
+                  child: Row(
+                    children: [
+                      Image.asset(
+                        "assets/icons/icons8-goal-64.png",
+                        height: 40,
+                        width: 40,
+                      ),
+                      Text(
+                        "Daily Goal",
+                        style: GoogleFonts.nunitoSans(
+                          fontSize: 20,
+                          fontWeight: FontWeight.w500,
+                          color: Theme.of(context).focusColor,
+                        ),
+                      ),
+                    ],
                   ),
                 ),
               ),

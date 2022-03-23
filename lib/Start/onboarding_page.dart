@@ -29,10 +29,10 @@ class Onbording extends StatelessWidget {
       PageViewModel(
         image: Padding(
           padding: const EdgeInsets.only(top: 10.0),
-          child: Image.asset(''),
+          child: Image.asset('assets/illustartions/sammy-27.png'),
         ),
-        title: '',
-        body: '',
+        title: 'Lets get drinking',
+        body: 'Come on now, dont be shy, lets start drinking some beverages',
         footer: ElevatedButton.icon(
           onPressed: () {},
           icon: const Icon(Icons.flight_takeoff, color: Color(0xFF0096FF)),
