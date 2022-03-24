@@ -39,13 +39,13 @@ Get your flutter environment up and running.
 ## 📸 ScreenShots
 
 
-| Light                                  | Dark                              |
+| Light                                  | Dark                                   |
 | ---------------------------------      | ---------------------------------      |
-| <img src="Screens/10.png" width="350"> | <img src="Screens/1.png" width="350">  |
-| <img src="Screens/9.png" width="350">  | <img src="Screens/2.png" width="350">  |
-| <img src="Screens/8.png" width="350">  | <img src="Screens/3.png" width="350">  |
-| <img src="Screens/7.png" width="350">  | <img src="Screens/4.png" width="350">  |
-| <img src="Screens/6.png" width="350">  | <img src="Screens/5.png" width="350">  |
+| <img src="Screens/10.jpg" width="350"> | <img src="Screens/1.jpg" width="350">  |
+| <img src="Screens/9.jpg" width="350">  | <img src="Screens/2.jpg" width="350">  |
+| <img src="Screens/8.jpg" width="350">  | <img src="Screens/3.jpg" width="350">  |
+| <img src="Screens/7.jpg" width="350">  | <img src="Screens/4.jpg" width="350">  |
+| <img src="Screens/6.jpg" width="350">  | <img src="Screens/5.jpg" width="350">  |
 
 ## 🔌 Pub Dev Packages
 
