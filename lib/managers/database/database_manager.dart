@@ -25,7 +25,7 @@ class DatabaseManager {
 
   Future<Database> _initDatabase() async {
     var databasesPath = await getDatabasesPath();
-    String path = join(databasesPath, "watermaniac.db");
+    String path = join(databasesPath, "drinkup.db");
 
     var database = await openDatabase(path, version: 1,
         onCreate: (Database db, int version) async {

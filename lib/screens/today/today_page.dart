@@ -16,6 +16,28 @@ class TodayPage extends StatelessWidget {
     var now = DateTime.now();
     String todayDate = DateFormat('dd').format(now);
     String today = DateFormat("MMM").format(now);
+
+    Widget dynamicDateText() {
+      if (todayDate == "01" || todayDate == "1") {
+        return Text(
+          "Happy\nnew\nMonth",
+          textAlign: TextAlign.center,
+          style: GoogleFonts.nunitoSans(
+            fontSize: 28.5,
+            color: Theme.of(context).focusColor,
+          ),
+        );
+      } else {
+        return Text(
+          "Today",
+          style: GoogleFonts.nunitoSans(
+            fontSize: 38,
+            color: Theme.of(context).focusColor,
+          ),
+        );
+      }
+    }
+
     //TODO: Finish setting up landscape view
     return LayoutBuilder(
       builder: (context, constraints) {
@@ -37,7 +59,6 @@ class TodayPage extends StatelessWidget {
                           ),
                           child: Row(
                             children: [
-                              //TODO Add a suitable Image within the header,hopefuly dynamic.
                               Container(
                                 width: MediaQuery.of(context).size.width / 6,
                                 height: MediaQuery.of(context).size.height / 10,
@@ -73,13 +94,7 @@ class TodayPage extends StatelessWidget {
                               SizedBox(
                                   width:
                                       MediaQuery.of(context).size.width / 23),
-                              Text(
-                                "Today",
-                                style: GoogleFonts.nunitoSans(
-                                  fontSize: 38,
-                                  color: Theme.of(context).focusColor,
-                                ),
-                              ),
+                              dynamicDateText(),
                               const Spacer(),
                               const Padding(
                                 padding: EdgeInsets.only(right: 25.0),
@@ -129,13 +144,7 @@ class TodayPage extends StatelessWidget {
                           width: 40,
                         ),
                         SizedBox(width: MediaQuery.of(context).size.width / 40),
-                        Text(
-                          "Today",
-                          style: GoogleFonts.nunitoSans(
-                            fontSize: 38,
-                            color: Theme.of(context).focusColor,
-                          ),
-                        ),
+                        dynamicDateText(),
                       ],
                     ),
                   ),

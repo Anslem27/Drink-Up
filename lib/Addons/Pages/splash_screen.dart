@@ -35,7 +35,7 @@ class _SplashScreenState extends State<SplashScreen> {
             child: Column(
               children: [
                 SizedBox(height: MediaQuery.of(context).size.height / 2),
-                const LoadingIcon(),
+                //const LoadingIcon(),
               ],
             ),
           ),

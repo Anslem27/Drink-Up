@@ -1,4 +1,5 @@
 import 'package:drink_up/Settings/Widgets/reusable_widgets.dart';
+import 'package:drink_up/styles/Animations/custom_page_transition.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sliding_sheet/sliding_sheet.dart';
@@ -244,8 +245,8 @@ class _AppSettingsState extends State<AppSettings> {
           image: "assets/settings/rate.png",
           onTap: () => Navigator.push(
             context,
-            MaterialPageRoute(
-              builder: (_) => const FeedBackPage(),
+            CustomPageRoute(
+              destination: const FeedBackPage(),
             ),
           ),
           header: "Contact Us",
@@ -255,8 +256,8 @@ class _AppSettingsState extends State<AppSettings> {
         ReusableSettings(
           image: "assets/settings/information-button.png",
           onTap: () => Navigator.of(context).push(
-            MaterialPageRoute(
-              builder: (_) => const Aboutpage(),
+            CustomPageRoute(
+              destination: const Aboutpage(),
             ),
           ),
           header: "About",

@@ -55,7 +55,7 @@ const MaterialColor primaryColor = MaterialColor(
   },
 );
 
-//custom black material color
+//custom typical amoled black material color
 const MaterialColor darkThemeColor = MaterialColor(
   0xff000000,
   <int, Color>{

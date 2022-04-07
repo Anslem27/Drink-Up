@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:drink_up/styles/Animations/custom_page_transition.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_redux/flutter_redux.dart';
@@ -207,8 +208,8 @@ class _ProfilePageState extends State<ProfilePage> {
             padding: const EdgeInsets.only(right: 10.0),
             child: IconButton(
               onPressed: () => Navigator.of(context).push(
-                MaterialPageRoute(
-                  builder: (_) => const AppSettings(),
+                CustomPageRoute(
+                  destination: const AppSettings(),
                 ),
               ),
               tooltip: "Menu",

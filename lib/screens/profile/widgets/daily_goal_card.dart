@@ -103,7 +103,7 @@ class _DailyGoalCardState extends State<DailyGoalCard> {
                         width: 40,
                       ),
                       Text(
-                        "Daily Goal",
+                        "My Goal",
                         style: GoogleFonts.nunitoSans(
                           fontSize: 20,
                           fontWeight: FontWeight.w500,
@@ -148,7 +148,7 @@ class _DailyGoalCardState extends State<DailyGoalCard> {
                         value: _value.toDouble(),
                         min: 0.0,
                         max: 10000.0,
-                        divisions: 1000,
+                        divisions: 20,
                         onChangeEnd: (double value) {
                           widget.changed(value.toInt());
                         },

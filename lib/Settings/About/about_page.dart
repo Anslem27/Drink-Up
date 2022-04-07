@@ -12,64 +12,47 @@ class _AboutpageState extends State<Aboutpage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Stack(
-        children: [
-          SafeArea(
-            child: SingleChildScrollView(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(
-                        top: 10, bottom: 8, right: 8, left: 8),
-                    child: Row(
-                      children: [
-                        IconButton(
-                          onPressed: () => Navigator.of(context).pop(),
-                          tooltip: "Back",
-                          //?remeber adaptive back button for full native experience.
-                          icon: Icon(Icons.adaptive.arrow_back),
-                          splashRadius: 25,
-                        ),
-                        const SizedBox(width: 2),
-                        Text(
-                          "About",
-                          style: TextStyle(
-                            fontSize: 30,
-                            color: Theme.of(context).focusColor,
-                          ),
-                        ),
-                      ],
+      body: SafeArea(
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(
+                    top: 10, bottom: 8, right: 8, left: 8),
+                child: Row(
+                  children: [
+                    IconButton(
+                      onPressed: () => Navigator.of(context).pop(),
+                      tooltip: "Back",
+                      //?remeber adaptive back button for full native experience.
+                      icon: Icon(Icons.adaptive.arrow_back),
+                      splashRadius: 25,
                     ),
-                  ),
-                  versionStatus(context),
-                  SizedBox(height: MediaQuery.of(context).size.height / 18),
-                  Text(
-                    "Support",
-                    style: GoogleFonts.nunitoSans(
-                      fontSize: 22,
+                    const SizedBox(width: 2),
+                    Text(
+                      "About",
+                      style: TextStyle(
+                        fontSize: 30,
+                        color: Theme.of(context).focusColor,
+                      ),
                     ),
-                  ),
-                  SizedBox(height: MediaQuery.of(context).size.height / 50),
-                  aboutBody(),
-                ],
+                  ],
+                ),
               ),
-            ),
+              versionStatus(context),
+              SizedBox(height: MediaQuery.of(context).size.height / 18),
+              Text(
+                "Support",
+                style: GoogleFonts.nunitoSans(
+                  fontSize: 22,
+                ),
+              ),
+              SizedBox(height: MediaQuery.of(context).size.height / 50),
+              aboutBody(),
+            ],
           ),
-          const Align(
-            alignment: Alignment.bottomCenter,
-            child: Padding(
-              padding: EdgeInsets.all(8.0),
-              child: Text(
-                "Drink up",
-                style: TextStyle(
-                    color: Colors.grey,
-                    fontWeight: FontWeight.w400,
-                    fontSize: 18),
-              ),
-            ),
-          )
-        ],
+        ),
       ),
     );
   }
@@ -155,6 +138,24 @@ class _AboutpageState extends State<Aboutpage> {
                 Padding(
                   padding: EdgeInsets.only(right: 10),
                   child: Icon(Icons.shield_outlined),
+                )
+              ],
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(15.0),
+            child: Row(
+              children: const [
+                Text(
+                  "Replay Intro",
+                  style: TextStyle(
+                    fontSize: 19,
+                  ),
+                ),
+                Spacer(),
+                Padding(
+                  padding: EdgeInsets.only(right: 10),
+                  child: Icon(Icons.start_rounded),
                 )
               ],
             ),
