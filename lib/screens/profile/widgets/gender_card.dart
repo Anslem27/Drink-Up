@@ -6,19 +6,19 @@ import '../Gender.dart';
 typedef GenderChangedCallback = void Function(Gender gender);
 
 class GenderImage extends StatefulWidget {
-  const GenderImage({Key key, this.changed, this.value}) : super(key: key);
-  final GenderChangedCallback changed;
-  final Gender value;
+  const GenderImage({Key? key, this.changed, this.value}) : super(key: key);
+  final GenderChangedCallback? changed;
+  final Gender? value;
   @override
   State<GenderImage> createState() => _GenderImageState();
 }
 
 class _GenderImageState extends State<GenderImage> {
   _GenderImageState();
-  Gender _selectedGender;
+  Gender? _selectedGender;
 
   void selectGender(Gender gender) {
-    widget.changed(gender);
+    widget.changed!(gender);
 
     setState(() {
       _selectedGender = gender;
@@ -53,10 +53,10 @@ class _GenderImageState extends State<GenderImage> {
 
 class GenderSelectorCard extends StatefulWidget {
   final GenderChangedCallback changed;
-  final Gender value;
+  final Gender? value;
 
   const GenderSelectorCard(
-      {Key key, @required this.value, @required this.changed})
+      {Key? key, required this.value, required this.changed})
       : super(key: key);
 
   @override
@@ -67,7 +67,7 @@ class GenderSelectorCard extends StatefulWidget {
 }
 
 class _GenderSelectorCardState extends State<GenderSelectorCard> {
-  Gender _selectedGender;
+  Gender? _selectedGender;
 
   _GenderSelectorCardState(this._selectedGender);
 

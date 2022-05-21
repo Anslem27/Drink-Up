@@ -21,9 +21,9 @@ var historyImageDissolver =
     randomHistoryImage[noDrinkImage.nextInt(randomHistoryImage.length)];
 
 class HistoryLists extends StatefulWidget {
-  final TabController tabController;
+  final TabController? tabController;
 
-  const HistoryLists({Key key, this.tabController}) : super(key: key);
+  const HistoryLists({Key? key, this.tabController}) : super(key: key);
 
   @override
   State<StatefulWidget> createState() {
@@ -36,7 +36,7 @@ class _HistoryListsState extends State<HistoryLists> {
 
   void _buildListsWithEntries() {
     for (int i = 0; i < 4; i++) {
-      Widget list = StoreConnector<AppState, List<DrinkHistoryEntry>>(
+      Widget list = StoreConnector<AppState, List<DrinkHistoryEntry>?>(
           converter: (store) => store.state.drinksHistory,
           builder: (context, entries) {
             List<DrinkHistoryEntry> currentEntries =
@@ -128,7 +128,7 @@ class _HistoryListsState extends State<HistoryLists> {
                           ),
                           child: DrinkHitoryListItem(
                             entry.amount,
-                            DateTime.fromMillisecondsSinceEpoch(entry.date),
+                            DateTime.fromMillisecondsSinceEpoch(entry.date!),
                           ),
                         ),
                         key: entry.id != null

@@ -8,11 +8,11 @@ import '../Addons/feedback.dart';
 import '../styles/theme_controller.dart';
 import 'About/about_page.dart';
 
-ThemeMode thememode = ThemeMode.system;
+ThemeMode? thememode = ThemeMode.system;
 
 // TODO: Suggest a new feature.
 class AppSettings extends StatefulWidget {
-  const AppSettings({Key key}) : super(key: key);
+  const AppSettings({Key? key}) : super(key: key);
 
   @override
   _AppSettingsState createState() => _AppSettingsState();
@@ -107,7 +107,7 @@ class _AppSettingsState extends State<AppSettings> {
                   Radio(
                     value: ThemeMode.light,
                     groupValue: thememode,
-                    onChanged: (val) {
+                    onChanged: (dynamic val) {
                       thememode = val;
                       setState(() {
                         themeController.changeThemeMode(ThemeMode.light);
@@ -131,7 +131,7 @@ class _AppSettingsState extends State<AppSettings> {
                   Radio(
                     value: ThemeMode.dark,
                     groupValue: thememode,
-                    onChanged: (val) {
+                    onChanged: (dynamic val) {
                       thememode = val;
                       setState(() {
                         themeController.changeThemeMode(ThemeMode.dark);
@@ -155,7 +155,7 @@ class _AppSettingsState extends State<AppSettings> {
                   Radio(
                       value: ThemeMode.system,
                       groupValue: thememode,
-                      onChanged: (val) {
+                      onChanged: (dynamic val) {
                         thememode = val;
                         setState(() {
                           themeController.changeThemeMode(ThemeMode.system);

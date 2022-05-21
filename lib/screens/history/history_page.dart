@@ -24,7 +24,7 @@ var randomImageDissolver =
 typedef OnDrinkEntryRemovedCallback = Function(DrinkHistoryEntry entry);
 
 class HistoryPage extends StatefulWidget {
-  const HistoryPage({Key key}) : super(key: key);
+  const HistoryPage({Key? key}) : super(key: key);
 
   @override
   State<StatefulWidget> createState() {
@@ -34,7 +34,7 @@ class HistoryPage extends StatefulWidget {
 
 class _HistoryPageState extends State<HistoryPage>
     with SingleTickerProviderStateMixin {
-  TabController _tabController;
+  TabController? _tabController;
   int _currentIndex = 0;
 
   //? WaterLike blue colors
@@ -50,64 +50,64 @@ class _HistoryPageState extends State<HistoryPage>
 
   @override
   void dispose() {
-    _tabController.dispose();
+    _tabController!.dispose();
     super.dispose();
   }
 
   void _onItemTapped(int index) {
-    _tabController.animateTo(index);
+    _tabController!.animateTo(index);
     setState(() {
       _currentIndex = index;
     });
   }
 
   List<DrinkHistoryEntry> _currentEntries(
-      List<DrinkHistoryEntry> entries, int index) {
+      List<DrinkHistoryEntry>? entries, int index) {
     DateTime today = DateTime.now();
 
     List<DrinkHistoryEntry> currentEntries = [];
     if (index == 0) {
-      currentEntries = entries
+      currentEntries = entries!
           .where((entry) => HistoryManager.manager
-              .isToday(DateTime.fromMillisecondsSinceEpoch(entry.date)))
+              .isToday(DateTime.fromMillisecondsSinceEpoch(entry.date!)))
           .toList();
     } else if (index == 1) {
       Duration week = const Duration(days: 7);
-      currentEntries = entries
+      currentEntries = entries!
           .where((entry) =>
               today
-                  .difference(DateTime.fromMillisecondsSinceEpoch(entry.date))
+                  .difference(DateTime.fromMillisecondsSinceEpoch(entry.date!))
                   .compareTo(week) <
               1)
           .toList();
     } else if (index == 2) {
       Duration month = const Duration(days: 30);
-      currentEntries = entries
+      currentEntries = entries!
           .where((entry) =>
               today
-                  .difference(DateTime.fromMillisecondsSinceEpoch(entry.date))
+                  .difference(DateTime.fromMillisecondsSinceEpoch(entry.date!))
                   .compareTo(month) <
               1)
           .toList();
     } else if (index == 3) {
       Duration year = const Duration(days: 365);
-      currentEntries = entries
+      currentEntries = entries!
           .where((entry) =>
               today
-                  .difference(DateTime.fromMillisecondsSinceEpoch(entry.date))
+                  .difference(DateTime.fromMillisecondsSinceEpoch(entry.date!))
                   .compareTo(year) <
               1)
           .toList();
     }
 
-    currentEntries.sort((a, b) => b.date.compareTo(a.date));
+    currentEntries.sort((a, b) => b.date!.compareTo(a.date!));
     return currentEntries;
   }
 
   List<Widget> _buildStats(entries) {
     List<DrinkHistoryEntry> currentEntries =
         _currentEntries(entries, _currentIndex);
-    double summary = currentEntries.fold(0.0, (t, e) => t + e.amount);
+    double summary = currentEntries.fold(0.0, (t, e) => t + e.amount!);
 
     List<Widget> statWidgets = [
       Expanded(
@@ -133,12 +133,12 @@ class _HistoryPageState extends State<HistoryPage>
     } else {
       var avg = 0.0;
       if (currentEntries.isNotEmpty) {
-        currentEntries.sort((a, b) => b.date.compareTo(a.date));
+        currentEntries.sort((a, b) => b.date!.compareTo(a.date!));
         var firstDay =
-            DateTime.fromMillisecondsSinceEpoch(currentEntries.first.date);
+            DateTime.fromMillisecondsSinceEpoch(currentEntries.first.date!);
 
         var lastDay =
-            DateTime.fromMillisecondsSinceEpoch(currentEntries.last.date);
+            DateTime.fromMillisecondsSinceEpoch(currentEntries.last.date!);
 
         var days = firstDay.difference(lastDay).inDays + 1;
 
@@ -197,7 +197,7 @@ class _HistoryPageState extends State<HistoryPage>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: StoreConnector<AppState, List<DrinkHistoryEntry>>(
+      body: StoreConnector<AppState, List<DrinkHistoryEntry>?>(
         converter: (store) => store.state.drinksHistory,
         builder: (context, entries) {
           return SafeArea(
@@ -285,7 +285,7 @@ class _HistoryPageState extends State<HistoryPage>
     );
   }
 
-  Widget summaryBottomSheet(List<DrinkHistoryEntry> entries) {
+  Widget summaryBottomSheet(List<DrinkHistoryEntry>? entries) {
     return Material(
       child: Padding(
         padding: const EdgeInsets.all(15.0),
@@ -338,11 +338,11 @@ class _HistoryPageState extends State<HistoryPage>
 class HistorySummaryText extends StatelessWidget {
   final String title;
   final double value;
-  final String unit;
+  final String? unit;
   final Color titleColor;
 
   const HistorySummaryText(this.title, this.value, this.titleColor,
-      {Key key, this.unit})
+      {Key? key, this.unit})
       : super(key: key);
 
   List<Widget> _buildTexts() {
@@ -359,7 +359,7 @@ class HistorySummaryText extends StatelessWidget {
     if (unit != null) {
       widgets.add(
         Text(
-          unit,
+          unit!,
           textAlign: TextAlign.left,
           style: const TextStyle(
             fontSize: 14.0,
@@ -398,10 +398,10 @@ class HistorySummaryText extends StatelessWidget {
 }
 
 class DrinkHitoryListItem extends StatelessWidget {
-  final int amount;
+  final int? amount;
   final DateTime date;
 
-  const DrinkHitoryListItem(this.amount, this.date, {Key key})
+  const DrinkHitoryListItem(this.amount, this.date, {Key? key})
       : super(key: key);
 
   @override
@@ -521,7 +521,7 @@ class DrinkHitoryListItem extends StatelessWidget {
   }
 
   //? Fetches image per water entry.
-  getImage(int amount) {
+  getImage(int? amount) {
     switch (amount) {
       case 250:
         return Image.asset(

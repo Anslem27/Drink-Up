@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
 class CustomPageRoute extends PageRouteBuilder {
-  final Widget destination;
+  final Widget? destination;
   CustomPageRoute({
-    Key key,
+    Key? key,
     this.destination,
   }) : super(
           transitionDuration: const Duration(seconds: 1),
@@ -19,7 +19,7 @@ class CustomPageRoute extends PageRouteBuilder {
             );
           },
           pageBuilder: (context, animation, secondaryAnimation) {
-            return destination;
+            return destination!;
           },
         );
 }

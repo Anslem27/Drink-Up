@@ -3,9 +3,9 @@ import 'settings/activity_settings.dart';
 import 'water/Glass.dart';
 
 class AppState {
-  final AppSettings settings;
-  final Glass glass;
-  final List<DrinkHistoryEntry> drinksHistory;
+  final AppSettings? settings;
+  final Glass? glass;
+  final List<DrinkHistoryEntry>? drinksHistory;
 
   AppState({this.settings, this.glass, this.drinksHistory});
 

@@ -3,13 +3,13 @@ import 'package:flutter/material.dart';
 //...............//?Used with settings rows................................//
 
 class ReusableSettings extends StatelessWidget {
-  final String image, header, subtitle;
+  final String? image, header, subtitle;
   final void Function() onTap;
   const ReusableSettings(
-      {Key key,
-      @required this.image,
-      @required this.onTap,
-      @required this.header,
+      {Key? key,
+      required this.image,
+      required this.onTap,
+      required this.header,
       this.subtitle})
       : super(key: key);
 
@@ -25,7 +25,7 @@ class ReusableSettings extends StatelessWidget {
             bottom: 8,
           ),
           child: Image.asset(
-            image,
+            image!,
             width: 30,
             height: 30,
           ),
@@ -38,7 +38,7 @@ class ReusableSettings extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Text(
-                header,
+                header!,
                 textAlign: TextAlign.start,
                 style: const TextStyle(
                   fontWeight: FontWeight.w600,
@@ -47,7 +47,7 @@ class ReusableSettings extends StatelessWidget {
               ),
               //const Spacer(),
               Text(
-                subtitle,
+                subtitle!,
                 style: const TextStyle(
                   fontSize: 13,
                   color: Colors.grey,
@@ -65,10 +65,10 @@ class ReusableSettings extends StatelessWidget {
 
 class QuirkyDialog extends StatelessWidget {
   const QuirkyDialog({
-    Key key,
-    @required this.title,
-    @required this.assetImage,
-    @required this.child,
+    Key? key,
+    required this.title,
+    required this.assetImage,
+    required this.child,
   }) : super(key: key);
   final String title, assetImage;
   final Widget child;
@@ -126,11 +126,11 @@ class QuirkyDialog extends StatelessWidget {
 //...............//? Reusable Hint Dialog with Header,content+button.................................//
 // ignore: must_be_immutable
 class InfoDialog extends StatelessWidget {
-  final String subtitletext, buttontext, header;
-  final Color headercolor;
-  void Function() onpressed;
+  final String? subtitletext, buttontext, header;
+  final Color? headercolor;
+  void Function()? onpressed;
   InfoDialog(
-      {Key key,
+      {Key? key,
       this.header,
       this.headercolor,
       this.onpressed,
@@ -153,7 +153,7 @@ class InfoDialog extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              header,
+              header!,
               textAlign: TextAlign.center,
               style: TextStyle(
                 fontSize: 20,
@@ -163,7 +163,7 @@ class InfoDialog extends StatelessWidget {
             ),
             const SizedBox(height: 12),
             Text(
-              subtitletext,
+              subtitletext!,
               style: const TextStyle(fontSize: 16.5),
             ),
             const SizedBox(height: 12),
@@ -174,7 +174,7 @@ class InfoDialog extends StatelessWidget {
                 ),
               ),
               onPressed: onpressed,
-              child: Text(buttontext),
+              child: Text(buttontext!),
             ),
           ],
         ),

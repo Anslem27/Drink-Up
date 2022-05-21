@@ -8,13 +8,13 @@ import 'drink_history.dart';
 
 class DatabaseManager {
   static final defaultManager = DatabaseManager();
-  static Database _database;
+  static Database? _database;
 
   final Map<Type, DatabaseTable> _tables = {
     DrinkHistoryEntry: DrinkHistoryTable(),
   };
 
-  Future<Database> get database async {
+  Future<Database?> get database async {
     if (_database != null) {
       return _database;
     }
@@ -32,7 +32,7 @@ class DatabaseManager {
       //print('Creating tables');
 
       for (var key in _tables.keys) {
-        final table = _tables[key];
+        final table = _tables[key]!;
         final tableName = table.name;
         final tableQuery = table.createQueryColumns;
         final sql = 'CREATE TABLE $tableName ($tableQuery)';
@@ -43,31 +43,31 @@ class DatabaseManager {
     return database;
   }
 
-  void insert(List<DatabaseModel> models) async {
-    var db = await database;
+  void insert(List<DatabaseModel?> models) async {
+    var db = await (database as FutureOr<Database>);
     var batch = db.batch();
     for (var model in models) {
-      DatabaseTable table = _tables[model.runtimeType];
+      DatabaseTable? table = _tables[model.runtimeType];
       if (table == null) {
         return;
       }
 
-      batch.insert(table.name, model.toMap());
+      batch.insert(table.name, model!.toMap());
     }
     await batch.commit();
   }
 
-  void remove(List<DatabaseModel> models) async {
-    var db = await database;
+  void remove(List<DatabaseModel?> models) async {
+    var db = await (database as FutureOr<Database>);
     var batch = db.batch();
     for (var model in models) {
-      DatabaseTable table = _tables[model.runtimeType];
+      DatabaseTable? table = _tables[model.runtimeType];
       if (table == null) {
         return;
       }
 
       String tableName = table.name;
-      String query = model.removeQuery();
+      String query = model!.removeQuery();
       batch.rawDelete(
           'DELETE FROM $tableName WHERE $query', model.removeArgs());
     }
@@ -75,19 +75,19 @@ class DatabaseManager {
   }
 
   Future<List<Map>> fetchAllEntriesOf(Type type) async {
-    DatabaseTable table = _tables[type];
+    DatabaseTable? table = _tables[type];
 
     if (table == null) {
       return [];
     }
 
-    var db = await database;
+    var db = await (database as FutureOr<Database>);
     var maps = await db.query(table.name, columns: table.columns);
     return maps;
   }
 
   Future close() async {
-    var db = await database;
+    var db = await (database as FutureOr<Database>);
     db.close();
   }
 }

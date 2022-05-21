@@ -12,14 +12,14 @@ AppState appReducer(AppState state, action) {
     drinksHistory: historyReducers(state.drinksHistory, action),
   );
 
-  List<DrinkHistoryEntry> currentEntries = newState.drinksHistory
+  List<DrinkHistoryEntry> currentEntries = newState.drinksHistory!
       .where(
-          (entry) => _isToday(DateTime.fromMillisecondsSinceEpoch(entry.date)))
+          (entry) => _isToday(DateTime.fromMillisecondsSinceEpoch(entry.date!)))
       .toList();
 
-  newState.glass.waterAmountTarget = newState.settings.dailyGoal;
-  newState.glass.currentWaterAmount =
-      currentEntries.fold(0, (t, e) => t + e.amount);
+  newState.glass!.waterAmountTarget = newState.settings!.dailyGoal;
+  newState.glass!.currentWaterAmount =
+      currentEntries.fold(0, (t, e) => t + e.amount!);
 
   return newState;
 }

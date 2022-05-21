@@ -41,7 +41,7 @@ class AppSettingsManager {
   }
 
   static Future<bool> saveSettings(
-      Gender gender, int age, int dailyGoal) async {
+      Gender? gender, int? age, int? dailyGoal) async {
     final SharedPreferences prefs = await _prefs;
 
     prefs.setInt(_AppSettingsKeys.gender, gender != null ? gender.index : -1);
@@ -52,7 +52,7 @@ class AppSettingsManager {
   }
 
   static Future<bool> saveNotificationSettings(
-      bool enabled, TimeOfDay from, TimeOfDay to, int interval) async {
+      bool? enabled, TimeOfDay? from, TimeOfDay? to, int? interval) async {
     final SharedPreferences prefs = await _prefs;
 
     prefs.setBool(_AppSettingsKeys.notificationsEnabled,

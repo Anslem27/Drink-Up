@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 import '../../main.dart';
 
 class SplashScreen extends StatefulWidget {
-  const SplashScreen({Key key}) : super(key: key);
+  const SplashScreen({Key? key}) : super(key: key);
 
   @override
   _SplashScreenState createState() => _SplashScreenState();
@@ -56,7 +56,7 @@ class _SplashScreenState extends State<SplashScreen> {
 }
 
 class LoadingIcon extends StatelessWidget {
-  const LoadingIcon({Key key}) : super(key: key);
+  const LoadingIcon({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

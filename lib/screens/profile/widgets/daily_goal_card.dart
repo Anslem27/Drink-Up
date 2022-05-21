@@ -6,17 +6,17 @@ typedef DailyGoalChangedCallback = void Function(int dailyGoal);
 //typedef void DailyGoalChangedCallback(int dailyGoal);
 
 class DailyGoalCard extends StatefulWidget {
-  final int age;
-  final Gender gender;
-  final int dailyGoal;
+  final int? age;
+  final Gender? gender;
+  final int? dailyGoal;
   final DailyGoalChangedCallback changed;
 
   const DailyGoalCard(
-      {Key key,
-      @required this.age,
-      @required this.gender,
-      @required this.dailyGoal,
-      @required this.changed})
+      {Key? key,
+      required this.age,
+      required this.gender,
+      required this.dailyGoal,
+      required this.changed})
       : super(key: key);
 
   int suggestedAmount() {
@@ -71,9 +71,9 @@ class DailyGoalCard extends StatefulWidget {
 }
 
 class _DailyGoalCardState extends State<DailyGoalCard> {
-  int _value = 0;
+  int? _value = 0;
 
-  _DailyGoalCardState(int dailyGoal) {
+  _DailyGoalCardState(int? dailyGoal) {
     _value = dailyGoal;
   }
   dailyGoal() {
@@ -145,7 +145,7 @@ class _DailyGoalCardState extends State<DailyGoalCard> {
                             _value = value.toInt();
                           });
                         },
-                        value: _value.toDouble(),
+                        value: _value!.toDouble(),
                         min: 0.0,
                         max: 10000.0,
                         divisions: 20,

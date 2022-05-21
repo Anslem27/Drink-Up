@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 
 import 'screens/profile/profile_page.dart';
 import 'util/utilities.dart';
@@ -8,7 +9,7 @@ import 'screens/history/history_page.dart';
 import 'screens/today/today_page.dart';
 
 class HomePage extends StatefulWidget {
-  const HomePage({Key key}) : super(key: key);
+  const HomePage({Key? key}) : super(key: key);
 
   @override
   State<StatefulWidget> createState() {
@@ -24,11 +25,11 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
     WidgetsBinding.instance.addObserver(this);
   }
 
-  DateTime lastUpdated;
+  DateTime? lastUpdated;
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
     if (state == AppLifecycleState.resumed) {
-      if (lastUpdated != null && !Utils.isToday(lastUpdated)) {
+      if (lastUpdated != null && !Utils.isToday(lastUpdated!)) {
         setState(() {
           lastUpdated = DateTime.now();
         });
@@ -51,7 +52,62 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
     final iconThemeColor = Theme.of(context).hoverColor;
     return Scaffold(
       body: appBody[currentindex],
-      bottomNavigationBar: navigationDestinations(context, iconThemeColor),
+      bottomNavigationBar: BottomNavigationBar(
+        type: BottomNavigationBarType.fixed,
+        currentIndex: currentindex,
+        onTap: (value) {
+          setState(() {
+            currentindex = value;
+          });
+        },
+        items: [
+          BottomNavigationBarItem(
+              activeIcon: SvgPicture.asset(
+                "assets/svg/home.svg",
+                height: 25,
+                width: 25,
+                color: iconThemeColor,
+              ),
+              icon: SvgPicture.asset(
+                "assets/svg/home.svg",
+                height: 25,
+                width: 25,
+                color: iconThemeColor,
+              ),
+              label: "Home"),
+          BottomNavigationBarItem(
+              activeIcon: SvgPicture.asset(
+                "assets/svg/time-past.svg",
+                color: iconThemeColor,
+              ),
+              icon: SvgPicture.asset(
+                "assets/svg/time-past.svg",
+                color: iconThemeColor,
+              ),
+              label: "History"),
+          /* BottomNavigationBarItem(
+              activeIcon: SvgPicture.asset(
+                "assets/svg/marker.svg",
+              ),
+              icon: SvgPicture.asset("assets/svg/time-past.svg"),
+              label: "Notifications"), */
+          BottomNavigationBarItem(
+            activeIcon: SvgPicture.asset(
+              "assets/svg/user.svg",
+              height: 25,
+              width: 25,
+              color: iconThemeColor,
+            ),
+            icon: SvgPicture.asset(
+              "assets/svg/user.svg",
+              height: 25,
+              width: 25,
+              color: iconThemeColor,
+            ),
+            label: "Profile",
+          ),
+        ],
+      ),
     );
   }
 
@@ -140,3 +196,6 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
     );
   }
 }
+
+
+//indicatorColor: Theme.of(context).highlightColor,

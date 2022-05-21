@@ -42,7 +42,7 @@ class Onbording extends StatelessWidget {
     ];
   }
 
-  const Onbording({Key key}) : super(key: key);
+  const Onbording({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

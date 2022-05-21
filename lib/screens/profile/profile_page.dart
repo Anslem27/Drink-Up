@@ -17,10 +17,10 @@ import 'widgets/daily_goal_card.dart';
 import 'widgets/gender_card.dart';
 import 'package:path/path.dart';
 
-typedef OnSaveCallback = Function({Gender gender, int age, int dailyGoal});
+typedef OnSaveCallback = Function({Gender? gender, int? age, int? dailyGoal});
 
 class ProfilePage extends StatefulWidget {
-  const ProfilePage({Key key}) : super(key: key);
+  const ProfilePage({Key? key}) : super(key: key);
 
   @override
   _ProfilePageState createState() => _ProfilePageState();
@@ -28,7 +28,7 @@ class ProfilePage extends StatefulWidget {
 
 class _ProfilePageState extends State<ProfilePage> {
   //image instance
-  File image;
+  File? image;
   Future pickImage() async {
     try {
       final image = await ImagePicker().pickImage(source: ImageSource.gallery);
@@ -62,7 +62,7 @@ class _ProfilePageState extends State<ProfilePage> {
             child: StoreConnector<AppState, OnSaveCallback>(
               converter: (store) {
                 return ({gender, age, dailyGoal}) {
-                  var settings = store.state.settings
+                  var settings = store.state.settings!
                       .copyWith(gender: gender, age: age, dailyGoal: dailyGoal);
                   store.dispatch(SaveSettingsAction(settings));
                 };
@@ -163,12 +163,12 @@ class _ProfilePageState extends State<ProfilePage> {
 
   DailyGoalCard dailyGoalCard(AppState state, OnSaveCallback callback) {
     return DailyGoalCard(
-      age: state.settings.age,
-      gender: state.settings.gender,
+      age: state.settings!.age,
+      gender: state.settings!.gender,
       changed: (dG) {
         callback(dailyGoal: dG);
       },
-      dailyGoal: state.settings.dailyGoal,
+      dailyGoal: state.settings!.dailyGoal,
     );
   }
 
@@ -180,14 +180,14 @@ class _ProfilePageState extends State<ProfilePage> {
           changed: (g) {
             callback(gender: g);
           },
-          value: state.settings.gender,
+          value: state.settings!.gender,
         ),
         //?Age card
         AgeSelectorCard(
           changed: (a) {
             callback(age: a);
           },
-          value: state.settings.age,
+          value: state.settings!.age,
         ),
       ],
     );
@@ -268,7 +268,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                   child: Image.file(
                                     // image!,
                                     //? null check.
-                                    image,
+                                    image!,
                                     width: 85, height: 85,
                                   ),
                                 )

@@ -14,14 +14,14 @@ List<Middleware<AppState>> createStoreMiddleware() {
   final loadDrinksHistory = _createLoadDrinksHistory();
   final addDrinkToHistory = _createAddDrinkToHistory();
   final removeDrinkFromHistory = _createRemoveDrinkFromHistory();
-  final saveNotificationSettings = _createSaveNotificationSettings();
+  //final saveNotificationSettings = _createSaveNotificationSettings();
 
   return [
     TypedMiddleware<AppState, LoadDrinkHistoryAction>(loadDrinksHistory),
     TypedMiddleware<AppState, LoadAppSettingsAction>(loadSettings),
     TypedMiddleware<AppState, SaveSettingsAction>(saveSettings),
-    TypedMiddleware<AppState, SaveNotificationSettingsAction>(
-        saveNotificationSettings),
+    // TypedMiddleware<AppState, SaveNotificationSettingsAction>(
+    //     saveNotificationSettings),
     TypedMiddleware<AppState, AddDrinkToHistoryAction>(addDrinkToHistory),
     TypedMiddleware<AppState, RemoveDrinkFromHistoryAction>(
         removeDrinkFromHistory),
@@ -32,31 +32,31 @@ Middleware<AppState> _createSaveSettings() {
   return (Store<AppState> store, action, NextDispatcher next) {
     next(action);
 
-    AppSettingsManager.saveSettings(store.state.settings.gender,
-        store.state.settings.age, store.state.settings.dailyGoal);
+    AppSettingsManager.saveSettings(store.state.settings!.gender,
+        store.state.settings!.age, store.state.settings!.dailyGoal);
   };
 }
 
-Middleware<AppState> _createSaveNotificationSettings() {
+/* Middleware<AppState> _createSaveNotificationSettings() {
   return (Store<AppState> store, action, NextDispatcher next) {
     next(action);
 
-    if (store.state.settings.notificationsEnabled) {
+    if (store.state.settings!.notificationsEnabled!) {
       NotificationsManager.manager.scheduleNotifications(
-          store.state.settings.notificationsFromTime,
-          store.state.settings.notificationsToTime,
-          store.state.settings.notificationsInterval);
+          store.state.settings!.notificationsFromTime!,
+          store.state.settings!.notificationsToTime!,
+          store.state.settings!.notificationsInterval!);
     } else {
       NotificationsManager.manager.cancelAll();
     }
 
     AppSettingsManager.saveNotificationSettings(
-        store.state.settings.notificationsEnabled,
-        store.state.settings.notificationsFromTime,
-        store.state.settings.notificationsToTime,
-        store.state.settings.notificationsInterval);
+        store.state.settings!.notificationsEnabled,
+        store.state.settings!.notificationsFromTime,
+        store.state.settings!.notificationsToTime,
+        store.state.settings!.notificationsInterval);
   };
-}
+} */
 
 Middleware<AppState> _createLoadSettings() {
   return (Store<AppState> store, action, NextDispatcher next) {

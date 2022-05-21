@@ -4,9 +4,9 @@ typedef AgeChangedCallback = void Function(int age);
 
 class AgeSelectorCard extends StatefulWidget {
   final AgeChangedCallback changed;
-  final int value;
+  final int? value;
 
-  const AgeSelectorCard({Key key, @required this.value, @required this.changed})
+  const AgeSelectorCard({Key? key, required this.value, required this.changed})
       : super(key: key);
 
   @override
@@ -17,7 +17,7 @@ class AgeSelectorCard extends StatefulWidget {
 }
 
 class _AgeSelectorCardState extends State<AgeSelectorCard> {
-  int _value = 0;
+  int? _value = 0;
 
   _AgeSelectorCardState(this._value);
 
@@ -75,7 +75,7 @@ class _AgeSelectorCardState extends State<AgeSelectorCard> {
                             _value = value.round();
                           });
                         },
-                        value: _value.toDouble(),
+                        value: _value!.toDouble(),
                         min: 0.0,
                         max: 100.0,
                         divisions: 100,
@@ -95,11 +95,11 @@ class _AgeSelectorCardState extends State<AgeSelectorCard> {
   }
 
   String ageGetter() {
-    if (_value > 0 && _value < 10) {
+    if (_value! > 0 && _value! < 10) {
       return "assets/icons/baby-boy.png";
-    } else if (_value >= 10 && _value < 29) {
+    } else if (_value! >= 10 && _value! < 29) {
       return "assets/icons/teenager.png";
-    } else if (_value >= 29 && _value < 35) {
+    } else if (_value! >= 29 && _value! < 35) {
       return "assets/icons/beard.png";
     } else {
       return "assets/icons/man.png";

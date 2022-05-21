@@ -5,7 +5,7 @@ class Drink {
 
   Drink(this.name, this.amount);
 
-  //TODO: Add momre drink options,plus custom ones for the users.
+  //TODO: Add more drink options,plus custom ones for the users.
 
   //? Water Drinks
 
@@ -19,7 +19,7 @@ class Drink {
   factory Drink.mediumJuice() => Water(301);
   factory Drink.bigJuice() => Water(501);
 
-  factory Drink.fromAmount(int amount) {
+  factory Drink.fromAmount(int? amount) {
     switch (amount) {
       case 250:
         return Drink.small();

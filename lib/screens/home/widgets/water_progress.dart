@@ -6,7 +6,7 @@ import 'package:vector_math/vector_math.dart' as vector;
 import '../../../Models/app_state.dart';
 
 class WaterProgress extends StatefulWidget {
-  const WaterProgress({Key key}) : super(key: key);
+  const WaterProgress({Key? key}) : super(key: key);
 
   @override
   State<StatefulWidget> createState() {
@@ -16,7 +16,7 @@ class WaterProgress extends StatefulWidget {
 
 class _WaterProgressState extends State<WaterProgress>
     with TickerProviderStateMixin {
-  AnimationController animationController;
+  late AnimationController animationController;
 
   @override
   void initState() {
@@ -40,8 +40,8 @@ class _WaterProgressState extends State<WaterProgress>
     return StoreConnector<AppState, AppState>(
       converter: (store) => store.state,
       builder: (context, state) {
-        var current = state.glass.currentWaterAmount;
-        var target = state.glass.waterAmountTarget;
+        var current = state.glass!.currentWaterAmount;
+        var target = state.glass!.waterAmountTarget!;
         var percentage = target > 0 ? current / target * 100 : 100.0;
         var progress = (percentage > 100.0 ? 100.0 : percentage) / 100.0;
         progress = 1.0 - progress;

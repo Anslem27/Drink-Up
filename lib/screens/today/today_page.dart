@@ -9,7 +9,7 @@ import '../home/widgets/drink_bottomsheet.dart';
 import '../home/widgets/water_progress.dart';
 
 class TodayPage extends StatelessWidget {
-  const TodayPage({Key key}) : super(key: key);
+  const TodayPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -176,7 +176,7 @@ class TodayPage extends StatelessWidget {
 }
 
 class TodaysHistory extends StatelessWidget {
-  const TodaysHistory({Key key}) : super(key: key);
+  const TodaysHistory({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -184,15 +184,15 @@ class TodaysHistory extends StatelessWidget {
       converter: (store) => store.state,
       builder: (context, state) {
         var historyText = "You hav'nt drunk\nanything today!";
-        var todayEntries = state.drinksHistory
+        var todayEntries = state.drinksHistory!
             .where((entry) => Utils.isToday(
-                  DateTime.fromMillisecondsSinceEpoch(entry.date),
+                  DateTime.fromMillisecondsSinceEpoch(entry.date!),
                 ))
             .toList();
 
         if (todayEntries.isNotEmpty) {
           todayEntries.sort(
-            (a, b) => b.date.compareTo(a.date),
+            (a, b) => b.date!.compareTo(a.date!),
           );
           var i = 0;
           historyText = '';
@@ -200,7 +200,7 @@ class TodaysHistory extends StatelessWidget {
           for (var entry in todayEntries) {
             historyText = "${entry.amount} ml at  " +
                 DateFormat('HH:mm a')
-                    .format(DateTime.fromMillisecondsSinceEpoch(entry.date)) +
+                    .format(DateTime.fromMillisecondsSinceEpoch(entry.date!)) +
                 historyText;
             i++;
 

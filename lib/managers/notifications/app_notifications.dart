@@ -1,4 +1,4 @@
-import 'dart:math';
+/* import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:timezone/timezone.dart' as tz;
@@ -29,7 +29,7 @@ class NotificationsManager {
     'It reduces the chance of a hangover',
   ];
 
-  static FlutterLocalNotificationsPlugin _flutterLocalNotificationsPlugin;
+  static FlutterLocalNotificationsPlugin? _flutterLocalNotificationsPlugin;
 
   void init() async {
     var initializationSettingsAndroid =
@@ -40,7 +40,7 @@ class NotificationsManager {
         android: initializationSettingsAndroid, iOS: initializationSettingsIOS);
 
     _flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
-    _flutterLocalNotificationsPlugin.initialize(initializationSettings);
+    _flutterLocalNotificationsPlugin!.initialize(initializationSettings);
 
     Future initializetimezone() async {
       tz.initializeTimeZones();
@@ -49,7 +49,7 @@ class NotificationsManager {
     initializetimezone();
   }
 
-  FlutterLocalNotificationsPlugin get plugin {
+  FlutterLocalNotificationsPlugin? get plugin {
     if (_flutterLocalNotificationsPlugin != null) {
       return _flutterLocalNotificationsPlugin;
     }
@@ -93,7 +93,7 @@ class NotificationsManager {
   }
 
   void cancelAll() async {
-    await plugin.cancelAll();
+    await plugin!.cancelAll();
   }
 
   // ignore: missing_return
@@ -107,7 +107,7 @@ class NotificationsManager {
         android: androidPlatformChannelSpecifics,
         iOS: iOSPlatformChannelSpecifics);
 
-    await plugin.zonedSchedule(
+    await plugin!.zonedSchedule(
       id,
       'Time to have a drink',
       facts[Random().nextInt(facts.length)],
@@ -223,4 +223,5 @@ class NotificationsManager {
         facts[Random().nextInt(facts.length)], time, platformChannelSpecifics);
   }
 }
+ */
  */

@@ -6,10 +6,10 @@ import '../../Models/app_state.dart';
 import '../../actions/settings_actions.dart';
 
 typedef OnSaveCallback = Function(
-    {bool enabled, TimeOfDay from, TimeOfDay to, int interval});
+    {bool? enabled, TimeOfDay? from, TimeOfDay? to, int? interval});
 
 class NotificationsSettingsPage extends StatefulWidget {
-  const NotificationsSettingsPage({Key key}) : super(key: key);
+  const NotificationsSettingsPage({Key? key}) : super(key: key);
 
   @override
   State<StatefulWidget> createState() {
@@ -76,7 +76,7 @@ class _NotificationsSettingsPageState extends State<NotificationsSettingsPage> {
                       child: StoreConnector<AppState, OnSaveCallback>(
                         converter: (store) {
                           return ({enabled, from, to, interval}) {
-                            var settings = store.state.settings.copyWith(
+                            var settings = store.state.settings!.copyWith(
                                 notificationsEnabled: enabled,
                                 notificationsFromTime: from,
                                 notificationsToTime: to,
@@ -108,7 +108,7 @@ class _NotificationsSettingsPageState extends State<NotificationsSettingsPage> {
                                     ),
                                     Switch(
                                       value:
-                                          state.settings.notificationsEnabled,
+                                          state.settings!.notificationsEnabled!,
                                       onChanged: (value) {
                                         callback(enabled: value);
                                       },
@@ -123,10 +123,10 @@ class _NotificationsSettingsPageState extends State<NotificationsSettingsPage> {
                                     var picked = await showMinutesPicker(
                                         context: context,
                                         initialMinutes: state
-                                            .settings.notificationsInterval);
+                                            .settings!.notificationsInterval!);
                                     if (picked != null &&
                                         picked !=
-                                            state.settings
+                                            state.settings!
                                                 .notificationsInterval) {
                                       callback(interval: picked);
                                     }
@@ -144,7 +144,7 @@ class _NotificationsSettingsPageState extends State<NotificationsSettingsPage> {
                                       ),
                                       Text(
                                         _formatMinutes(state
-                                            .settings.notificationsInterval),
+                                            .settings!.notificationsInterval!),
                                         style: const TextStyle(
                                           fontWeight: FontWeight.w600,
                                         ),
@@ -160,10 +160,10 @@ class _NotificationsSettingsPageState extends State<NotificationsSettingsPage> {
                                     var picked = await showTimePicker(
                                         context: context,
                                         initialTime: state
-                                            .settings.notificationsFromTime);
+                                            .settings!.notificationsFromTime!);
                                     if (picked != null &&
                                         picked !=
-                                            state.settings
+                                            state.settings!
                                                 .notificationsFromTime) {
                                       callback(from: picked);
                                     }
@@ -180,7 +180,7 @@ class _NotificationsSettingsPageState extends State<NotificationsSettingsPage> {
                                         ),
                                       ),
                                       Text(
-                                        state.settings.notificationsFromTime
+                                        state.settings!.notificationsFromTime!
                                             .format(context),
                                         style: const TextStyle(
                                           fontWeight: FontWeight.w600,
@@ -197,11 +197,11 @@ class _NotificationsSettingsPageState extends State<NotificationsSettingsPage> {
                                     var picked = await showTimePicker(
                                         context: context,
                                         initialTime:
-                                            state.settings.notificationsToTime);
+                                            state.settings!.notificationsToTime!);
                                     if (picked != null &&
                                         picked !=
                                             state
-                                                .settings.notificationsToTime) {
+                                                .settings!.notificationsToTime) {
                                       callback(to: picked);
                                     }
                                   },
@@ -217,7 +217,7 @@ class _NotificationsSettingsPageState extends State<NotificationsSettingsPage> {
                                         ),
                                       ),
                                       Text(
-                                        state.settings.notificationsToTime
+                                        state.settings!.notificationsToTime!
                                             .format(context),
                                         style: const TextStyle(
                                           fontWeight: FontWeight.w600,
@@ -243,8 +243,8 @@ class _NotificationsSettingsPageState extends State<NotificationsSettingsPage> {
   }
 }
 
-Future<int> showMinutesPicker(
-    {@required BuildContext context, @required int initialMinutes}) async {
+Future<int?> showMinutesPicker(
+    {required BuildContext context, required int initialMinutes}) async {
   assert(context != null);
   assert(initialMinutes != null);
 
@@ -255,7 +255,7 @@ Future<int> showMinutesPicker(
 }
 
 class MinutesPickerDialog extends StatefulWidget {
-  const MinutesPickerDialog({Key key}) : super(key: key);
+  const MinutesPickerDialog({Key? key}) : super(key: key);
 
   @override
   State<StatefulWidget> createState() {
@@ -264,7 +264,7 @@ class MinutesPickerDialog extends StatefulWidget {
 }
 
 class _MinutesPickerDialogState extends State<MinutesPickerDialog> {
-  int _selectedMinutes;
+  int? _selectedMinutes;
 
   @override
   void initState() {

@@ -16,45 +16,45 @@ class HistoryManager {
   }
 
   List<DrinkHistoryEntry> currentEntries(
-      List<DrinkHistoryEntry> entries, int index) {
+      List<DrinkHistoryEntry>? entries, int index) {
     DateTime today = DateTime.now();
 
     List<DrinkHistoryEntry> currentEntries = [];
     if (index == 0) {
-      currentEntries = entries
+      currentEntries = entries!
           .where((entry) =>
-              isToday(DateTime.fromMillisecondsSinceEpoch(entry.date)))
+              isToday(DateTime.fromMillisecondsSinceEpoch(entry.date!)))
           .toList();
     } else if (index == 1) {
       Duration week = const Duration(days: 7);
-      currentEntries = entries
+      currentEntries = entries!
           .where((entry) =>
               today
-                  .difference(DateTime.fromMillisecondsSinceEpoch(entry.date))
+                  .difference(DateTime.fromMillisecondsSinceEpoch(entry.date!))
                   .compareTo(week) <
               1)
           .toList();
     } else if (index == 2) {
       Duration month = const Duration(days: 30);
-      currentEntries = entries
+      currentEntries = entries!
           .where((entry) =>
               today
-                  .difference(DateTime.fromMillisecondsSinceEpoch(entry.date))
+                  .difference(DateTime.fromMillisecondsSinceEpoch(entry.date!))
                   .compareTo(month) <
               1)
           .toList();
     } else if (index == 3) {
       Duration year = const Duration(days: 365);
-      currentEntries = entries
+      currentEntries = entries!
           .where((entry) =>
               today
-                  .difference(DateTime.fromMillisecondsSinceEpoch(entry.date))
+                  .difference(DateTime.fromMillisecondsSinceEpoch(entry.date!))
                   .compareTo(year) <
               1)
           .toList();
     }
 
-    currentEntries.sort((a, b) => b.date.compareTo(a.date));
+    currentEntries.sort((a, b) => b.date!.compareTo(a.date!));
     return currentEntries;
   }
 }

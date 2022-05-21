@@ -16,9 +16,9 @@ class DrinkHistoryTable extends DatabaseTable {
 }
 
 class DrinkHistoryEntry extends DatabaseModel {
-  int id;
-  int amount;
-  int date;
+  int? id;
+  int? amount;
+  int? date;
 
   @override
   Map<String, dynamic> toMap() {

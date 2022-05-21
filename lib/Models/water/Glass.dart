@@ -3,7 +3,7 @@
 import 'Drink.dart';
 
 class Glass {
-  int waterAmountTarget;
+  int? waterAmountTarget;
   int currentWaterAmount;
 
   Glass(this.waterAmountTarget, this.currentWaterAmount);

@@ -18,6 +18,7 @@ import 'styles/app_theme.dart';
 
 // APP NAME: Drink Up
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(MyApp());
 }
 
@@ -26,7 +27,7 @@ class MyApp extends StatelessWidget {
       initialState: AppState.defaultState(),
       middleware: createStoreMiddleware());
 
-  MyApp({Key key}) : super(key: key);
+  MyApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +44,7 @@ class MyApp extends StatelessWidget {
         },
         debugShowCheckedModeBanner: false,
         //!Theme Changing variable.
-        themeMode: thememode,
+        themeMode: thememode!,
         theme: AppTheme.lightTheme,
         darkTheme: AppTheme.darkTheme,
         home: const SplashScreen(),
@@ -53,7 +54,7 @@ class MyApp extends StatelessWidget {
 }
 
 class HomeController extends StatelessWidget {
-  const HomeController({Key key}) : super(key: key);
+  const HomeController({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

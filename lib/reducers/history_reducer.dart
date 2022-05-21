@@ -3,30 +3,30 @@ import 'package:redux/redux.dart';
 import '../actions/history_actions.dart';
 import '../managers/database/drink_history.dart';
 
-final historyReducers = combineReducers<List<DrinkHistoryEntry>>([
-  TypedReducer<List<DrinkHistoryEntry>, DrinkHistoryLoadedAction>(
+final historyReducers = combineReducers<List<DrinkHistoryEntry>?>([
+  TypedReducer<List<DrinkHistoryEntry>?, DrinkHistoryLoadedAction>(
       _setLoadedDrinkHistory),
-  TypedReducer<List<DrinkHistoryEntry>, AddDrinkToHistoryAction>(
+  TypedReducer<List<DrinkHistoryEntry>?, AddDrinkToHistoryAction>(
       _addDrinkToHistory),
-  TypedReducer<List<DrinkHistoryEntry>, RemoveDrinkFromHistoryAction>(
+  TypedReducer<List<DrinkHistoryEntry>?, RemoveDrinkFromHistoryAction>(
       _removeDrinkFromHistory),
 ]);
 
 List<DrinkHistoryEntry> _setLoadedDrinkHistory(
-    List<DrinkHistoryEntry> entries, DrinkHistoryLoadedAction action) {
+    List<DrinkHistoryEntry>? entries, DrinkHistoryLoadedAction action) {
   return action.entries;
 }
 
 List<DrinkHistoryEntry> _addDrinkToHistory(
-    List<DrinkHistoryEntry> entries, AddDrinkToHistoryAction action) {
+    List<DrinkHistoryEntry>? entries, AddDrinkToHistoryAction action) {
   // ignore: prefer_conditional_assignment
   if (action.entry.id == null) {
-    action.entry.id = entries.length + 1;
+    action.entry.id = entries!.length + 1;
   }
-  return List.from(entries)..add(action.entry);
+  return List.from(entries!)..add(action.entry);
 }
 
 List<DrinkHistoryEntry> _removeDrinkFromHistory(
-    List<DrinkHistoryEntry> entries, RemoveDrinkFromHistoryAction action) {
-  return List.from(entries)..remove(action.entry);
+    List<DrinkHistoryEntry>? entries, RemoveDrinkFromHistoryAction action) {
+  return List.from(entries!)..remove(action.entry);
 }

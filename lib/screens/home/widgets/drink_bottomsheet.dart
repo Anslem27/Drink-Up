@@ -10,7 +10,7 @@ import '../../../managers/database/drink_history.dart';
 typedef OnDrinkAddedCallback = Function(Drink drink);
 
 class DrinkBottomSheet extends StatelessWidget {
-  const DrinkBottomSheet({Key key}) : super(key: key);
+  const DrinkBottomSheet({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

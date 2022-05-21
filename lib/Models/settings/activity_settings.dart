@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import '../../screens/profile/Gender.dart';
 
 class AppSettings {
-  Gender gender;
-  int age;
-  int dailyGoal;
+  Gender? gender;
+  int? age;
+  int? dailyGoal;
 
-  bool notificationsEnabled;
-  TimeOfDay notificationsFromTime;
-  TimeOfDay notificationsToTime;
-  int notificationsInterval;
+  bool? notificationsEnabled;
+  TimeOfDay? notificationsFromTime;
+  TimeOfDay? notificationsToTime;
+  int? notificationsInterval;
 
   AppSettings(
       {this.gender,
@@ -21,13 +21,13 @@ class AppSettings {
       this.notificationsInterval});
 
   AppSettings copyWith(
-      {Gender gender,
-      int age,
-      int dailyGoal,
-      bool notificationsEnabled,
-      TimeOfDay notificationsFromTime,
-      TimeOfDay notificationsToTime,
-      int notificationsInterval}) {
+      {Gender? gender,
+      int? age,
+      int? dailyGoal,
+      bool? notificationsEnabled,
+      TimeOfDay? notificationsFromTime,
+      TimeOfDay? notificationsToTime,
+      int? notificationsInterval}) {
     return AppSettings(
         gender: gender ?? this.gender,
         age: age ?? this.age,

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class Aboutpage extends StatefulWidget {
-  const Aboutpage({Key key}) : super(key: key);
+  const Aboutpage({Key? key}) : super(key: key);
 
   @override
   State<Aboutpage> createState() => _AboutpageState();
