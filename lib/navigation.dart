@@ -8,6 +8,9 @@ import 'screens/history/history_page.dart';
 //import 'screens/notifications/notifications_settings_page.dart';
 import 'screens/today/today_page.dart';
 
+
+
+//FIXME: Most databases dont work, due to future or stuff
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
 
