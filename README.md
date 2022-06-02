@@ -36,6 +36,10 @@ Get your flutter environment up and running.
 - [x] Dark and Light Modes
 - [x] Swipe to delete history.
 
+## Whats not working
+
+- [x] Notifications 
+
 ## 📸 ScreenShots
 
 
