@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:google_fonts/google_fonts.dart';
+import 'package:iconsax/iconsax.dart';
 import 'package:intl/intl.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
@@ -246,7 +247,7 @@ class _HistoryPageState extends State<HistoryPage>
                           ),
                           tooltip: "Summary",
                           icon: Icon(
-                            Icons.auto_awesome_mosaic_rounded,
+                            Iconsax.bookmark,
                             size: 30,
                             color: Theme.of(context).focusColor,
                             semanticLabel: "Summary",
@@ -459,7 +460,7 @@ class DrinkHitoryListItem extends StatelessWidget {
                           child: Row(
                             children: [
                               const Icon(
-                                Icons.calendar_view_day,
+                                Iconsax.calendar,
                                 size: 25,
                               ),
                               const SizedBox(width: 3),

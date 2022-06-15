@@ -130,7 +130,7 @@ class _ProfilePageState extends State<ProfilePage> {
                       ),
                       SizedBox(width: 3),
                       Icon(
-                        Icons.fact_check_outlined,
+                        Iconsax.book,
                         color: Colors.blueAccent,
                       ),
                     ],
@@ -227,14 +227,6 @@ class _ProfilePageState extends State<ProfilePage> {
     );
   }
 
-  /*  //image instance
-  File image;
-  Future pickImage() async {
-    final image = await ImagePicker().pickImage(source: ImageSource.gallery);
-    if (image == null) return;
-    final imageTemporary = File(image.path);
-    this.image = imageTemporary;
-  } */
 
   userProfile(context) {
     return Row(
@@ -291,22 +283,22 @@ class _ProfilePageState extends State<ProfilePage> {
                           ),
                         ),
                       ),
-                      Align(
-                        alignment: Alignment.bottomCenter,
-                        child: Padding(
-                          padding: const EdgeInsets.only(bottom: 10),
-                          child: TextButton.icon(
-                            style: TextButton.styleFrom(
-                              primary: Theme.of(context).focusColor,
-                            ),
-                            onPressed: () {
-                              //pickImage();
-                            },
-                            icon: const Icon(Icons.edit),
-                            label: const Text("Edit Avatar"),
-                          ),
-                        ),
-                      ),
+                      // Align(
+                      //   alignment: Alignment.bottomCenter,
+                      //   child: Padding(
+                      //     padding: const EdgeInsets.only(bottom: 10),
+                      //     child: TextButton.icon(
+                      //       style: TextButton.styleFrom(
+                      //         primary: Theme.of(context).focusColor,
+                      //       ),
+                      //       onPressed: () {
+                      //         //pickImage();
+                      //       },
+                      //       icon: const Icon(Icons.edit),
+                      //       label: const Text("Edit Avatar"),
+                      //     ),
+                      //   ),
+                      // ),
                     ],
                   ),
                 ),

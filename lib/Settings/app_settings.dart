@@ -2,6 +2,7 @@ import 'package:drink_up/Settings/Widgets/reusable_widgets.dart';
 import 'package:drink_up/styles/Animations/custom_page_transition.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:iconsax/iconsax.dart';
 import 'package:sliding_sheet/sliding_sheet.dart';
 
 import '../Addons/feedback.dart';
@@ -180,26 +181,35 @@ class _AppSettingsState extends State<AppSettings> {
   settingsBody() {
     return Column(
       children: [
-        ReusableSettings(
-          image: "assets/settings/theme-icon.png",
-          onTap: () => showDialog(
+        SettingsCard(
+          subtitle: "General App theme appearance",
+          leading: const Icon(
+            Iconsax.color_swatch,
+            color: Color(0xff7fffd4),
+          ),
+          title: "Theme",
+          ontap: () => showDialog(
             context: context,
             builder: (_) => themeChanger(),
           ),
-          header: "Theme",
-          subtitle: "General App theme appearance",
         ),
-        spaceBtn,
-        ReusableSettings(
-          image: "assets/settings/share.png",
-          onTap: () {},
-          header: "Share",
+        SettingsCard(
           subtitle: "Share with a friend",
+          leading: Icon(
+            Iconsax.share,
+            color: Colors.blue[700],
+          ),
+          title: "Share",
+          ontap: () {},
         ),
-        spaceBtn,
-        ReusableSettings(
-          image: "assets/settings/rate.png",
-          onTap: () => showSlidingBottomSheet(
+        SettingsCard(
+          subtitle: "Rate your experience with the app",
+          leading: Icon(
+            Iconsax.star,
+            color: Colors.yellow[600],
+          ),
+          title: "Rate Us",
+          ontap: () => showSlidingBottomSheet(
             context,
             builder: (_) => SlidingSheetDialog(
               duration: const Duration(milliseconds: 500),
@@ -213,55 +223,54 @@ class _AppSettingsState extends State<AppSettings> {
               },
             ),
           ),
-          header: "Rate Us",
-          subtitle: "Rate your experience with the app",
         ),
-        spaceBtn,
-        ReusableSettings(
-          image: "assets/settings/privacy.png",
-          onTap: () {},
-          header: "Privacy Policy",
+        SettingsCard(
           subtitle: "Terms and conditions of use",
+          leading: Icon(
+            Iconsax.shield,
+            color: Colors.green[500],
+          ),
+          title: "Privacy Policy",
+          ontap: () {},
         ),
-        spaceBtn,
-        ReusableSettings(
-          image: "assets/settings/new.png",
-          onTap: () => showDialog(
+        SettingsCard(
+          subtitle: "Discover new app features",
+          leading: const Icon(
+            Iconsax.share,
+            color: Colors.blue,
+          ),
+          title: "Whats New",
+          ontap: () => showDialog(
             context: context,
             builder: (_) => newDialog(),
           ),
-          header: "Whats New",
-          subtitle: "Discover New App features",
         ),
-        spaceBtn,
-        ReusableSettings(
-          image: "assets/settings/faq.png",
-          onTap: () {},
-          header: "Faq's",
-          subtitle: "Frequently Asked Questions",
-        ),
-        spaceBtn,
-        ReusableSettings(
-          image: "assets/settings/rate.png",
-          onTap: () => Navigator.push(
+        SettingsCard(
+          subtitle: "Report or suggest an issue",
+          leading: const Icon(
+            Icons.mail_rounded,
+            color: Color(0xff7fffd4),
+          ),
+          title: "Contact Us",
+          ontap: () => Navigator.push(
             context,
             CustomPageRoute(
               destination: const FeedBackPage(),
             ),
           ),
-          header: "Contact Us",
-          subtitle: "Report or Suggest an Issue",
         ),
-        spaceBtn,
-        ReusableSettings(
-          image: "assets/settings/information-button.png",
-          onTap: () => Navigator.of(context).push(
+        SettingsCard(
+          subtitle: "App build info",
+          leading: Icon(
+            Iconsax.heart,
+            color: Colors.red[500],
+          ),
+          title: "About",
+          ontap: () => Navigator.of(context).push(
             CustomPageRoute(
               destination: const Aboutpage(),
             ),
           ),
-          header: "About",
-          subtitle: "App build info",
         ),
       ],
     );

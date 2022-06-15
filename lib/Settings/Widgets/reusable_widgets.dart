@@ -1,66 +1,5 @@
 import 'package:flutter/material.dart';
 
-//...............//?Used with settings rows................................//
-
-class ReusableSettings extends StatelessWidget {
-  final String image, header, subtitle;
-  final void Function() onTap;
-  const ReusableSettings(
-      {Key key,
-      @required this.image,
-      @required this.onTap,
-      @required this.header,
-      this.subtitle})
-      : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      children: [
-        Padding(
-          padding: const EdgeInsets.only(
-            left: 20.0,
-            right: 8.0,
-            top: 8,
-            bottom: 8,
-          ),
-          child: Image.asset(
-            image,
-            width: 30,
-            height: 30,
-          ),
-        ),
-        const SizedBox(width: 20),
-        GestureDetector(
-          onTap: onTap,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              Text(
-                header,
-                textAlign: TextAlign.start,
-                style: const TextStyle(
-                  fontWeight: FontWeight.w600,
-                  fontSize: 16,
-                ),
-              ),
-              //const Spacer(),
-              Text(
-                subtitle,
-                style: const TextStyle(
-                  fontSize: 13,
-                  color: Colors.grey,
-                ),
-              )
-            ],
-          ),
-        ),
-      ],
-    );
-  }
-}
-
 //...............//?Used with drink dialogs................................//
 
 class QuirkyDialog extends StatelessWidget {
@@ -183,21 +122,76 @@ class InfoDialog extends StatelessWidget {
   }
 }
 
-/* 
+//?..............................................Used with the settings cards..................................//
+class SettingsCard extends StatelessWidget {
+  const SettingsCard(
+      {Key key,
+      this.ontap,
+      this.leading,
+      @required this.subtitle,
+      @required this.title,
+      this.widget})
+      : super(key: key);
+  final String title, subtitle;
+  final void Function() ontap;
+  final Widget widget;
+  final Icon leading;
 
-//...............//? Fetches current app version Ps. Used in about Page................................//
-//TODO Add app version to email in order to handle errors in future.
-var versioncontrol = FutureBuilder<PackageInfo>(
-  future: PackageInfo.fromPlatform(),
-  builder: (context, snapshot) {
-    if (snapshot.connectionState == ConnectionState.done) {
-      return Text(
-        'Version: ${snapshot.data.version}',
-        style: GoogleFonts.rubik(
-            fontWeight: FontWeight.w300, fontSize: 18, color: Colors.white),
-      );
-    } else {
-      return const Loader();
-    }
-  },
-); */
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: ontap,
+      child: Container(
+        margin: const EdgeInsets.only(left: 1, right: 1),
+        child: Padding(
+          padding: const EdgeInsets.all(5.0),
+          child: Card(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(12),
+            ),
+            child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    children: [
+                      //leading icon
+                      Padding(
+                        padding: const EdgeInsets.all(8),
+                        child: leading,
+                      ),
+                      const SizedBox(width: 4),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              title,
+                              style: const TextStyle(fontSize: 18),
+                            ),
+                            const SizedBox(height: 4),
+                            Text(
+                              subtitle,
+                              style: const TextStyle(color: Colors.grey),
+                            ),
+                          ],
+                        ),
+                      ),
+                      const Spacer(),
+                      //trainling widget
+                      Padding(
+                        padding: const EdgeInsets.only(right: 4),
+                        child: widget,
+                      ),
+                    ],
+                  ),
+                ]),
+          ),
+        ),
+      ),
+    );
+  }
+}

@@ -1,5 +1,4 @@
 import 'package:drink_up/Addons/widgets/fancy_snackbars.dart';
-import 'package:drink_up/Settings/Widgets/reusable_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -185,7 +184,7 @@ class TodaysHistory extends StatelessWidget {
     return StoreConnector<AppState, AppState>(
       converter: (store) => store.state,
       builder: (context, state) {
-        var historyText = "You hav'nt drunk\nanything today!";
+        var historyText = "You hav'nt had\nanything to drink!";
         var todayEntries = state.drinksHistory
             .where((entry) => Utils.isToday(
                   DateTime.fromMillisecondsSinceEpoch(entry.date),
@@ -233,7 +232,7 @@ class TodaysHistory extends StatelessWidget {
                 children: [
                   const Padding(
                     padding: EdgeInsets.only(right: 5.0),
-                    child: Icon(Icons.coffee_outlined, size: 28),
+                    child: Icon(Iconsax.cup, size: 28),
                   ),
                   Text(
                     "Glance",
