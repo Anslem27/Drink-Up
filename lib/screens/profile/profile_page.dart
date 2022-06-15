@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:iconsax/iconsax.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:path_provider/path_provider.dart';
 import '../../Addons/random_lists.dart';
@@ -214,7 +215,7 @@ class _ProfilePageState extends State<ProfilePage> {
               ),
               tooltip: "Menu",
               icon: const Icon(
-                Icons.settings,
+                Iconsax.setting,
                 size: 30,
                 semanticLabel: "Menu",
               ),
@@ -299,7 +300,7 @@ class _ProfilePageState extends State<ProfilePage> {
                               primary: Theme.of(context).focusColor,
                             ),
                             onPressed: () {
-                              pickImage();
+                              //pickImage();
                             },
                             icon: const Icon(Icons.edit),
                             label: const Text("Edit Avatar"),

@@ -31,6 +31,7 @@ dependencies:
   url_launcher: ^6.0.17
   store_redirect: ^2.0.0
   flutter_local_notifications: ^9.2.0
+  iconsax: ^0.0.8
   # GetX State Management
   get: ^4.6.1
   get_storage: ^2.0.3
@@ -40,6 +41,7 @@ dependencies:
 
   # Checks for new app versions.
   new_version: ^0.3.0
+  flutter_svg: ^1.1.0
 
 dev_dependencies:
   flutter_test:
@@ -61,6 +63,7 @@ flutter:
   assets:
     - assets/images/
     - assets/icons/
+    - assets/svg/
     - assets/settings/
     - assets/illustrations/
     - assets/bottle/

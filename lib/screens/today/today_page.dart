@@ -1,7 +1,9 @@
+import 'package:drink_up/Addons/widgets/fancy_snackbars.dart';
 import 'package:drink_up/Settings/Widgets/reusable_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:iconsax/iconsax.dart';
 import 'package:intl/intl.dart';
 import '../../Models/app_state.dart';
 import '../../util/utilities.dart';
@@ -244,24 +246,31 @@ class TodaysHistory extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.only(right: 5.0),
                     child: IconButton(
-                        splashRadius: 22,
-                        //TODO: Maybe move this to the faq page.
-                        onPressed: () => showDialog(
-                              context: context,
-                              builder: (_) => InfoDialog(
-                                headercolor: Colors.redAccent,
-                                header: "My Glance",
-                                buttontext: "Ok",
-                                onpressed: () => Navigator.pop(context),
-                                subtitletext:
-                                    "Your glance features, all your intake history up to three records with there corresponding time intervals",
+                      splashRadius: 22,
+                      //TODO: Maybe move this to the faq page.
+                      onPressed: () {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            backgroundColor: Colors.transparent,
+                            elevation: 0,
+                            content: InfoToast(
+                              title: "Glance",
+                              body: "All your intake history for today",
+                              widget: Icon(
+                                Iconsax.info_circle,
+                                size: 16,
+                                color: Colors.white,
                               ),
                             ),
-                        icon: Image.asset(
-                          "assets/icons/icons8-water-64.png",
-                          height: 30,
-                          width: 30,
-                        )),
+                          ),
+                        );
+                      },
+                      icon: Image.asset(
+                        "assets/icons/icons8-water-64.png",
+                        height: 30,
+                        width: 30,
+                      ),
+                    ),
                   ),
                 ],
               ),
