@@ -13,7 +13,7 @@ class AppTheme {
     disabledColor: Colors.white,
     scaffoldBackgroundColor: Colors.white,
     primarySwatch: primaryColor,
-    hintColor: const Color(0xFF4C9BFB),
+    hintColor: const Color(0xff7fffd4),
     highlightColor: const Color(0xffa4dded),
     primaryColor: const Color(0xFF4C9BFB),
   );
@@ -25,7 +25,7 @@ class AppTheme {
     disabledColor: const Color(0xFF0096FF),
     hoverColor: const Color(0xFF0096FF),
     appBarTheme: AppBarTheme(color: Colors.grey.shade900),
-    cardColor: Colors.grey.shade800,
+    cardColor: Colors.grey.shade900,
     highlightColor: Colors.grey.shade800,
     scaffoldBackgroundColor: darkThemeColor,
     primarySwatch: darkThemeColor,

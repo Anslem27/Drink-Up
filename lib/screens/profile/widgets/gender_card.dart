@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:iconsax/iconsax.dart';
 
+import '../../../Addons/widgets/fancy_snackbars.dart';
 import '../Gender.dart';
 
 typedef GenderChangedCallback = void Function(Gender gender);
@@ -134,6 +136,21 @@ class _GenderSelectorCardState extends State<GenderSelectorCard> {
                         IconButton(
                           onPressed: () {
                             selectGender(Gender.male);
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(
+                                backgroundColor: Colors.transparent,
+                                elevation: 0,
+                                content: InfoToast(
+                                  title: "Gender",
+                                  body: "Gender set to Male",
+                                  widget: Icon(
+                                    Iconsax.man,
+                                    size: 16,
+                                    color: Colors.white,
+                                  ),
+                                ),
+                              ),
+                            );
                           },
                           icon: Icon(
                             Icons.male,
@@ -147,6 +164,21 @@ class _GenderSelectorCardState extends State<GenderSelectorCard> {
                         IconButton(
                           onPressed: () {
                             selectGender(Gender.female);
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(
+                                backgroundColor: Colors.transparent,
+                                elevation: 0,
+                                content: FancySnackBar(
+                                  title: "Gender",
+                                  body: "Gender set to Female",
+                                  widget: Icon(
+                                    Iconsax.woman,
+                                    size: 16,
+                                    color: Colors.white,
+                                  ),
+                                ),
+                              ),
+                            );
                           },
                           icon: Icon(
                             Icons.female,

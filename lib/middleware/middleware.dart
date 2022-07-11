@@ -79,11 +79,10 @@ Middleware<AppState> _createLoadDrinksHistory() {
         .then((maps) {
       List<DrinkHistoryEntry> entries = [];
       var table = DrinkHistoryTable();
-      // ignore: avoid_function_literals_in_foreach_calls
-      maps.forEach((map) {
+      for (var map in maps) {
         DrinkHistoryEntry entry = table.entryFromMap(map);
         entries.add(entry);
-      });
+      }
       store.dispatch(DrinkHistoryLoadedAction(entries));
     });
 

@@ -93,6 +93,7 @@ class FancySnackBar extends StatelessWidget {
 class InfoToast extends StatelessWidget {
   final String title, body;
   final Widget widget;
+
   const InfoToast(
       {Key key,
       @required this.body,

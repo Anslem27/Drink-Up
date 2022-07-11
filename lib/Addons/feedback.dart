@@ -1,4 +1,7 @@
+// ignore_for_file: deprecated_member_use
+
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class FeedBackPage extends StatelessWidget {
@@ -7,116 +10,138 @@ class FeedBackPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-        child: Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.only(bottom: 8, right: 8, left: 8),
+      body: NestedScrollView(
+        headerSliverBuilder: (_, isScrolled) {
+          return [
+            SliverAppBar(
+              backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+              title: Text(
+                "Send Feedback",
+                style: GoogleFonts.roboto(
+                  fontSize: 30,
+                  color: Theme.of(context).focusColor,
+                ),
+              ),
+              pinned: true,
+              floating: true,
+              forceElevated: isScrolled,
+            )
+          ];
+        },
+        body: feedBackBody(context),
+      ),
+    );
+  }
+
+  feedBackBody(BuildContext context) {
+    return SafeArea(
+      child: Column(
+        children: [
+          // Padding(
+          //   padding: const EdgeInsets.only(bottom: 8, right: 8, left: 8),
+          //   child: Row(
+          //     children: [
+          //       IconButton(
+          //         onPressed: () => Navigator.of(context).pop(),
+          //         tooltip: "Back",
+          //         //Adaptive back button for full native experience.
+          //         icon: Icon(Icons.adaptive.arrow_back),
+          //         splashRadius: 24,
+          //       ),
+          //       const SizedBox(width: 2),
+          //       Text(
+          //         "Send feedback",
+          //         style: GoogleFonts.roboto(
+          //           fontSize: 30,
+          //           color: Theme.of(context).focusColor,
+          //         ),
+          //       ),
+          //     ],
+          //   ),
+          // ),
+          GestureDetector(
+            onTap: () {
+              ideaMail();
+            },
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
               child: Row(
-                children: [
-                  IconButton(
-                    onPressed: () => Navigator.of(context).pop(),
-                    tooltip: "Back",
-                    //Adaptive back button for full native experience.
-                    icon: Icon(Icons.adaptive.arrow_back),
-                    splashRadius: 24,
-                  ),
-                  const SizedBox(width: 2),
-                  Text(
-                    "Send feedback",
-                    style: TextStyle(
-                      fontSize: 30,
-                      color: Theme.of(context).focusColor,
+                children: const [
+                  Padding(
+                    padding: EdgeInsets.all(5),
+                    child: Icon(
+                      Icons.lightbulb_outline_rounded,
+                      size: 30,
                     ),
                   ),
+                  Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: Text(
+                      "I have a suggestion",
+                      style: TextStyle(fontSize: 18),
+                    ),
+                  )
                 ],
               ),
             ),
-            GestureDetector(
-              onTap: () {
-                ideaMail();
-              },
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Row(
-                  children: const [
-                    Padding(
-                      padding: EdgeInsets.all(5),
-                      child: Icon(
-                        Icons.lightbulb_outline_rounded,
-                        size: 30,
-                      ),
+          ),
+          GestureDetector(
+            onTap: () {
+              issueMail();
+            },
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Row(
+                children: const [
+                  Padding(
+                    padding: EdgeInsets.all(5),
+                    child: Icon(
+                      Icons.sentiment_dissatisfied_outlined,
+                      size: 30,
                     ),
-                    Padding(
-                      padding: EdgeInsets.all(8.0),
-                      child: Text(
-                        "I have a suggestion",
-                        style: TextStyle(fontSize: 18),
-                      ),
-                    )
-                  ],
-                ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: Text(
+                      "I dont like something",
+                      style: TextStyle(fontSize: 18),
+                    ),
+                  )
+                ],
               ),
             ),
-            GestureDetector(
-              onTap: () {
-                issueMail();
-              },
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Row(
-                  children: const [
-                    Padding(
-                      padding: EdgeInsets.all(5),
-                      child: Icon(
-                        Icons.sentiment_dissatisfied_outlined,
-                        size: 30,
-                      ),
+          ),
+          GestureDetector(
+            onTap: () {
+              satisfiedMail();
+            },
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Row(
+                children: const [
+                  Padding(
+                    padding: EdgeInsets.all(5),
+                    child: Icon(
+                      Icons.insert_emoticon_outlined,
+                      size: 30,
                     ),
-                    Padding(
-                      padding: EdgeInsets.all(8.0),
-                      child: Text(
-                        "I dont like something",
-                        style: TextStyle(fontSize: 18),
-                      ),
-                    )
-                  ],
-                ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: Text(
+                      "Am satisfied with the app",
+                      style: TextStyle(fontSize: 18),
+                    ),
+                  )
+                ],
               ),
             ),
-            GestureDetector(
-              onTap: () {
-                satisfiedMail();
-              },
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Row(
-                  children: const [
-                    Padding(
-                      padding: EdgeInsets.all(5),
-                      child: Icon(
-                        Icons.insert_emoticon_outlined,
-                        size: 30,
-                      ),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.all(8.0),
-                      child: Text(
-                        "Am satisfied with the app",
-                        style: TextStyle(fontSize: 18),
-                      ),
-                    )
-                  ],
-                ),
-              ),
-            ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
 }
-
 
 //TODO: Add feedback email.
 void ideaMail() async {

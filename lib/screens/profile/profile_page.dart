@@ -1,6 +1,5 @@
 import 'dart:io';
-
-import 'package:drink_up/styles/Animations/custom_page_transition.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_redux/flutter_redux.dart';
@@ -56,41 +55,76 @@ class _ProfilePageState extends State<ProfilePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: StoreConnector<AppState, AppState>(
-        converter: (store) => store.state,
-        builder: (context, state) {
-          return SafeArea(
-            child: StoreConnector<AppState, OnSaveCallback>(
-              converter: (store) {
-                return ({gender, age, dailyGoal}) {
-                  var settings = store.state.settings
-                      .copyWith(gender: gender, age: age, dailyGoal: dailyGoal);
-                  store.dispatch(SaveSettingsAction(settings));
-                };
-              },
-              builder: (context, callback) {
-                return SingleChildScrollView(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      userActivity(context),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          userProfile(context),
-                          genderAgeView(callback, state)
-                        ],
-                      ),
-                      bottomBody(state, callback, context),
-                    ],
-                  ),
-                );
-              },
+        body: NestedScrollView(
+      headerSliverBuilder: (_, isScrolled) {
+        return [
+          SliverAppBar(
+            backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+            title: Text(
+              "My Profile",
+              style: GoogleFonts.roboto(
+                fontSize: 30,
+                color: Theme.of(context).focusColor,
+              ),
             ),
-          );
-        },
-      ),
+            pinned: true,
+            floating: true,
+            forceElevated: isScrolled,
+            actions: [
+              IconButton(
+                onPressed: () => Navigator.of(context).push(CupertinoPageRoute(
+                  builder: (_) => const AppSettings(),
+                )),
+                tooltip: "Menu",
+                icon: const Icon(
+                  Iconsax.setting,
+                  size: 30,
+                  semanticLabel: "Menu",
+                ),
+                splashRadius: 25,
+              ),
+            ],
+          )
+        ];
+      },
+      body: profileBodyBlock(),
+    ));
+  }
+
+  StoreConnector<AppState, AppState> profileBodyBlock() {
+    return StoreConnector<AppState, AppState>(
+      converter: (store) => store.state,
+      builder: (context, state) {
+        return SafeArea(
+          child: StoreConnector<AppState, OnSaveCallback>(
+            converter: (store) {
+              return ({gender, age, dailyGoal}) {
+                var settings = store.state.settings
+                    .copyWith(gender: gender, age: age, dailyGoal: dailyGoal);
+                store.dispatch(SaveSettingsAction(settings));
+              };
+            },
+            builder: (context, callback) {
+              return Expanded(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        userProfile(context),
+                        genderAgeView(callback, state)
+                      ],
+                    ),
+                    bottomBody(state, callback, context),
+                  ],
+                ),
+              );
+            },
+          ),
+        );
+      },
     );
   }
 
@@ -141,7 +175,7 @@ class _ProfilePageState extends State<ProfilePage> {
                   child: Text(
                     randomFact,
                     textAlign: TextAlign.center,
-                    style: GoogleFonts.nunitoSans(
+                    style: GoogleFonts.roboto(
                       fontSize: 19.5,
                     ),
                   ),
@@ -150,7 +184,7 @@ class _ProfilePageState extends State<ProfilePage> {
                   padding: const EdgeInsets.all(8),
                   child: Image.asset(
                     factImageDissolver,
-                    height: 120,
+                    height: 100,
                     width: 120,
                   ),
                 ),
@@ -193,40 +227,6 @@ class _ProfilePageState extends State<ProfilePage> {
       ],
     );
   }
-
-//TODO: Move to gender card locati0on and incoperate it.
-  userActivity(context) {
-    return Padding(
-      padding: const EdgeInsets.only(top: 10, bottom: 8, right: 8, left: 8),
-      child: Row(
-        children: [
-          const Text(
-            "My Profile",
-            style: TextStyle(fontSize: 30),
-          ),
-          const Spacer(),
-          Padding(
-            padding: const EdgeInsets.only(right: 10.0),
-            child: IconButton(
-              onPressed: () => Navigator.of(context).push(
-                CustomPageRoute(
-                  destination: const AppSettings(),
-                ),
-              ),
-              tooltip: "Menu",
-              icon: const Icon(
-                Iconsax.setting,
-                size: 30,
-                semanticLabel: "Menu",
-              ),
-              splashRadius: 25,
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
 
   userProfile(context) {
     return Row(

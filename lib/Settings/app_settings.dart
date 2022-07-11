@@ -1,7 +1,8 @@
 import 'package:drink_up/Settings/Widgets/reusable_widgets.dart';
-import 'package:drink_up/styles/Animations/custom_page_transition.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:sliding_sheet/sliding_sheet.dart';
 
@@ -24,48 +25,47 @@ class _AppSettingsState extends State<AppSettings> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-        child: SingleChildScrollView(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(
-                    top: 10, bottom: 8, right: 8, left: 8),
-                child: Row(
-                  children: [
-                    IconButton(
-                      onPressed: () => Navigator.of(context).pop(),
-                      tooltip: "Back",
-                      //?remeber adaptive back button for full native experience.
-                      icon: Icon(Icons.adaptive.arrow_back),
-                      splashRadius: 25,
-                    ),
-                    const SizedBox(width: 2),
-                    Text(
-                      "Settings",
-                      style: TextStyle(
-                        fontSize: 30,
-                        color: Theme.of(context).focusColor,
-                      ),
-                    ),
-                  ],
+        body: NestedScrollView(
+      headerSliverBuilder: (_, isScrolled) {
+        return [
+          SliverAppBar(
+            backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+            title: Text(
+              "Settings",
+              style: GoogleFonts.roboto(
+                fontSize: 30,
+                color: Theme.of(context).focusColor,
+              ),
+            ),
+            pinned: true,
+            floating: true,
+            forceElevated: isScrolled,
+          )
+        ];
+      },
+      body: settingsBodyBlock(context),
+    ));
+  }
+
+  settingsBodyBlock(BuildContext context) {
+    return SafeArea(
+      child: SingleChildScrollView(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const Padding(
+              padding: EdgeInsets.all(8.0),
+              child: Text(
+                "General",
+                style: TextStyle(
+                  fontSize: 19.5,
+                  color: Colors.grey,
                 ),
               ),
-              const Padding(
-                padding: EdgeInsets.all(8.0),
-                child: Text(
-                  "General",
-                  style: TextStyle(
-                    fontSize: 19.5,
-                    color: Colors.grey,
-                  ),
-                ),
-              ),
-              settingsBody(),
-            ],
-          ),
+            ),
+            settingsBody(),
+          ],
         ),
       ),
     );
@@ -136,7 +136,7 @@ class _AppSettingsState extends State<AppSettings> {
                       thememode = val;
                       setState(() {
                         themeController.changeThemeMode(ThemeMode.dark);
-                        themeController.saveTheme(false);
+                        themeController.saveTheme(true);
                       });
                     },
                   ),
@@ -160,7 +160,7 @@ class _AppSettingsState extends State<AppSettings> {
                         thememode = val;
                         setState(() {
                           themeController.changeThemeMode(ThemeMode.system);
-                          themeController.saveTheme(false);
+                          themeController.saveTheme(true);
                         });
                       }),
                   const Flexible(
@@ -254,8 +254,8 @@ class _AppSettingsState extends State<AppSettings> {
           title: "Contact Us",
           ontap: () => Navigator.push(
             context,
-            CustomPageRoute(
-              destination: const FeedBackPage(),
+            CupertinoPageRoute(
+              builder: (_) => const FeedBackPage(),
             ),
           ),
         ),
@@ -267,8 +267,8 @@ class _AppSettingsState extends State<AppSettings> {
           ),
           title: "About",
           ontap: () => Navigator.of(context).push(
-            CustomPageRoute(
-              destination: const Aboutpage(),
+            CupertinoPageRoute(
+              builder: (_) => const Aboutpage(),
             ),
           ),
         ),
@@ -279,6 +279,7 @@ class _AppSettingsState extends State<AppSettings> {
 //? rating bottomsheet
   ratingBottomSheet(BuildContext context) {
     return Material(
+      color: Theme.of(context).cardColor,
       child: Padding(
         padding: const EdgeInsets.all(15.0),
         child: Column(

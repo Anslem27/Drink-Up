@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import '../../../Models/app_state.dart';
 import '../../../Models/water/Drink.dart';
-import '../../../actions/intake_actions.dart';
+import '../../../actions/drinking.dart';
 import '../../../actions/history_actions.dart';
 import '../../../managers/database/drink_history.dart';
 import '../history_manager.dart';

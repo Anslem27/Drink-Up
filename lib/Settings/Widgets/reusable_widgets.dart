@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+// import '../../../util/globals.dart' as globals;
 
 //...............//?Used with drink dialogs................................//
 
@@ -62,66 +63,6 @@ class QuirkyDialog extends StatelessWidget {
   }
 }
 
-//...............//? Reusable Hint Dialog with Header,content+button.................................//
-// ignore: must_be_immutable
-class InfoDialog extends StatelessWidget {
-  final String subtitletext, buttontext, header;
-  final Color headercolor;
-  void Function() onpressed;
-  InfoDialog(
-      {Key key,
-      this.header,
-      this.headercolor,
-      this.onpressed,
-      this.subtitletext,
-      this.buttontext})
-      : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Dialog(
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(15),
-      ),
-      child: Padding(
-        padding: const EdgeInsets.all(20),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          //! mainAxisSize: MainAxisSize.min,
-          //? Used for shrinking the column to fit right into dialog.
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              header,
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
-                color: headercolor,
-              ),
-            ),
-            const SizedBox(height: 12),
-            Text(
-              subtitletext,
-              style: const TextStyle(fontSize: 16.5),
-            ),
-            const SizedBox(height: 12),
-            ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(15),
-                ),
-              ),
-              onPressed: onpressed,
-              child: Text(buttontext),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
 //?..............................................Used with the settings cards..................................//
 class SettingsCard extends StatelessWidget {
   const SettingsCard(
@@ -139,6 +80,10 @@ class SettingsCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // var brightness = MediaQuery.of(context).platformBrightness;
+    // bool darkModeOn = (globals.themeMode == ThemeMode.dark ||
+    //     (brightness == Brightness.dark &&
+    //         globals.themeMode == ThemeMode.system));
     return GestureDetector(
       onTap: ontap,
       child: Container(
@@ -146,6 +91,7 @@ class SettingsCard extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.all(5.0),
           child: Card(
+            //color: darkModeOn ? const Color(0xff7fffd4) : Colors.grey.shade900,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(12),
             ),

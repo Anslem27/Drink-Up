@@ -2,6 +2,7 @@
 
 import 'dart:math';
 
+//TODO: Maybe make an api
 List<String> wateryFacts = [
   'Adult humans are 60 percent water, and our blood is 90 percent water',
   'There is no universally agreed quantity of water that must be consumed daily',
