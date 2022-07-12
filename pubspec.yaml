@@ -30,6 +30,7 @@ dependencies:
   google_fonts: ^2.3.1
   url_launcher: ^6.0.17
   store_redirect: ^2.0.0
+  awesome_notifications: ^0.6.21
   flutter_local_notifications: ^9.2.0
   iconsax: ^0.0.8
   # GetX State Management

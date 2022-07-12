@@ -1,6 +1,6 @@
+import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:drink_up/Addons/Pages/splash_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:get/get.dart';
 import 'package:redux/redux.dart';
@@ -18,6 +18,23 @@ import 'styles/app_theme.dart';
 
 // APP NAME: Drink Up
 void main() {
+  AwesomeNotifications().initialize('resource://drawable/ic_launcher', [
+    NotificationChannel(
+      channelKey: 'basic_channel',
+      channelName: 'Basic Notifications',
+      // defaultColor: const Color(0xff7fffd4),
+      channelDescription: 'Minimal basic notifications for drink up',
+      importance: NotificationImportance.High,
+      channelShowBadge: true,
+    ),
+    NotificationChannel(
+      channelKey: 'scheduled_channel',
+      channelName: 'Scheduled Notifications',
+      channelDescription: 'Scheduled Notifications channel',
+      locked: true,
+      importance: NotificationImportance.High,
+    )
+  ]);
   runApp(MyApp());
 }
 
@@ -30,7 +47,6 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light);
     return StoreProvider<AppState>(
       store: store,
       child: GetMaterialApp(

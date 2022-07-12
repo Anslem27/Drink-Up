@@ -7,6 +7,7 @@ import 'package:iconsax/iconsax.dart';
 import 'package:sliding_sheet/sliding_sheet.dart';
 
 import '../Addons/feedback.dart';
+import '../screens/notifications/notification_page.dart';
 import '../styles/theme_controller.dart';
 import 'About/about_page.dart';
 
@@ -191,6 +192,20 @@ class _AppSettingsState extends State<AppSettings> {
           ontap: () => showDialog(
             context: context,
             builder: (_) => themeChanger(),
+          ),
+        ),
+        SettingsCard(
+          subtitle: "Set Up your notification preferences",
+          leading: const Icon(
+            Iconsax.notification,
+            color: Color(0xff7fffd4),
+          ),
+          title: "Notifications",
+          ontap: () => Navigator.push(
+            context,
+            CupertinoPageRoute(
+              builder: (_) => const NotificationsSettingsPage(),
+            ),
           ),
         ),
         SettingsCard(
@@ -416,6 +431,7 @@ class _AppSettingsState extends State<AppSettings> {
   //? Whats New Dialog
   Widget newDialog() {
     return Dialog(
+      backgroundColor: Theme.of(context).cardColor,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(16),
       ),

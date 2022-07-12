@@ -1,10 +1,10 @@
-import 'package:flutter/cupertino.dart';
+
 import 'package:flutter/material.dart';
+import 'package:iconsax/iconsax.dart';
 
 import 'screens/profile/profile_page.dart';
 import 'util/utilities.dart';
 import 'screens/history/history_page.dart';
-//import 'screens/notifications/notifications_settings_page.dart';
 import 'screens/today/today_page.dart';
 
 class HomePage extends StatefulWidget {
@@ -48,9 +48,10 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
 
   @override
   Widget build(BuildContext context) {
+    @override
     final iconThemeColor = Theme.of(context).hoverColor;
     return Scaffold(
-      body: appBody[currentindex],
+      body: SafeArea(child: appBody[currentindex]),
       bottomNavigationBar: navigationDestinations(context, iconThemeColor),
     );
   }
@@ -77,13 +78,13 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
         destinations: [
           NavigationDestination(
             selectedIcon: Icon(
-              CupertinoIcons.home,
+              Iconsax.home,
               semanticLabel: 'Home',
               size: 33,
               color: iconThemeColor,
             ),
             icon: Icon(
-              Icons.home_outlined,
+              Iconsax.home,
               semanticLabel: 'Home',
               size: 33,
               color: iconThemeColor,
@@ -98,37 +99,22 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
               color: iconThemeColor,
             ),
             icon: Icon(
-              Icons.history,
+              Iconsax.activity,
               semanticLabel: 'History',
               size: 29,
               color: iconThemeColor,
             ),
             label: "History",
           ),
-          /*  NavigationDestination(
-            selectedIcon: Icon(
-              Icons.notifications,
-              size: 30,
-              semanticLabel: 'Reminders',
-              color: iconThemeColor,
-            ),
-            icon: Icon(
-              Icons.notifications_outlined,
-              size: 30,
-              semanticLabel: 'Reminders',
-              color: iconThemeColor,
-            ),
-            label: "Reminders",
-          ), */
           NavigationDestination(
             selectedIcon: Icon(
-              Icons.account_circle_sharp,
+              Iconsax.user,
               size: 30,
               semanticLabel: 'Profile',
               color: iconThemeColor,
             ),
             icon: Icon(
-              Icons.account_circle_outlined,
+              Iconsax.user,
               size: 30,
               semanticLabel: 'Profile',
               color: iconThemeColor,

@@ -223,7 +223,7 @@ class _HistoryPageState extends State<HistoryPage>
                       Text(
                         "My\nSummary",
                         textAlign: TextAlign.center,
-                        style: TextStyle(
+                        style: GoogleFonts.roboto(
                           fontSize: 19,
                           color: Theme.of(context).focusColor,
                         ),
@@ -288,6 +288,7 @@ class _HistoryPageState extends State<HistoryPage>
 
   Widget summaryBottomSheet(List<DrinkHistoryEntry> entries) {
     return Material(
+      color: Theme.of(context).cardColor,
       child: Padding(
         padding: const EdgeInsets.all(15.0),
         child: Column(

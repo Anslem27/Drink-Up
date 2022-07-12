@@ -55,74 +55,74 @@ class _ProfilePageState extends State<ProfilePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: NestedScrollView(
-      headerSliverBuilder: (_, isScrolled) {
-        return [
-          SliverAppBar(
-            backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-            title: Text(
-              "My Profile",
-              style: GoogleFonts.roboto(
-                fontSize: 30,
-                color: Theme.of(context).focusColor,
-              ),
-            ),
-            pinned: true,
-            floating: true,
-            forceElevated: isScrolled,
-            actions: [
-              IconButton(
-                onPressed: () => Navigator.of(context).push(CupertinoPageRoute(
-                  builder: (_) => const AppSettings(),
-                )),
-                tooltip: "Menu",
-                icon: const Icon(
-                  Iconsax.setting,
-                  size: 30,
-                  semanticLabel: "Menu",
+        body: SafeArea(
+          child: NestedScrollView(
+              headerSliverBuilder: (_, isScrolled) {
+          return [
+            SliverAppBar(
+              backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+              title: Text(
+                "My Profile",
+                style: GoogleFonts.roboto(
+                  fontSize: 30,
+                  color: Theme.of(context).focusColor,
                 ),
-                splashRadius: 25,
               ),
-            ],
-          )
-        ];
-      },
-      body: profileBodyBlock(),
-    ));
+              pinned: true,
+              floating: true,
+              forceElevated: isScrolled,
+              actions: [
+                IconButton(
+                  onPressed: () => Navigator.of(context).push(
+                    CupertinoPageRoute(
+                      builder: (_) => const AppSettings(),
+                    ),
+                  ),
+                  tooltip: "Menu",
+                  icon: const Icon(
+                    Iconsax.setting,
+                    size: 30,
+                    semanticLabel: "Menu",
+                  ),
+                  splashRadius: 25,
+                ),
+              ],
+            )
+          ];
+              },
+              body: profileBodyBlock(),
+            ),
+        ));
   }
 
   StoreConnector<AppState, AppState> profileBodyBlock() {
     return StoreConnector<AppState, AppState>(
       converter: (store) => store.state,
       builder: (context, state) {
-        return SafeArea(
-          child: StoreConnector<AppState, OnSaveCallback>(
-            converter: (store) {
-              return ({gender, age, dailyGoal}) {
-                var settings = store.state.settings
-                    .copyWith(gender: gender, age: age, dailyGoal: dailyGoal);
-                store.dispatch(SaveSettingsAction(settings));
-              };
-            },
-            builder: (context, callback) {
-              return Expanded(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
+        return StoreConnector<AppState, OnSaveCallback>(
+          converter: (store) {
+            return ({gender, age, dailyGoal}) {
+              var settings = store.state.settings
+                  .copyWith(gender: gender, age: age, dailyGoal: dailyGoal);
+              store.dispatch(SaveSettingsAction(settings));
+            };
+          },
+          builder: (context, callback) {
+            return Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        userProfile(context),
-                        genderAgeView(callback, state)
-                      ],
-                    ),
-                    bottomBody(state, callback, context),
+                    userProfile(context),
+                    genderAgeView(callback, state)
                   ],
                 ),
-              );
-            },
-          ),
+                bottomBody(state, callback, context),
+              ],
+            );
+          },
         );
       },
     );
@@ -255,24 +255,25 @@ class _ProfilePageState extends State<ProfilePage> {
                   child: Stack(
                     children: [
                       Align(
-                          alignment: Alignment.center,
-                          child: image != null
-                              ? ClipOval(
-                                  child: Image.file(
-                                    // image!,
-                                    //? null check.
-                                    image,
-                                    width: 85, height: 85,
-                                  ),
-                                )
-                              //TODO: Create a bool image with an option of a different constant avatar for females and males
-                              : const CircleAvatar(
-                                  backgroundColor: Colors.transparent,
-                                  radius: 40,
-                                  backgroundImage: AssetImage(
-                                    "assets/illustrations/man-1.png",
-                                  ),
-                                )),
+                        alignment: Alignment.center,
+                        child: image != null
+                            ? ClipOval(
+                                child: Image.file(
+                                  // image!,
+                                  //? null check.
+                                  image,
+                                  width: 85, height: 85,
+                                ),
+                              )
+                            //TODO: Create a bool image with an option of a different constant avatar for females and males
+                            : const CircleAvatar(
+                                backgroundColor: Colors.transparent,
+                                radius: 40,
+                                backgroundImage: AssetImage(
+                                  "assets/illustrations/man-1.png",
+                                ),
+                              ),
+                      ),
                       Align(
                         alignment: Alignment.topCenter,
                         child: Padding(
