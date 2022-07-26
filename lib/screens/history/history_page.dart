@@ -125,10 +125,11 @@ class _HistoryPageState extends State<HistoryPage>
       statWidgets.add(
         Expanded(
           child: HistorySummaryText(
-              "AVERAGE INTAKE",
-              currentEntries.isNotEmpty ? summary / currentEntries.length : 0.0,
-              Theme.of(context).focusColor,
-              unit: 'ml'),
+            "AVERAGE INTAKE",
+            currentEntries.isNotEmpty ? summary / currentEntries.length : 0.0,
+            Theme.of(context).focusColor,
+            unit: 'ml',
+          ),
         ),
       );
     } else {
@@ -148,8 +149,11 @@ class _HistoryPageState extends State<HistoryPage>
       statWidgets.add(
         Expanded(
           child: HistorySummaryText(
-              "AVERAGE\nA DAY", avg, Theme.of(context).focusColor,
-              unit: 'ml'),
+            "AVERAGE\nA DAY",
+            avg,
+            Theme.of(context).focusColor,
+            unit: 'ml',
+          ),
         ),
       );
     }

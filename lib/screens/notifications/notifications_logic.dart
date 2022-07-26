@@ -20,7 +20,7 @@ Future<void> createDrinkReminder(
       id: createUniqueId(),
       channelKey: 'scheduled_channel',
       title: 'Drink Up !',
-      body: 'Its time to haveyour scheduled drink',
+      body: 'Its time to have your scheduled drink',
       notificationLayout: NotificationLayout.Default,
     ),
     actionButtons: [
@@ -38,7 +38,7 @@ Future<void> createDrinkReminder(
 }
 
 
-Future<void> cancelScheduledNotifications() async {
 
+Future<void> cancelScheduledNotifications() async {
   await AwesomeNotifications().cancelAllSchedules();
 }

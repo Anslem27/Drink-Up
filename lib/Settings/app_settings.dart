@@ -26,26 +26,27 @@ class _AppSettingsState extends State<AppSettings> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: NestedScrollView(
-      headerSliverBuilder: (_, isScrolled) {
-        return [
-          SliverAppBar(
-            backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-            title: Text(
-              "Settings",
-              style: GoogleFonts.roboto(
-                fontSize: 30,
-                color: Theme.of(context).focusColor,
+      body: NestedScrollView(
+        headerSliverBuilder: (_, isScrolled) {
+          return [
+            SliverAppBar(
+              backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+              title: Text(
+                "Settings",
+                style: GoogleFonts.roboto(
+                  fontSize: 30,
+                  color: Theme.of(context).focusColor,
+                ),
               ),
-            ),
-            pinned: true,
-            floating: true,
-            forceElevated: isScrolled,
-          )
-        ];
-      },
-      body: settingsBodyBlock(context),
-    ));
+              pinned: true,
+              floating: true,
+              forceElevated: isScrolled,
+            )
+          ];
+        },
+        body: settingsBodyBlock(context),
+      ),
+    );
   }
 
   settingsBodyBlock(BuildContext context) {

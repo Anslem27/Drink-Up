@@ -1,12 +1,8 @@
-import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:iconsax/iconsax.dart';
-import 'package:image_picker/image_picker.dart';
-import 'package:path_provider/path_provider.dart';
 import '../../Addons/random_lists.dart';
 import '../../Models/app_state.dart';
 import '../../Settings/app_settings.dart';
@@ -15,7 +11,6 @@ import 'Gender.dart';
 import 'widgets/age_card.dart';
 import 'widgets/daily_goal_card.dart';
 import 'widgets/gender_card.dart';
-import 'package:path/path.dart';
 
 typedef OnSaveCallback = Function({Gender gender, int age, int dailyGoal});
 
@@ -28,36 +23,36 @@ class ProfilePage extends StatefulWidget {
 
 class _ProfilePageState extends State<ProfilePage> {
   //image instance
-  File image;
-  Future pickImage() async {
-    try {
-      final image = await ImagePicker().pickImage(source: ImageSource.gallery);
-      if (image == null) return;
-      final permanentImage = await saveImagePermanently(image.path);
-      //final imageTemporary = File(image.path);
-      setState(() {
-        this.image = permanentImage;
-      });
-    } on PlatformException catch (e) {
-      //? Just incase user denies persmission for camera.
-      // ignore: avoid_print
-      print("Failed to pick image: $e");
-    }
-  }
+  // File image;
+  // Future pickImage() async {
+  //   try {
+  //     final image = await ImagePicker().pickImage(source: ImageSource.gallery);
+  //     if (image == null) return;
+  //     final permanentImage = await saveImagePermanently(image.path);
+  //     //final imageTemporary = File(image.path);
+  //     setState(() {
+  //       this.image = permanentImage;
+  //     });
+  //   } on PlatformException catch (e) {
+  //     //? Just incase user denies persmission for camera.
+  //     // ignore: avoid_print
+  //     print("Failed to pick image: $e");
+  //   }
+  // }
 
-  Future<File> saveImagePermanently(String imagePath) async {
-    final directory = await getApplicationDocumentsDirectory();
-    final name = basename(imagePath);
-    final image = File("${directory.path}/$name");
-    return File(imagePath).copy(image.path);
-  }
+  // Future<File> saveImagePermanently(String imagePath) async {
+  //   final directory = await getApplicationDocumentsDirectory();
+  //   final name = basename(imagePath);
+  //   final image = File("${directory.path}/$name");
+  //   return File(imagePath).copy(image.path);
+  // }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         body: SafeArea(
-          child: NestedScrollView(
-              headerSliverBuilder: (_, isScrolled) {
+      child: NestedScrollView(
+        headerSliverBuilder: (_, isScrolled) {
           return [
             SliverAppBar(
               backgroundColor: Theme.of(context).scaffoldBackgroundColor,
@@ -89,10 +84,10 @@ class _ProfilePageState extends State<ProfilePage> {
               ],
             )
           ];
-              },
-              body: profileBodyBlock(),
-            ),
-        ));
+        },
+        body: profileBodyBlock(),
+      ),
+    ));
   }
 
   StoreConnector<AppState, AppState> profileBodyBlock() {
@@ -108,19 +103,21 @@ class _ProfilePageState extends State<ProfilePage> {
             };
           },
           builder: (context, callback) {
-            return Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    userProfile(context),
-                    genderAgeView(callback, state)
-                  ],
-                ),
-                bottomBody(state, callback, context),
-              ],
+            return SingleChildScrollView(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      userProfile(context),
+                      genderAgeView(callback, state)
+                    ],
+                  ),
+                  bottomBody(state, callback, context),
+                ],
+              ),
             );
           },
         );
@@ -254,9 +251,15 @@ class _ProfilePageState extends State<ProfilePage> {
                   ),
                   child: Stack(
                     children: [
-                      Align(
+                      const Align(
                         alignment: Alignment.center,
-                        child: image != null
+                        child: CircleAvatar(
+                          backgroundColor: Colors.transparent,
+                          radius: 40,
+                          backgroundImage: AssetImage(
+                            "assets/illustrations/man-1.png",
+                          ),
+                        ), /* image != null
                             ? ClipOval(
                                 child: Image.file(
                                   // image!,
@@ -272,7 +275,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                 backgroundImage: AssetImage(
                                   "assets/illustrations/man-1.png",
                                 ),
-                              ),
+                              ), */
                       ),
                       Align(
                         alignment: Alignment.topCenter,

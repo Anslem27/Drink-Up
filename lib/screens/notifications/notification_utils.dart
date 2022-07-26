@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 int createUniqueId() {
   return DateTime.now().millisecondsSinceEpoch.remainder(100000);
@@ -55,7 +56,12 @@ Future<NotificationWeekAndTime> pickSchedule(
                       const Color(0xff7fffd4),
                     ),
                   ),
-                  child: Text(weekdays[index]),
+                  child: Text(
+                    weekdays[index],
+                    style: GoogleFonts.roboto(
+                      color: Colors.black,
+                    ),
+                  ),
                 ),
             ],
           ),

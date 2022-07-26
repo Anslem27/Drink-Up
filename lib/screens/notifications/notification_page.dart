@@ -15,8 +15,18 @@ class NotificationsSettingsPage extends StatefulWidget {
 }
 
 class _NotificationsSettingsPageState extends State<NotificationsSettingsPage> {
+  List<NotificationModel> currentNotifications;
+
+  //list active notifications
+  showScheduledNotification() async {
+    currentNotifications =
+        await AwesomeNotifications().listScheduledNotifications();
+    return currentNotifications;
+  }
+
   @override
   void initState() {
+    showScheduledNotification();
     AwesomeNotifications().isNotificationAllowed().then((isAllowed) {
       if (isAllowed == false) {
         //TODO: Rework alert widget
@@ -46,21 +56,21 @@ class _NotificationsSettingsPageState extends State<NotificationsSettingsPage> {
       }
     });
 
-    AwesomeNotifications().actionStream.listen((event) {
-      //decrement IOS notification count
-      if (event.channelKey == "basic_channel" && Platform.isIOS) {
-        AwesomeNotifications().getGlobalBadgeCounter().then(
-            (value) => AwesomeNotifications().setGlobalBadgeCounter(value - 1));
-      }
+    // AwesomeNotifications().actionStream.listen((event) {
+    //   //decrement IOS notification count
+    //   if (event.channelKey == "basic_channel" && Platform.isIOS) {
+    //     AwesomeNotifications().getGlobalBadgeCounter().then(
+    //         (value) => AwesomeNotifications().setGlobalBadgeCounter(value - 1));
+    //   }
 
-      //!push user notifications to today Page
-      // Navigator.pushAndRemoveUntil(
-      //     context,
-      //     CupertinoPageRoute(
-      //       builder: (_) => const TodayPage(),
-      //     ),
-      //     (route) => route.isFirst);
-    });
+    //   //!push user notifications to today Page
+    //   // Navigator.pushAndRemoveUntil(
+    //   //     context,
+    //   //     CupertinoPageRoute(
+    //   //       builder: (_) => const TodayPage(),
+    //   //     ),
+    //   //     (route) => route.isFirst);
+    // });
     super.initState();
   }
 
@@ -97,23 +107,6 @@ class _NotificationsSettingsPageState extends State<NotificationsSettingsPage> {
                   ],
                 ),
               ),
-              // const SizedBox(height: 10),
-              // Padding(
-              //   padding: const EdgeInsets.all(8.0),
-              //   child: GestureDetector(
-              //     onTap: () async {
-              //       createNotification();
-
-              //       //TODO: Add snackbars to notify user
-              //     },
-              //     child: Text(
-              //       "Simple Notifications",
-              //       style: GoogleFonts.roboto(
-              //         fontSize: 18,
-              //       ),
-              //     ),
-              //   ),
-              // ),
               const SizedBox(height: 10),
               Padding(
                 padding: const EdgeInsets.all(8.0),
@@ -140,17 +133,34 @@ class _NotificationsSettingsPageState extends State<NotificationsSettingsPage> {
                 child: GestureDetector(
                   onTap: () async {
                     cancelScheduledNotifications();
-
-                    //TODO: Add snackbars to notify user
+                    //TODO: Add snackbars for confirmation
                   },
                   child: Text(
                     "Cancel All Notifications",
-                    style: GoogleFonts.roboto(
-                      fontSize: 18,
-                    ),
+                    style: GoogleFonts.roboto(fontSize: 18),
                   ),
                 ),
               ),
+              SizedBox(
+                height: 200,
+                child: ListView.builder(
+                  itemCount: currentNotifications?.length ?? 0,
+                  itemBuilder: (_, index) {
+                    return Padding(
+                      padding: const EdgeInsets.all(8),
+                      child: Row(
+                        children: [
+                          Icon(Icons.circle),
+                          Text(
+                            currentNotifications[index].schedule.createdDate,
+                            style: TextStyle(color: Colors.red),
+                          ),
+                        ],
+                      ),
+                    );
+                  },
+                ),
+              )
             ],
           ),
         ),

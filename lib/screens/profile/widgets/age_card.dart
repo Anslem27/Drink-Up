@@ -95,7 +95,7 @@ class _AgeSelectorCardState extends State<AgeSelectorCard> {
   }
 
   String ageGetter() {
-    if (_value > 0 && _value < 10) {
+    if (_value >= 0 && _value <= 10) {
       return "assets/icons/baby-boy.png";
     } else if (_value >= 10 && _value < 29) {
       return "assets/icons/teenager.png";

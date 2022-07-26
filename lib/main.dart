@@ -18,6 +18,7 @@ import 'styles/app_theme.dart';
 
 // APP NAME: Drink Up
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
   AwesomeNotifications().initialize('resource://drawable/ic_launcher', [
     NotificationChannel(
       channelKey: 'basic_channel',
