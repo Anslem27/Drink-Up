@@ -143,23 +143,54 @@ class _NotificationsSettingsPageState extends State<NotificationsSettingsPage> {
               ),
               SizedBox(
                 height: 200,
-                child: ListView.builder(
+                child:
+                    //future builder to show notifications
+                    FutureBuilder(
+                  future: showScheduledNotification(),
+                  builder: (context, snapshot) {
+                    if (snapshot.hasData) {
+                      return ListView.builder(
+                        itemCount: currentNotifications.length,
+                        itemBuilder: (context, index) {
+                          return Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: ListTile(
+                              title: Text(
+                                currentNotifications[index]
+                                    .schedule
+                                    .createdDate,
+                                style: GoogleFonts.roboto(
+                                  fontSize: 18,
+                                ),
+                              ),
+                            ),
+                          );
+                        },
+                      );
+                    } else {
+                      return const Center(
+                        child: CircularProgressIndicator(),
+                      );
+                    }
+                  },
+                ),
+                /* ListView.builder(
                   itemCount: currentNotifications?.length ?? 0,
                   itemBuilder: (_, index) {
                     return Padding(
                       padding: const EdgeInsets.all(8),
                       child: Row(
                         children: [
-                          Icon(Icons.circle),
+                          const Icon(Icons.circle),
                           Text(
                             currentNotifications[index].schedule.createdDate,
-                            style: TextStyle(color: Colors.red),
+                            style: const TextStyle(color: Colors.red),
                           ),
                         ],
                       ),
                     );
                   },
-                ),
+                ), */
               )
             ],
           ),

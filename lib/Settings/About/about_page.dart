@@ -25,7 +25,7 @@ class _AboutpageState extends State<Aboutpage> {
                     IconButton(
                       onPressed: () => Navigator.of(context).pop(),
                       tooltip: "Back",
-                      //?remeber adaptive back button for full native experience.
+                      // adaptive back button
                       icon: Icon(Icons.adaptive.arrow_back),
                       splashRadius: 25,
                     ),

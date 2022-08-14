@@ -1,3 +1,4 @@
+import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:drink_up/Addons/Pages/splash_screen.dart';
 import 'package:flutter/material.dart';
@@ -17,17 +18,9 @@ import 'screens/today/today_page.dart';
 import 'styles/app_theme.dart';
 
 // APP NAME: Drink Up
-void main() {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   AwesomeNotifications().initialize('resource://drawable/ic_launcher', [
-    NotificationChannel(
-      channelKey: 'basic_channel',
-      channelName: 'Basic Notifications',
-      // defaultColor: const Color(0xff7fffd4),
-      channelDescription: 'Minimal basic notifications for drink up',
-      importance: NotificationImportance.High,
-      channelShowBadge: true,
-    ),
     NotificationChannel(
       channelKey: 'scheduled_channel',
       channelName: 'Scheduled Notifications',
@@ -50,20 +43,25 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return StoreProvider<AppState>(
       store: store,
-      child: GetMaterialApp(
-        //named routes.
-        routes: <String, WidgetBuilder>{
-          "/homepage": (_) => const TodayPage(),
-          "/profilepage": (_) => const ProfilePage(),
-          "/historypage": (_) => const HistoryPage(),
-          "/settingspage": (_) => const AppSettings(),
+      child: AdaptiveTheme(
+        light: AppTheme.lightTheme,
+        dark: AppTheme.darkTheme,
+        initial: AdaptiveThemeMode.system,
+        builder: (theme, darkTheme) {
+          return GetMaterialApp(
+            //named routes.
+            routes: <String, WidgetBuilder>{
+              "/homepage": (_) => const TodayPage(),
+              "/profilepage": (_) => const ProfilePage(),
+              "/historypage": (_) => const HistoryPage(),
+              "/settingspage": (_) => const AppSettings(),
+            },
+            debugShowCheckedModeBanner: false,
+            theme: theme,
+            darkTheme: darkTheme,
+            home: const SplashScreen(),
+          );
         },
-        debugShowCheckedModeBanner: false,
-        //!Theme Changing variable.
-        themeMode: thememode,
-        theme: AppTheme.lightTheme,
-        darkTheme: AppTheme.darkTheme,
-        home: const SplashScreen(),
       ),
     );
   }

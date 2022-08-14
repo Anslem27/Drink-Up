@@ -13,7 +13,7 @@ import 'About/about_page.dart';
 
 ThemeMode thememode = ThemeMode.system;
 
-// TODO: Suggest a new feature.
+
 class AppSettings extends StatefulWidget {
   const AppSettings({Key key}) : super(key: key);
 
