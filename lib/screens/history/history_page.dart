@@ -179,8 +179,7 @@ class _HistoryPageState extends State<HistoryPage>
           style: ElevatedButton.styleFrom(
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(20.0),
-            ),
-            primary: _currentIndex == index ? selectedColor : color,
+            ), backgroundColor: _currentIndex == index ? selectedColor : color,
           ),
           onPressed: () {
             _onItemTapped(index);
